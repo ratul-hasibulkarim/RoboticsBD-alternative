@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+node_modules/
+.next/
+web/out/
+coverage/
+.raw/
+playwright-report/
+test-results/

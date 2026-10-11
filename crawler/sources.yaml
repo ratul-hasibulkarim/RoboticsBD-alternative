@@ -1,0 +1,396 @@
+# VoltFind source registry — the legal gate.
+#
+# Nothing is fetched for a source unless:
+#   legal_review.status == "approved"  AND  active == true
+# (enforced by crawler/registry.py; validated in CI by scripts/validate_robots.py).
+#
+# To approve a source, a human must read its Terms of Service and fill in
+# legal_review.reviewed_by / reviewed_at / notes. Do not flip status in bulk.
+#
+# Field reference
+#   name                unique slug, also the per_source extractor key fallback
+#   display_name        shown in the UI next to every price ("View at <display_name>")
+#   domain              registrable host (no scheme)
+#   type                api | crawl | manual | feed
+#   method              free text: how data is obtained
+#   country / currency  ISO 3166-1 alpha-2 / ISO 4217
+#   base_url            scheme + host
+#   rate_limit_rps      ceiling; the fetcher uses min(this, 1/crawl-delay)
+#   robots_url          null for type=api|manual|feed
+#   robots_checked_at   written by scripts/validate_robots.py --write
+#   extractor           module in crawler/extractors/per_source/ (or "generic")
+#   seeds               list of {kind: sitemap|category|api, url|params}
+#   js_required         if true, Playwright fallback allowed (still robots/legal gated)
+#   cache_ttl_hours     max age before a stored price must be refreshed or hidden
+#   trust_score         0..1, used by price ranker
+#   affiliate_template  python str.format template with {url}; null if none
+#   warehouse           {country, city, lat, lon} for proximity scoring
+#   ships_to            ISO list; ["*"] = worldwide
+#   legal_review        {status: approved|pending|blocked, tos_url, reviewed_by, reviewed_at, notes}
+#   active              kill switch
+
+version: 1
+
+sources:
+  # ------------------------------------------------------------------ BD shops
+  - name: roboticsbd
+    display_name: RoboticsBD
+    domain: roboticsbd.com
+    type: crawl
+    method: sitemap + public product pages
+    country: BD
+    currency: BDT
+    base_url: https://roboticsbd.com
+    rate_limit_rps: 0.5
+    robots_url: https://roboticsbd.com/robots.txt
+    robots_checked_at: null
+    extractor: woocommerce
+    seeds:
+      - {kind: sitemap, url: https://roboticsbd.com/sitemap.xml}
+    js_required: false
+    cache_ttl_hours: 48
+    trust_score: 0.8
+    affiliate_template: null
+    warehouse: {country: BD, city: Dhaka, lat: 23.8103, lon: 90.4125}
+    ships_to: [BD]
+    legal_review:
+      status: pending
+      tos_url: https://roboticsbd.com/terms-and-conditions/
+      reviewed_by: null
+      reviewed_at: null
+      notes: Verify domain, ToS and platform (extractor assumes WooCommerce) before approving.
+    active: true
+
+  - name: techshopbd
+    display_name: TechShop BD
+    domain: techshopbd.com
+    type: crawl
+    method: sitemap + public product pages
+    country: BD
+    currency: BDT
+    base_url: https://www.techshopbd.com
+    rate_limit_rps: 0.5
+    robots_url: https://www.techshopbd.com/robots.txt
+    robots_checked_at: null
+    extractor: generic
+    seeds:
+      - {kind: sitemap, url: https://www.techshopbd.com/sitemap.xml}
+    js_required: false
+    cache_ttl_hours: 48
+    trust_score: 0.8
+    affiliate_template: null
+    warehouse: {country: BD, city: Dhaka, lat: 23.7465, lon: 90.3760}
+    ships_to: [BD]
+    legal_review:
+      status: pending
+      tos_url: https://www.techshopbd.com/terms
+      reviewed_by: null
+      reviewed_at: null
+      notes: Verify domain and ToS. Platform unknown — generic JSON-LD/microdata extractor.
+    active: true
+
+  - name: robotechbd
+    display_name: RoboTech BD
+    domain: robotechbd.com
+    type: crawl
+    method: sitemap + public product pages
+    country: BD
+    currency: BDT
+    base_url: https://store.robotechbd.com
+    rate_limit_rps: 0.5
+    robots_url: https://store.robotechbd.com/robots.txt
+    robots_checked_at: null
+    extractor: opencart
+    seeds:
+      - {kind: sitemap, url: "https://store.robotechbd.com/index.php?route=extension/feed/google_sitemap"}
+    js_required: false
+    cache_ttl_hours: 48
+    trust_score: 0.75
+    affiliate_template: null
+    warehouse: {country: BD, city: Dhaka, lat: 23.7516, lon: 90.3928}
+    ships_to: [BD]
+    legal_review:
+      status: pending
+      tos_url: null
+      reviewed_by: null
+      reviewed_at: null
+      notes: Verify domain, ToS and platform (extractor assumes OpenCart).
+    active: true
+
+  # ------------------------------------------------------- Distributor APIs
+  - name: lcsc
+    display_name: LCSC Electronics
+    domain: lcsc.com
+    type: api
+    method: LCSC Open API (product detail + price tiers); key via LCSC_API_KEY
+    country: CN
+    currency: USD
+    base_url: https://www.lcsc.com
+    rate_limit_rps: 1.0
+    robots_url: null
+    robots_checked_at: null
+    extractor: lcsc_api
+    seeds:
+      - {kind: api, params: {endpoint: catalog}}
+    js_required: false
+    cache_ttl_hours: 24
+    trust_score: 0.95
+    affiliate_template: null
+    warehouse: {country: CN, city: Shenzhen, lat: 22.5431, lon: 114.0579}
+    ships_to: ["*"]
+    legal_review:
+      status: pending
+      tos_url: https://www.lcsc.com/agreement
+      reviewed_by: null
+      reviewed_at: null
+      notes: Requires approved API application and acceptance of API terms.
+    active: true
+
+  - name: mouser
+    display_name: Mouser Electronics
+    domain: mouser.com
+    type: api
+    method: Mouser Search API v2 (keyword + part number); key via MOUSER_API_KEY
+    country: US
+    currency: USD
+    base_url: https://www.mouser.com
+    rate_limit_rps: 0.5
+    robots_url: null
+    robots_checked_at: null
+    extractor: mouser_api
+    seeds:
+      - {kind: api, params: {endpoint: search/partnumber}}
+    js_required: false
+    cache_ttl_hours: 24
+    trust_score: 0.98
+    affiliate_template: null
+    warehouse: {country: US, city: Mansfield, lat: 32.5632, lon: -97.1417}
+    ships_to: ["*"]
+    legal_review:
+      status: pending
+      tos_url: https://www.mouser.com/api-hub/
+      reviewed_by: null
+      reviewed_at: null
+      notes: API limits (calls/min, calls/day) must be copied into rate_limit_rps on approval.
+    active: true
+
+  - name: digikey
+    display_name: DigiKey
+    domain: digikey.com
+    type: api
+    method: DigiKey Product Information API v4 (OAuth2 client credentials)
+    country: US
+    currency: USD
+    base_url: https://www.digikey.com
+    rate_limit_rps: 0.5
+    robots_url: null
+    robots_checked_at: null
+    extractor: digikey_api
+    seeds:
+      - {kind: api, params: {endpoint: products/v4/search/keyword}}
+    js_required: false
+    cache_ttl_hours: 24
+    trust_score: 0.98
+    affiliate_template: null
+    warehouse: {country: US, city: Thief River Falls, lat: 48.1191, lon: -96.1781}
+    ships_to: ["*"]
+    legal_review:
+      status: pending
+      tos_url: https://developer.digikey.com/terms-of-service
+      reviewed_by: null
+      reviewed_at: null
+      notes: Check display/caching clauses before approval.
+    active: true
+
+  # --------------------------------------------------- Manufacturer sitemaps
+  - name: espressif
+    display_name: Espressif Systems
+    domain: espressif.com
+    type: crawl
+    method: sitemap walk; product pages and datasheet links only
+    country: CN
+    currency: null
+    base_url: https://www.espressif.com
+    rate_limit_rps: 0.2
+    robots_url: https://www.espressif.com/robots.txt
+    robots_checked_at: null
+    extractor: generic
+    seeds:
+      - {kind: sitemap, url: https://www.espressif.com/sitemap.xml}
+    js_required: false
+    cache_ttl_hours: 720
+    trust_score: 1.0
+    affiliate_template: null
+    warehouse: null
+    ships_to: []
+    legal_review:
+      status: pending
+      tos_url: https://www.espressif.com/en/terms
+      reviewed_by: null
+      reviewed_at: null
+      notes: Spec/datasheet source only (no prices).
+    active: true
+
+  # ---------------------------------------------------- Tutorials / content
+  - name: youtube
+    display_name: YouTube
+    domain: youtube.com
+    type: api
+    method: YouTube Data API v3 search.list + videos.list; metadata only, no transcripts
+    country: GLOBAL
+    currency: null
+    base_url: https://www.googleapis.com/youtube/v3
+    rate_limit_rps: 1.0
+    robots_url: null
+    robots_checked_at: null
+    extractor: youtube_api
+    seeds: []
+    js_required: false
+    cache_ttl_hours: 720
+    trust_score: 0.6
+    affiliate_template: null
+    warehouse: null
+    ships_to: []
+    legal_review:
+      status: pending
+      tos_url: https://developers.google.com/youtube/terms/api-services-terms-of-service
+      reviewed_by: null
+      reviewed_at: null
+      notes: Daily quota 10 000 units by default; search.list costs 100 units.
+    active: true
+
+  - name: github
+    display_name: GitHub
+    domain: github.com
+    type: api
+    method: GitHub REST search/repositories + readme; license-gated code snippets
+    country: GLOBAL
+    currency: null
+    base_url: https://api.github.com
+    rate_limit_rps: 0.5
+    robots_url: null
+    robots_checked_at: null
+    extractor: github_api
+    seeds: []
+    js_required: false
+    cache_ttl_hours: 720
+    trust_score: 0.6
+    affiliate_template: null
+    warehouse: null
+    ships_to: []
+    legal_review:
+      status: pending
+      tos_url: https://docs.github.com/en/site-policy/github-terms/github-terms-of-service
+      reviewed_by: null
+      reviewed_at: null
+      notes: Search API limit 30 req/min authenticated.
+    active: true
+
+  - name: reddit
+    display_name: Reddit
+    domain: reddit.com
+    type: api
+    method: Reddit Data API (OAuth) — r/AskElectronics, r/PrintedCircuitBoard, r/electronics, r/embedded, r/bangladesh
+    country: GLOBAL
+    currency: null
+    base_url: https://oauth.reddit.com
+    rate_limit_rps: 0.5
+    robots_url: null
+    robots_checked_at: null
+    extractor: reddit_api
+    seeds: []
+    js_required: false
+    cache_ttl_hours: 720
+    trust_score: 0.5
+    affiliate_template: null
+    warehouse: null
+    ships_to: []
+    legal_review:
+      status: pending
+      tos_url: https://redditinc.com/policies/data-api-terms
+      reviewed_by: null
+      reviewed_at: null
+      notes: Commercial use needs a separate agreement with Reddit. Do not approve on the free tier.
+    active: true
+
+  # --------------------------------------------------------------- Blocked
+  - name: facebook
+    display_name: Facebook
+    domain: facebook.com
+    type: manual
+    method: none — shops submit their own listings via /submit
+    country: GLOBAL
+    currency: null
+    base_url: https://www.facebook.com
+    rate_limit_rps: 0
+    robots_url: null
+    robots_checked_at: null
+    extractor: none
+    seeds: []
+    js_required: false
+    cache_ttl_hours: 0
+    trust_score: 0
+    affiliate_template: null
+    warehouse: null
+    ships_to: []
+    legal_review:
+      status: blocked
+      tos_url: https://www.facebook.com/legal/automated_data_collection_terms
+      reviewed_by: spec-v1.1
+      reviewed_at: "2026-10-11"
+      notes: Automated collection requires Meta's written permission.
+    active: false
+
+  - name: instagram
+    display_name: Instagram
+    domain: instagram.com
+    type: manual
+    method: none
+    country: GLOBAL
+    currency: null
+    base_url: https://www.instagram.com
+    rate_limit_rps: 0
+    robots_url: null
+    robots_checked_at: null
+    extractor: none
+    seeds: []
+    js_required: false
+    cache_ttl_hours: 0
+    trust_score: 0
+    affiliate_template: null
+    warehouse: null
+    ships_to: []
+    legal_review:
+      status: blocked
+      tos_url: https://help.instagram.com/581066165581870
+      reviewed_by: spec-v1.1
+      reviewed_at: "2026-10-11"
+      notes: Same as facebook.
+    active: false
+
+  - name: search-engines
+    display_name: Google/Bing/Yahoo SERPs
+    domain: google.com
+    type: manual
+    method: none
+    country: GLOBAL
+    currency: null
+    base_url: https://www.google.com
+    rate_limit_rps: 0
+    robots_url: null
+    robots_checked_at: null
+    extractor: none
+    seeds: []
+    js_required: false
+    cache_ttl_hours: 0
+    trust_score: 0
+    affiliate_template: null
+    warehouse: null
+    ships_to: []
+    legal_review:
+      status: blocked
+      tos_url: https://policies.google.com/terms
+      reviewed_by: spec-v1.1
+      reviewed_at: "2026-10-11"
+      notes: SERP scraping is a ToS violation; official APIs retired or closed to new customers.
+    active: false
