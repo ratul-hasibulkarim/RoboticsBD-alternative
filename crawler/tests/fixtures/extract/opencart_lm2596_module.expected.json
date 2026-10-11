@@ -4,6 +4,7 @@
     "url": "https://store.shop.test/index.php?route=product/product&product_id=88",
     "title": "LM2596S-ADJ DC-DC Step Down Buck Converter Module",
     "mpn": "LM2596S-ADJ",
+    "mpn_trusted": false,
     "manufacturer": "Texas Instruments",
     "gtin": null,
     "sku": "PM-LM2596",

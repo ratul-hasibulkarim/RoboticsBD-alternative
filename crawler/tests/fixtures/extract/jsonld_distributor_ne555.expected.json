@@ -4,6 +4,7 @@
     "url": "https://www.dist.test/en/products/detail/texas-instruments/NE555P/277057",
     "title": "NE555P Precision Timer, PDIP-8",
     "mpn": "NE555P",
+    "mpn_trusted": true,
     "manufacturer": "Texas Instruments",
     "gtin": "00751492000015",
     "sku": "296-1411-5-ND",

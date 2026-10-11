@@ -1,0 +1,19 @@
+{
+  "esp32": ["esp-32", "esp 32"],
+  "esp8266": ["esp-8266", "esp 8266", "nodemcu"],
+  "mcu": ["microcontroller", "micro controller", "micro"],
+  "opamp": ["op-amp", "op amp", "operational amplifier"],
+  "ldo": ["low dropout regulator", "linear regulator"],
+  "buck": ["step down", "step-down", "dc-dc"],
+  "boost": ["step up", "step-up"],
+  "mosfet": ["fet", "transistor mosfet"],
+  "oled": ["oled display"],
+  "lcd": ["lcd display", "character lcd"],
+  "pir": ["motion sensor", "hc-sr501"],
+  "ultrasonic": ["sonar", "hc-sr04", "distance sensor"],
+  "servo": ["servo motor", "sg90"],
+  "usb to ttl": ["usb to serial", "usb uart", "ch340", "cp2102"],
+  "resistor": ["রেজিস্টর"],
+  "capacitor": ["ক্যাপাসিটর"],
+  "sensor": ["সেন্সর"]
+}

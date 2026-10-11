@@ -1,0 +1,24 @@
+{
+  "name": "components",
+  "fields": [
+    {"name": "id", "type": "string"},
+    {"name": "slug", "type": "string", "index": false},
+    {"name": "mpn", "type": "string"},
+    {"name": "mpn_norm", "type": "string"},
+    {"name": "title", "type": "string"},
+    {"name": "manufacturer", "type": "string", "facet": true, "optional": true},
+    {"name": "category", "type": "string", "facet": true},
+    {"name": "subcategory", "type": "string", "facet": true, "optional": true},
+    {"name": "package", "type": "string", "facet": true, "optional": true},
+    {"name": "specs_text", "type": "string", "optional": true},
+    {"name": "lowest_price_usd_minor", "type": "int64", "optional": true},
+    {"name": "offer_count", "type": "int32"},
+    {"name": "in_stock", "type": "bool", "facet": true},
+    {"name": "ships_to_bd", "type": "bool", "facet": true},
+    {"name": "popularity", "type": "float"},
+    {"name": "image_url", "type": "string", "index": false, "optional": true},
+    {"name": "embedding", "type": "float[]", "num_dim": 384, "optional": true}
+  ],
+  "default_sorting_field": "popularity",
+  "token_separators": ["-", "/", "."]
+}

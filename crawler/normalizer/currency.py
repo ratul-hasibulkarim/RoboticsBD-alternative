@@ -35,7 +35,8 @@ def to_minor(amount: Decimal, currency: str) -> int:
 
 
 def from_minor(minor: int, currency: str) -> Decimal:
-    return Decimal(minor) / (Decimal(10) ** minor_exponent(currency))
+    exp = minor_exponent(currency)
+    return (Decimal(minor) / (Decimal(10) ** exp)).quantize(Decimal(1).scaleb(-exp))
 
 
 def detect_currency(text: str, default: str | None = None) -> str | None:

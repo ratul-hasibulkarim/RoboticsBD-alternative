@@ -4,6 +4,7 @@
     "url": "https://maker.shop.test/products/74hc595",
     "title": "74HC595 8-bit Shift Register (DIP-16)",
     "mpn": "74HC595",
+    "mpn_trusted": false,
     "manufacturer": "Texas Instruments",
     "gtin": null,
     "sku": "SN74HC595N",

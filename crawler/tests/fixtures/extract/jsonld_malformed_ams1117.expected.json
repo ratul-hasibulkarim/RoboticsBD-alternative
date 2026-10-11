@@ -4,6 +4,7 @@
     "url": "https://shop.test/ams1117-3-3",
     "title": "AMS1117-3.3 LDO Voltage Regulator SOT-223",
     "mpn": "AMS1117-3.3",
+    "mpn_trusted": false,
     "manufacturer": "Advanced Monolithic Systems",
     "gtin": null,
     "sku": null,

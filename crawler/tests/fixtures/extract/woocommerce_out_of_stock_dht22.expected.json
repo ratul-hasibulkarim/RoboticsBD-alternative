@@ -4,6 +4,7 @@
     "url": "https://shop.test/product/dht22/",
     "title": "DHT22 / AM2302 তাপমাত্রা ও আর্দ্রতা সেন্সর",
     "mpn": "DHT22",
+    "mpn_trusted": false,
     "manufacturer": "Aosong",
     "gtin": null,
     "sku": "SEN-DHT22",

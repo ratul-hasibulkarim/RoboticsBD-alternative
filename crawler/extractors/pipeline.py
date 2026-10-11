@@ -81,9 +81,14 @@ def finalize(listing: ExtractedListing, source: SourceConfig) -> ExtractedListin
     mpn = listing.mpn or _spec_lookup(specs, "mpn", "model")
     if mpn and not looks_like_mpn(mpn.split()[0] if " " in mpn else mpn):
         mpn = None
+    # Trusted = read from a structured field by rules (JSON-LD/microdata/spec table/API).
+    # LLM output and title guesses are not trusted (resolver defers them; spec v1.1 row 31).
+    trusted = bool(mpn) and "llm" not in listing.methods
     if not mpn and listing.title:
         mpn = guess_mpn(listing.title)
+        trusted = False
     data["mpn"] = normalize_mpn(mpn) if mpn else None
+    data["mpn_trusted"] = trusted
 
     manufacturer = listing.manufacturer or _spec_lookup(specs, "manufacturer")
     # 'Generic', 'No brand', 'OEM' … carry no information.

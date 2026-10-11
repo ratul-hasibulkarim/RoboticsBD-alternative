@@ -4,6 +4,7 @@
     "url": "https://shop.test/hc-sr04",
     "title": "HC-SR04 Ultrasonic Distance Sensor Module",
     "mpn": "HC-SR04",
+    "mpn_trusted": false,
     "manufacturer": null,
     "gtin": null,
     "sku": null,

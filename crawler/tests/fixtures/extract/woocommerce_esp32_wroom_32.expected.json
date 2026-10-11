@@ -4,6 +4,7 @@
     "url": "https://shop.test/product/esp32-wroom-32/",
     "title": "ESP32-WROOM-32 WiFi Bluetooth Module",
     "mpn": "ESP32-WROOM-32",
+    "mpn_trusted": true,
     "manufacturer": "Espressif",
     "gtin": null,
     "sku": "TRB-1042",

@@ -26,6 +26,7 @@ class ExtractedListing(BaseModel):
     url: str
     title: str | None = None
     mpn: str | None = None
+    mpn_trusted: bool = False  # set by pipeline.finalize: structured field (True) vs title guess (False)
     manufacturer: str | None = None
     gtin: str | None = None
     sku: str | None = None
@@ -69,7 +70,7 @@ class ExtractedListing(BaseModel):
         """Fill fields that are empty here from `other` (lower-priority extractor)."""
         data = self.model_dump()
         for key, value in other.model_dump().items():
-            if key in ("url", "confidence"):
+            if key in ("url", "confidence", "mpn_trusted"):
                 continue
             if key == "methods":
                 continue

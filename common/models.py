@@ -168,6 +168,7 @@ class Listing(Base):
     gtin: Mapped[str | None] = mapped_column(Text)
     raw_title: Mapped[str] = mapped_column(Text)
     raw_mpn: Mapped[str | None] = mapped_column(Text)
+    mpn_trusted: Mapped[bool] = mapped_column(Boolean, server_default="false")
     raw_manufacturer: Mapped[str | None] = mapped_column(Text)
     package: Mapped[str | None] = mapped_column(Text)
     specs: Mapped[dict[str, Any]] = mapped_column(JSONB, server_default="{}")

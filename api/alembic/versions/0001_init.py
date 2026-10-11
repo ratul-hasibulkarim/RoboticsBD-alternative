@@ -196,6 +196,7 @@ def upgrade() -> None:
           gtin                  TEXT,
           raw_title             TEXT NOT NULL,
           raw_mpn               TEXT,
+          mpn_trusted           BOOLEAN NOT NULL DEFAULT false,  -- MPN from a structured field/API, not a title guess
           raw_manufacturer      TEXT,
           package               TEXT,
           specs                 JSONB NOT NULL DEFAULT '{{}}',

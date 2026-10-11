@@ -4,6 +4,7 @@
     "url": "https://shop.test/atmega328p-pu",
     "title": "ATmega328P-PU DIP-28 Microcontroller",
     "mpn": "ATMEGA328P-PU",
+    "mpn_trusted": true,
     "manufacturer": "Microchip Technology",
     "gtin": null,
     "sku": "IC-0328",

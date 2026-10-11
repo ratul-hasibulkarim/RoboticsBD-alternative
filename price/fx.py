@@ -11,7 +11,7 @@ from datetime import date
 from decimal import ROUND_HALF_UP, Decimal
 
 from sqlalchemy import select
-from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.dialects.postgresql import distinct_on, insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from common.http import ApiClient
@@ -103,7 +103,7 @@ async def load_table(s: AsyncSession, day: date | None = None) -> FxTable:
             select(FxRate.currency, FxRate.per_usd, FxRate.day)
             .where(FxRate.day <= day)
             .order_by(FxRate.currency, FxRate.day.desc())
-            .distinct(FxRate.currency)
+            .ext(distinct_on(FxRate.currency))
         )
     ).all()
     if not rows:
