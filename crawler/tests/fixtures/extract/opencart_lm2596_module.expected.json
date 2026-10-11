@@ -1,0 +1,40 @@
+{
+  "outcome": "ok",
+  "listing": {
+    "url": "https://store.shop.test/index.php?route=product/product&product_id=88",
+    "title": "LM2596S-ADJ DC-DC Step Down Buck Converter Module",
+    "mpn": "LM2596S-ADJ",
+    "manufacturer": "Texas Instruments",
+    "gtin": null,
+    "sku": "PM-LM2596",
+    "price": "135.00",
+    "currency": "BDT",
+    "price_breaks": [],
+    "moq": 2,
+    "in_stock": true,
+    "stock_qty": null,
+    "condition": "new",
+    "image_urls": [
+      "https://store.shop.test/image/cache/catalog/power/lm2596-800x800.jpg",
+      "https://store.shop.test/image/cache/catalog/power/lm2596-side-800x800.jpg"
+    ],
+    "datasheet_url": null,
+    "specs": {
+      "Input Voltage": "4.5V-40V",
+      "Output Voltage": "1.25V-35V",
+      "Output Current": "3A",
+      "Switching Frequency": "150KHz"
+    },
+    "category_hint": "Power Modules",
+    "package": null,
+    "snippet": "Adjustable step-down converter based on the LM2596S-ADJ regulator from Texas Instruments. Output 1.25V-35V, up to 3A.",
+    "ships_from": "BD",
+    "ships_to": [
+      "BD"
+    ],
+    "methods": [
+      "opencart@1"
+    ],
+    "confidence": 1.0
+  }
+}

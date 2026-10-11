@@ -1,0 +1,38 @@
+{
+  "outcome": "ok",
+  "listing": {
+    "url": "https://shop.test/product/dht22/",
+    "title": "DHT22 / AM2302 তাপমাত্রা ও আর্দ্রতা সেন্সর",
+    "mpn": "DHT22",
+    "manufacturer": "Aosong",
+    "gtin": null,
+    "sku": "SEN-DHT22",
+    "price": "350.00",
+    "currency": "BDT",
+    "price_breaks": [],
+    "moq": 1,
+    "in_stock": false,
+    "stock_qty": null,
+    "condition": "new",
+    "image_urls": [
+      "https://shop.test/wp-content/uploads/dht22.webp"
+    ],
+    "datasheet_url": null,
+    "specs": {
+      "Manufacturer": "Aosong",
+      "Operating Voltage": "3.3-6V",
+      "Measuring Range": "-40 to 80 °C"
+    },
+    "category_hint": null,
+    "package": null,
+    "snippet": null,
+    "ships_from": "BD",
+    "ships_to": [
+      "BD"
+    ],
+    "methods": [
+      "woocommerce@1"
+    ],
+    "confidence": 1.0
+  }
+}

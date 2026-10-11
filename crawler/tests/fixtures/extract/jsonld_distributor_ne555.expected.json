@@ -1,0 +1,53 @@
+{
+  "outcome": "ok",
+  "listing": {
+    "url": "https://www.dist.test/en/products/detail/texas-instruments/NE555P/277057",
+    "title": "NE555P Precision Timer, PDIP-8",
+    "mpn": "NE555P",
+    "manufacturer": "Texas Instruments",
+    "gtin": "00751492000015",
+    "sku": "296-1411-5-ND",
+    "price": "0.48",
+    "currency": "USD",
+    "price_breaks": [
+      {
+        "qty": 1,
+        "price": "0.48"
+      },
+      {
+        "qty": 10,
+        "price": "0.355"
+      },
+      {
+        "qty": 100,
+        "price": "0.2585"
+      }
+    ],
+    "moq": 1,
+    "in_stock": true,
+    "stock_qty": 48211,
+    "condition": "new",
+    "image_urls": [
+      "https://media.dist.test/photos/ti/296-PDIP-8.jpg"
+    ],
+    "datasheet_url": null,
+    "specs": {
+      "Package / Case": "8-DIP (0.300\", 7.62mm)",
+      "Voltage - Supply": "4.5V ~ 16V",
+      "Frequency": "100 kHz",
+      "Operating Temperature": "0°C ~ 70°C"
+    },
+    "category_hint": "Integrated Circuits (ICs) > Clock/Timing > Programmable Timers and Oscillators",
+    "package": "8-DIP (0.300\", 7.62mm)",
+    "snippet": "Single 555 timer, bipolar, 4.5V to 16V supply, PDIP-8.",
+    "ships_from": "US",
+    "ships_to": [
+      "US",
+      "BD"
+    ],
+    "methods": [
+      "jsonld"
+    ],
+    "confidence": 1.0
+  }
+}

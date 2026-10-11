@@ -1,0 +1,34 @@
+{
+  "outcome": "ok",
+  "listing": {
+    "url": "https://shop.test/atmega328p-pu",
+    "title": "ATmega328P-PU DIP-28 Microcontroller",
+    "mpn": "ATMEGA328P-PU",
+    "manufacturer": "Microchip Technology",
+    "gtin": null,
+    "sku": "IC-0328",
+    "price": "380",
+    "currency": "BDT",
+    "price_breaks": [],
+    "moq": 1,
+    "in_stock": true,
+    "stock_qty": null,
+    "condition": "new",
+    "image_urls": [
+      "https://shop.test/images/atmega328p-pu.jpg"
+    ],
+    "datasheet_url": null,
+    "specs": {},
+    "category_hint": null,
+    "package": null,
+    "snippet": "8-bit AVR microcontroller with 32KB ISP flash, the chip used on Arduino Uno.",
+    "ships_from": "BD",
+    "ships_to": [
+      "BD"
+    ],
+    "methods": [
+      "microdata"
+    ],
+    "confidence": 1.0
+  }
+}

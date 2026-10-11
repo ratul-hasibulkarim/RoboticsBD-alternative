@@ -1,0 +1,32 @@
+{
+  "outcome": "ok",
+  "listing": {
+    "url": "https://shop.test/ams1117-3-3",
+    "title": "AMS1117-3.3 LDO Voltage Regulator SOT-223",
+    "mpn": "AMS1117-3.3",
+    "manufacturer": "Advanced Monolithic Systems",
+    "gtin": null,
+    "sku": null,
+    "price": "8.50",
+    "currency": "BDT",
+    "price_breaks": [],
+    "moq": 1,
+    "in_stock": true,
+    "stock_qty": null,
+    "condition": "new",
+    "image_urls": [],
+    "datasheet_url": null,
+    "specs": {},
+    "category_hint": null,
+    "package": null,
+    "snippet": "1A low dropout regulator, fixed 3.3V output.",
+    "ships_from": "BD",
+    "ships_to": [
+      "BD"
+    ],
+    "methods": [
+      "jsonld"
+    ],
+    "confidence": 1.0
+  }
+}

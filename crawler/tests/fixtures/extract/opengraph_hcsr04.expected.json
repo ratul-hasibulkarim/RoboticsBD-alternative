@@ -1,0 +1,34 @@
+{
+  "outcome": "ok",
+  "listing": {
+    "url": "https://shop.test/hc-sr04",
+    "title": "HC-SR04 Ultrasonic Distance Sensor Module",
+    "mpn": "HC-SR04",
+    "manufacturer": null,
+    "gtin": null,
+    "sku": null,
+    "price": "95.00",
+    "currency": "BDT",
+    "price_breaks": [],
+    "moq": 1,
+    "in_stock": true,
+    "stock_qty": null,
+    "condition": "new",
+    "image_urls": [
+      "https://shop.test/media/hc-sr04.jpg"
+    ],
+    "datasheet_url": null,
+    "specs": {},
+    "category_hint": null,
+    "package": null,
+    "snippet": "Measures 2cm-400cm with 3mm accuracy. 5V supply. Email [email removed]",
+    "ships_from": "BD",
+    "ships_to": [
+      "BD"
+    ],
+    "methods": [
+      "opengraph"
+    ],
+    "confidence": 1.0
+  }
+}

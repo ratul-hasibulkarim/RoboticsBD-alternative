@@ -1,0 +1,14 @@
+# Extractor fixture manifest (test C5). Each case: HTML file → expected JSON.
+# Fixtures are hand-written to match each platform's default markup; the sandbox
+# that produced them had no access to the live shops. Replace with saved real
+# pages (trimmed, PII removed) once a source is approved.
+- {file: woocommerce_esp32_wroom_32.html, url: "https://shop.test/product/esp32-wroom-32/", extractor: woocommerce, currency: BDT, outcome: ok}
+- {file: opencart_lm2596_module.html, url: "https://store.shop.test/index.php?route=product/product&product_id=88", extractor: opencart, currency: BDT, outcome: ok}
+- {file: shopify_74hc595.html, url: "https://maker.shop.test/products/74hc595", extractor: shopify, currency: USD, outcome: ok}
+- {file: jsonld_distributor_ne555.html, url: "https://www.dist.test/en/products/detail/texas-instruments/NE555P/277057", extractor: generic, currency: USD, outcome: ok}
+- {file: microdata_atmega328p.html, url: "https://shop.test/atmega328p-pu", extractor: generic, currency: BDT, outcome: ok}
+- {file: opengraph_hcsr04.html, url: "https://shop.test/hc-sr04", extractor: generic, currency: BDT, outcome: ok}
+- {file: jsonld_malformed_ams1117.html, url: "https://shop.test/ams1117-3-3", extractor: generic, currency: BDT, outcome: ok}
+- {file: woocommerce_out_of_stock_dht22.html, url: "https://shop.test/product/dht22/", extractor: woocommerce, currency: BDT, outcome: ok}
+- {file: profile_page.html, url: "https://shop.test/members/rahim/", extractor: generic, currency: BDT, outcome: personal_data}
+- {file: category_page.html, url: "https://shop.test/product-category/microcontrollers/", extractor: generic, currency: BDT, outcome: no_product}
