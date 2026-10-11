@@ -24,7 +24,8 @@ _PACKAGING_SUFFIXES = re.compile(
 _NOT_MPN = re.compile(
     r"^(?:\d+(?:\.\d+)?(?:V|MV|KV|A|MA|UA|W|MW|KW|HZ|KHZ|MHZ|GHZ|F|PF|NF|UF|µF|MF|R|K|KΩ|Ω|OHM|M|MM|CM|"
     r"MAH|AH|DB|DBM|C|°C|BIT|BITS|MB|KB|GB|PCS|PC|PIN|PINS|CH|X)"
-    r"|\d+/\d+[A-Z]*|\d+X\d+(?:X\d+)?|[A-Z]{1,3}\d?|V\d+(?:\.\d+)*|REV\d*|TYPE-?C|USB\d?(?:\.\d)?|2\.4G|5G|4G|3G|WIFI\d?|"
+    r"|\d+/\d+[A-Z]*|\d+-?(?:AXIS|BIT|WAY|CHANNEL|PORT|CORE|DOF|DIGIT|KEY|LED|RELAY)S?|CORTEX-?M\d+\+?|"
+    r"ARM\d*|RISC-?V\d*|\d+X\d+(?:X\d+)?|[A-Z]{1,3}\d?|V\d+(?:\.\d+)*|REV\d*|TYPE-?C|USB\d?(?:\.\d)?|2\.4G|5G|4G|3G|WIFI\d?|"
     r"IP\d{2}|\d{1,2}(?:ST|ND|RD|TH))$",
     re.IGNORECASE,
 )
@@ -177,3 +178,22 @@ def levenshtein_le(a: str, b: str, k: int) -> bool:
     from rapidfuzz.distance import Levenshtein
 
     return bool(Levenshtein.distance(a, b, score_cutoff=k) <= k)
+
+
+_WORD = re.compile(r"[A-Za-z0-9]+")
+
+
+def title_mpn_keys(title: str, max_tokens: int = 4) -> set[str]:
+    """Keys of 1..max_tokens consecutive title tokens joined, e.g. 'ESP32 WROOM 32 module' →
+    {'esp32', 'esp32wroom', 'esp32wroom32', ...}. Used to look up components whose MPN a shop
+    wrote with spaces. Only keys with letters and digits and ≥ 4 chars are returned."""
+    words = [w.lower() for w in _WORD.findall(title)]
+    keys: set[str] = set()
+    for i in range(len(words)):
+        for n in range(1, max_tokens + 1):
+            if i + n > len(words):
+                break
+            k = "".join(words[i : i + n])
+            if len(k) >= 4 and any(c.isdigit() for c in k) and any(c.isalpha() for c in k):
+                keys.add(k)
+    return keys

@@ -38,6 +38,8 @@ the code differs from the original text.
 | 26 | No opt-out | `takedown_requests` + `/legal/opt-out` form; an opt-out sets `legal_review_status='blocked'` on review. | Shops will ask on day one. |
 | 27 | User auth undefined | Email magic-link (signed, expiring token) for alerts; admin via `admin_users` + bcrypt-free HMAC session using `ADMIN_TOKEN`s issued by CLI. | Minimal, no third-party IdP needed. |
 | 28 | Several acceptance tests not runnable in CI | CI gates: C1–C5, R1–R3 (fixture set is synthetic-but-realistic and labelled as such), P1–P4, A2–A3, W3–W7, E3. **Benchmarks (not merge gates):** A1 (load), W1/W2 (Lighthouse, needs a deployed URL), C6 (time-travel test runs in CI using a fake clock), E1/E2 (need Docker). | CI container cannot do 1000 rps or real prices without API keys. |
+| 30 | Cascade step 4 (MPN fuzzy ≤ 1 + manufacturer exact → 0.85 attach) | Step 4 produces a **review suggestion**, never an automatic attach, and only for MPNs guessed from titles. | One character usually *is* a different part (CH340C/CH340G, BMP280/BME280, ATmega328/328P). Observed on the R1 set: it caused every precision error. |
+| 31 | — | **Trusted-first creation**: a listing whose MPN was only guessed from its title and has no match is **deferred** and retried 24 h later before it may create a component. Components store the MPN without packaging suffixes. | A title guess can pick the wrong token ("ESP8266" in "ESP 12F ESP8266 module"); distributor/API listings get the first chance to create the canonical part. |
 | 29 | Repo root `voltfind/` | Repo root **is** the project root. | Repo already exists. |
 
 ---

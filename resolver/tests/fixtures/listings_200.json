@@ -1,0 +1,2736 @@
+{
+ "note": "Build resolver/tests/fixtures/listings_200.json \u2014 the R1 evaluation set.",
+ "listings": [
+  {
+   "id": "4f515232-98d8-d0f4-44b7-e0219048a32b",
+   "truth": "ds18b20",
+   "title": "DS18B20 1-Wire Digital Temperature Sensor (Best Quality)",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Measuring Range": "-55 to 125 \u00b0C"
+   }
+  },
+  {
+   "id": "b5d413ad-7d2a-8318-d04b-da0f629c538a",
+   "truth": "sn74hc595n",
+   "title": "SN74HC595N, 8-bit Shift Register, DIP-16",
+   "mpn": "SN74HC595N",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments",
+   "gtin": null,
+   "package": "DIP-16",
+   "specs": {
+    "Supply Voltage": "2V ~ 6V",
+    "Channels": "8"
+   }
+  },
+  {
+   "id": "d52ee319-79eb-e32b-f098-0af6d7c03711",
+   "truth": "sn74hc595n",
+   "title": "SN74HC595N 8-bit Shift Register (Best Quality)",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "TI",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Supply Voltage": "2V ~ 6V"
+   }
+  },
+  {
+   "id": "fff5d511-9055-0c73-7afa-ec76e5679fe2",
+   "truth": "1n4148",
+   "title": "1N4148 DO-35 Small Signal Switching Diode",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "68b68355-3a04-e347-f4ca-a61141c18232",
+   "truth": "ne555dr",
+   "title": "NE555DR - Timer IC SMD",
+   "mpn": "NE555DR",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instrument",
+   "gtin": null,
+   "package": "SOIC-8",
+   "specs": {
+    "Supply Voltage": "4.5V ~ 16V",
+    "Frequency": "100kHz"
+   }
+  },
+  {
+   "id": "758420f6-f93d-db87-c735-ede78bd8b237",
+   "truth": "dht11",
+   "title": "DHT11 - Temperature and Humidity Sensor",
+   "mpn": "DHT11",
+   "mpn_trusted": true,
+   "manufacturer": "Aosong",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "3.3-5.5V",
+    "Measuring Range": "0 to 50 \u00b0C"
+   }
+  },
+  {
+   "id": "5332f486-6ddc-eb46-f409-c17decc3e1f6",
+   "truth": "ssd1306-128x64",
+   "title": "SSD1306 0.96 inch OLED Display Driver - Module",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "e08844db-a2f6-759f-734f-a83ce92f8711",
+   "truth": "lm317t",
+   "title": "Adjustable Voltage Regulator 1.5A LM317T",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Output Voltage": "1.25V-37V",
+    "Output Current": "1.5A"
+   }
+  },
+  {
+   "id": "619781c6-23bc-6223-b1f3-20b9e0ca0b59",
+   "truth": "lm358n",
+   "title": "Texas Instruments LM358N Dual Op-Amp",
+   "mpn": "LM358N",
+   "mpn_trusted": true,
+   "manufacturer": "TI",
+   "gtin": null,
+   "package": "DIP-8",
+   "specs": {
+    "Channels": "2",
+    "Supply Voltage": "3V ~ 32V"
+   }
+  },
+  {
+   "id": "22aeeb05-a84f-f655-ad58-3847ca4712a9",
+   "truth": "drv8825",
+   "title": "DRV8825 Stepper Motor Driver 2.5A",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Texas Instruments Inc.",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Supply Voltage": "8.2V ~ 45V"
+   }
+  },
+  {
+   "id": "cf45ab6b-d022-2fbe-86f9-497215905393",
+   "truth": "irfz44n",
+   "title": "IRFZ44N N-Channel Power MOSFET 55V 49A",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Gate Threshold Voltage": "2V-4V"
+   }
+  },
+  {
+   "id": "99d55063-7082-845d-1cae-55966d52b0de",
+   "truth": "mpu-6050",
+   "title": "6-Axis Gyro Accelerometer MPU-6050",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "TDK InvenSense",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Interface": "I2C"
+   }
+  },
+  {
+   "id": "76d8de09-2f12-3f45-72bf-bd9b60fb34b7",
+   "truth": "1n4148",
+   "title": "1N4148 - Small Signal Switching Diode",
+   "mpn": "1N4148",
+   "mpn_trusted": true,
+   "manufacturer": "Vishay Intertechnology",
+   "gtin": null,
+   "package": "DO-35",
+   "specs": {
+    "Current": "300mA",
+    "Voltage": "100V"
+   }
+  },
+  {
+   "id": "7d1937c3-d114-449d-0a4a-2e5a733607e5",
+   "truth": "max7219cng",
+   "title": "MAX7219CNG LED Display Driver",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Maxim Integrated",
+   "gtin": null,
+   "package": "DIP-24",
+   "specs": {}
+  },
+  {
+   "id": "05728d7f-8764-8a7a-c05b-d8fdf515c6d9",
+   "truth": "lm358dr",
+   "title": "LM358DR Dual Operational Amplifier SMD - SOIC-8",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "TI",
+   "gtin": null,
+   "package": "SOIC-8",
+   "specs": {
+    "Supply Voltage": "3V ~ 32V",
+    "Channels": "2"
+   }
+  },
+  {
+   "id": "70c57861-74eb-d90d-16d5-9c58115607aa",
+   "truth": "pcf8574",
+   "title": "NXP PCF8574 I2C I/O Expander",
+   "mpn": "PCF8574",
+   "mpn_trusted": true,
+   "manufacturer": "NXP",
+   "gtin": null,
+   "package": "DIP-16",
+   "specs": {
+    "Supply Voltage": "2.5V ~ 6V",
+    "Interface": "I2C"
+   }
+  },
+  {
+   "id": "fec20b04-1693-81b6-6c8d-b110e5e78cdf",
+   "truth": "1n4148",
+   "title": "1N4148 Small Signal Switching Diode - DO-35",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Voltage": "100V"
+   }
+  },
+  {
+   "id": "7ddbbdf3-2c79-30ce-5a8e-5dece07eb4f1",
+   "truth": "lm2596s-adj",
+   "title": "LM2596S-ADJ - Step-Down Buck Regulator 3A",
+   "mpn": "LM2596S-ADJ",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments Inc.",
+   "gtin": null,
+   "package": "TO-263-5",
+   "specs": {
+    "Input Voltage": "4.5V-40V",
+    "Output Current": "3A",
+    "Switching Frequency": "150kHz"
+   }
+  },
+  {
+   "id": "22aaa146-1bd5-7628-1ba6-293d8df9c90c",
+   "truth": "bmp280",
+   "title": "Original BMP280 Barometric Pressure Sensor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "LGA-8",
+   "specs": {}
+  },
+  {
+   "id": "61d5c05f-efd7-5e44-c4a6-42339405ed6c",
+   "truth": "ams1117-5.0",
+   "title": "AMS1117-5.0 - LDO Voltage Regulator 1A",
+   "mpn": "AMS1117-5.0",
+   "mpn_trusted": true,
+   "manufacturer": "Advanced Monolithic Systems",
+   "gtin": null,
+   "package": "SOT-223",
+   "specs": {
+    "Output Voltage": "5V",
+    "Output Current": "1A",
+    "Input Voltage": "6.5V-15V"
+   }
+  },
+  {
+   "id": "5d5fd998-16ec-c181-0de5-72ad6d195134",
+   "truth": "rp2040",
+   "title": "Dual-core ARM Cortex-M0+ MCU RP2040",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "QFN-56",
+   "specs": {}
+  },
+  {
+   "id": "7d3a8131-0bda-8897-b742-065d94ab1453",
+   "truth": "1n5819",
+   "title": "1N5819 - Schottky Diode 1A 40V",
+   "mpn": "1N5819",
+   "mpn_trusted": true,
+   "manufacturer": "Vishay Intertechnology",
+   "gtin": null,
+   "package": "DO-41",
+   "specs": {
+    "Current": "1A",
+    "Voltage": "40V"
+   }
+  },
+  {
+   "id": "723a7e9b-7efd-0ea5-4433-c154f38cf4a0",
+   "truth": "ch340g",
+   "title": "CH340G USB to Serial UART IC",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Nanjing Qinheng Microelectronics",
+   "gtin": null,
+   "package": "SOP-16",
+   "specs": {
+    "Supply Voltage": "3.3V ~ 5V",
+    "Interface": "USB"
+   }
+  },
+  {
+   "id": "85222da8-03ca-7cd3-1bd8-2d212fa96f3a",
+   "truth": "lm7805ct",
+   "title": "LM7805CT, 5V Positive Voltage Regulator, TO-220",
+   "mpn": "LM7805CT",
+   "mpn_trusted": true,
+   "manufacturer": "ON Semiconductor",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Output Voltage": "5V",
+    "Output Current": "1A"
+   }
+  },
+  {
+   "id": "c0eba399-b1cc-4691-5c5a-c92e2ca0b82a",
+   "truth": "dht22",
+   "title": "Aosong DHT22 Digital Temperature Humidity Sensor AM2302",
+   "mpn": "DHT22",
+   "mpn_trusted": true,
+   "manufacturer": "Aosong",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "3.3-6V",
+    "Measuring Range": "-40 to 80 \u00b0C"
+   }
+  },
+  {
+   "id": "08fc8334-ff7d-f0db-9b3d-f23b8259624b",
+   "truth": "atmega328-pu",
+   "title": "Microchip ATMEGA328-PU 8-bit AVR MCU (non-picoPower)",
+   "mpn": "ATMEGA328-PU",
+   "mpn_trusted": true,
+   "manufacturer": "Atmel",
+   "gtin": null,
+   "package": "DIP-28",
+   "specs": {
+    "Flash": "32KB",
+    "Clock Speed": "20MHz",
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "813af6e1-483d-3cca-56d5-b9c043c86a6f",
+   "truth": "bc547b",
+   "title": "BC547B NPN Transistor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "TO-92",
+   "specs": {}
+  },
+  {
+   "id": "6893145d-73d3-92c8-159e-d88e2929b8bb",
+   "truth": "ams1117-5.0",
+   "title": "AMS11175.0 LDO Voltage Regulator 1A",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Output Voltage": "5V",
+    "Output Current": "1A",
+    "Input Voltage": "6.5V-15V"
+   }
+  },
+  {
+   "id": "61f67a16-5a49-25fc-b8c6-353c5bdaeee2",
+   "truth": "ch340g",
+   "title": "WCH CH340G USB to Serial UART IC",
+   "mpn": "CH340G",
+   "mpn_trusted": true,
+   "manufacturer": "Nanjing Qinheng Microelectronics",
+   "gtin": null,
+   "package": "SOP-16",
+   "specs": {
+    "Supply Voltage": "3.3V ~ 5V",
+    "Interface": "USB"
+   }
+  },
+  {
+   "id": "b68d246c-7693-4a5b-da7a-634574208912",
+   "truth": "irlz44n",
+   "title": "IRLZ44N, Logic Level N-Channel MOSFET, TO-220",
+   "mpn": "IRLZ44N",
+   "mpn_trusted": true,
+   "manufacturer": "International Rectifier",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Current": "47A",
+    "Voltage": "55V",
+    "Gate Threshold Voltage": "1V-2V"
+   }
+  },
+  {
+   "id": "5df5841f-9b40-ac65-bc40-6f8eed704eeb",
+   "truth": "2n2222a",
+   "title": "2N2222A - NPN Switching Transistor",
+   "mpn": "2N2222A",
+   "mpn_trusted": true,
+   "manufacturer": "ST",
+   "gtin": null,
+   "package": "TO-92",
+   "specs": {
+    "Current": "600mA",
+    "Voltage": "40V"
+   }
+  },
+  {
+   "id": "2e2c2659-2707-641a-64f9-1182d4e6a41e",
+   "truth": "atmega328p-au",
+   "title": "ATMEGA328P-AU - 8-bit AVR Microcontroller SMD",
+   "mpn": "ATMEGA328P-AU-CT",
+   "mpn_trusted": true,
+   "manufacturer": "Microchip Technology Inc",
+   "gtin": null,
+   "package": "TQFP-32",
+   "specs": {
+    "Flash": "32KB",
+    "Clock Speed": "20MHz",
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "4941a067-b906-ab0a-fe4e-2d51e3acad60",
+   "truth": "lm2596s-adj",
+   "title": "LM2596S-ADJ Step-Down Buck Regulator 3A",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Switching Frequency": "150kHz"
+   }
+  },
+  {
+   "id": "4694575f-3827-9d8d-3c5c-d900b1cef1e2",
+   "truth": "max7219cng",
+   "title": "MAX7219CNG - LED Display Driver",
+   "mpn": "MAX7219CNG",
+   "mpn_trusted": true,
+   "manufacturer": "Analog Devices",
+   "gtin": null,
+   "package": "DIP-24",
+   "specs": {
+    "Supply Voltage": "4V ~ 5.5V",
+    "Interface": "SPI"
+   }
+  },
+  {
+   "id": "5a64eec4-2de3-bd75-f2fd-30a0dec82406",
+   "truth": "esp32-wroom-32e",
+   "title": "Espressif ESP32-WROOM-32E WiFi BT BLE Module ECO V3",
+   "mpn": "ESP32-WROOM-32E",
+   "mpn_trusted": true,
+   "manufacturer": "Espressif Systems",
+   "gtin": null,
+   "package": "SMD-38",
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "8MB",
+    "CPU Frequency": "240MHz"
+   }
+  },
+  {
+   "id": "de3fc21d-874f-f918-bf2c-84b1e1e1c5fe",
+   "truth": "ams1117-5.0",
+   "title": "AMS1117-5.0, LDO Voltage Regulator 1A, SOT-223",
+   "mpn": "AMS1117-5.0",
+   "mpn_trusted": true,
+   "manufacturer": "Advanced Monolithic Systems",
+   "gtin": null,
+   "package": "SOT-223",
+   "specs": {
+    "Output Voltage": "5V",
+    "Output Current": "1A",
+    "Input Voltage": "6.5V-15V"
+   }
+  },
+  {
+   "id": "89a3437c-cc83-284d-e988-df95d56331dd",
+   "truth": "bme280",
+   "title": "BME280 LGA-8 Pressure Humidity Temperature Sensor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Bosch Sensortec",
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "35c8fa2b-00e3-28dc-12e4-745947611801",
+   "truth": "l7805cv",
+   "title": "L7805CV 5V 1.5A Voltage Regulator",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "STMicro",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Output Current": "1.5A",
+    "Output Voltage": "5V"
+   }
+  },
+  {
+   "id": "35d2dd93-bfe0-1c2c-e1fb-b5b294fa11e1",
+   "truth": "mpu-6500",
+   "title": "MPU-6500 - 6-Axis Motion Tracking Device",
+   "mpn": "MPU-6500",
+   "mpn_trusted": true,
+   "manufacturer": "InvenSense",
+   "gtin": null,
+   "package": "QFN-24",
+   "specs": {
+    "Supply Voltage": "1.71V ~ 3.6V",
+    "Interface": "I2C/SPI"
+   }
+  },
+  {
+   "id": "8e11644f-836d-379f-7690-de349887cdc5",
+   "truth": "max7219cng",
+   "title": "MAX7219CNG, LED Display Driver, DIP-24",
+   "mpn": "MAX7219CNG",
+   "mpn_trusted": true,
+   "manufacturer": "Maxim Integrated",
+   "gtin": null,
+   "package": "DIP-24",
+   "specs": {
+    "Supply Voltage": "4V ~ 5.5V",
+    "Interface": "SPI"
+   }
+  },
+  {
+   "id": "4518c46c-97c3-8018-51f5-231cb9e54103",
+   "truth": "ams1117-3.3",
+   "title": "Advanced Monolithic Systems AMS1117-3.3 LDO Voltage Regulator 1A",
+   "mpn": "AMS1117-3.3-CT",
+   "mpn_trusted": true,
+   "manufacturer": "Advanced Monolithic Systems",
+   "gtin": null,
+   "package": "SOT-223",
+   "specs": {
+    "Output Voltage": "3.3V",
+    "Output Current": "1A",
+    "Input Voltage": "4.5V-15V"
+   }
+  },
+  {
+   "id": "d4736d76-8f9b-72d6-d61e-750d0cd7fea6",
+   "truth": "lm358n",
+   "title": "LM358N Dual Op-Amp (Best Quality)",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "DIP-8",
+   "specs": {}
+  },
+  {
+   "id": "2e56901e-1c7a-bb7a-3ea5-f2a888fd789b",
+   "truth": "mpu-6050",
+   "title": "TDK InvenSense MPU-6050 6-Axis Gyro Accelerometer",
+   "mpn": "MPU-6050",
+   "mpn_trusted": true,
+   "manufacturer": "TDK InvenSense",
+   "gtin": null,
+   "package": "QFN-24",
+   "specs": {
+    "Supply Voltage": "2.375V ~ 3.46V",
+    "Interface": "I2C"
+   }
+  },
+  {
+   "id": "804aa8e5-9ef0-09dc-07f8-ac2d3aec2acb",
+   "truth": "esp32-wroom-32d",
+   "title": "Espressif ESP32-WROOM-32D WiFi BT Module (D revision)",
+   "mpn": "ESP32-WROOM-32D",
+   "mpn_trusted": true,
+   "manufacturer": "ESPRESSIF",
+   "gtin": null,
+   "package": "SMD-38",
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "4MB",
+    "CPU Frequency": "240MHz"
+   }
+  },
+  {
+   "id": "96cf1af8-d5d5-100f-1e23-fba0b22a8b2f",
+   "truth": "hc-sr04",
+   "title": "HC-SR04, Ultrasonic Distance Sensor, Module",
+   "mpn": "HC-SR04",
+   "mpn_trusted": true,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "5V",
+    "Range": "2cm-400cm"
+   }
+  },
+  {
+   "id": "bbf7838d-63ec-984c-28f5-65297a05801c",
+   "truth": "stm32f103c8t6",
+   "title": "STM32F103C8T6 LQFP-48 ARM Cortex-M3 MCU 64KB",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "61c3d639-777e-4387-9990-d52ec5935ac1",
+   "truth": "mpu-6500",
+   "title": "6-Axis Motion Tracking Device MPU-6500",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Generic",
+   "gtin": null,
+   "package": "QFN-24",
+   "specs": {
+    "Interface": "I2C/SPI",
+    "Supply Voltage": "1.71V ~ 3.6V"
+   }
+  },
+  {
+   "id": "c4220f9e-1463-6093-9a2e-b85d2d7f8d5a",
+   "truth": "ssd1306-128x64",
+   "title": "SSD1306 0.96 inch OLED Display Driver",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Resolution": "128x64"
+   }
+  },
+  {
+   "id": "212b5fc1-f4ba-b856-4efd-646f83f60a57",
+   "truth": "lm358dr",
+   "title": "LM358DR, Dual Operational Amplifier SMD, SOIC-8",
+   "mpn": "LM358DR",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments Inc.",
+   "gtin": null,
+   "package": "SOIC-8",
+   "specs": {
+    "Channels": "2",
+    "Supply Voltage": "3V ~ 32V"
+   }
+  },
+  {
+   "id": "09887cc9-a4cf-365e-a15b-26afc47cce04",
+   "truth": "dht11",
+   "title": "DHT11, Temperature and Humidity Sensor, Module",
+   "mpn": "DHT11",
+   "mpn_trusted": true,
+   "manufacturer": "Aosong",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "3.3-5.5V",
+    "Measuring Range": "0 to 50 \u00b0C"
+   }
+  },
+  {
+   "id": "256a1745-2c7b-a0d2-2316-05764ab50628",
+   "truth": "irfz44n",
+   "title": "IRFZ44N - N-Channel Power MOSFET 55V 49A",
+   "mpn": "IRFZ44N",
+   "mpn_trusted": true,
+   "manufacturer": "Infineon",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Current": "49A",
+    "Voltage": "55V",
+    "Gate Threshold Voltage": "2V-4V"
+   }
+  },
+  {
+   "id": "ffe54fc9-cb2e-3e01-430c-2a0d0864a2c4",
+   "truth": "1n4007",
+   "title": "Rectifier Diode 1A 1000V 1N4007",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Current": "1A",
+    "Voltage": "1000V"
+   }
+  },
+  {
+   "id": "6a33a09a-701e-25fc-ee07-9e9c7ce1a8b0",
+   "truth": "bme280",
+   "title": "BME280 - Pressure Humidity Temperature Sensor",
+   "mpn": "BME280",
+   "mpn_trusted": true,
+   "manufacturer": "Bosch",
+   "gtin": null,
+   "package": "LGA-8",
+   "specs": {
+    "Supply Voltage": "1.71V ~ 3.6V",
+    "Interface": "I2C/SPI"
+   }
+  },
+  {
+   "id": "909aff83-2e5e-1a9b-1326-83ba3871c9d7",
+   "truth": "lm317t",
+   "title": "STMicroelectronics LM317T Adjustable Voltage Regulator 1.5A",
+   "mpn": "LM317T",
+   "mpn_trusted": true,
+   "manufacturer": "ST Microelectronics",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Output Voltage": "1.25V-37V",
+    "Output Current": "1.5A"
+   }
+  },
+  {
+   "id": "2a01738b-776f-0d96-b057-6d190783cee4",
+   "truth": "bc547b",
+   "title": "NPN Transistor BC547B",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "d667fe11-bd93-4804-ea65-54921845f640",
+   "truth": "esp32-wroom-32e",
+   "title": "esp32-wroom-32e wifi bt ble module eco v3",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Generic",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V"
+   }
+  },
+  {
+   "id": "de1ce59c-980e-7294-5f26-4c7ee7121a00",
+   "truth": "1n5819",
+   "title": "1N5819 DO-41 Schottky Diode 1A 40V",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Vishay",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Voltage": "40V",
+    "Current": "1A"
+   }
+  },
+  {
+   "id": "889666f9-3197-bfa3-11cd-5326305e0905",
+   "truth": "mpu-6050",
+   "title": "MPU 6050 6-Axis Gyro Accelerometer",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "InvenSense",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Interface": "I2C",
+    "Supply Voltage": "2.375V ~ 3.46V"
+   }
+  },
+  {
+   "id": "87ef5551-8a1a-2a84-f8d9-f8fbe9db1dba",
+   "truth": "ne555p",
+   "title": "Texas Instruments NE555P Precision Timer IC",
+   "mpn": "NE555P",
+   "mpn_trusted": true,
+   "manufacturer": "TI",
+   "gtin": "0751492000015",
+   "package": "DIP-8",
+   "specs": {
+    "Supply Voltage": "4.5V ~ 16V",
+    "Frequency": "100kHz"
+   }
+  },
+  {
+   "id": "d37e6876-d0e8-a843-0c63-5e4b61df28d3",
+   "truth": "lm358n",
+   "title": "Texas Instruments LM358N Dual Op-Amp",
+   "mpn": "LM358N",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments Inc.",
+   "gtin": null,
+   "package": "DIP-8",
+   "specs": {
+    "Channels": "2",
+    "Supply Voltage": "3V ~ 32V"
+   }
+  },
+  {
+   "id": "23fac9e7-0423-e27d-4aeb-15a39c27cc92",
+   "truth": "esp32-wroom-32",
+   "title": "ESP32-WROOM-32, WiFi Bluetooth Module, SMD-38",
+   "mpn": "ESP32-WROOM-32",
+   "mpn_trusted": true,
+   "manufacturer": "Espressif Systems",
+   "gtin": null,
+   "package": "SMD-38",
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "4MB",
+    "CPU Frequency": "240MHz"
+   }
+  },
+  {
+   "id": "215949fc-24fe-8319-33f4-12a12596be67",
+   "truth": "1n5819",
+   "title": "1N5819, Schottky Diode 1A 40V, DO-41",
+   "mpn": "1N5819",
+   "mpn_trusted": true,
+   "manufacturer": "Vishay",
+   "gtin": null,
+   "package": "DO-41",
+   "specs": {
+    "Current": "1A",
+    "Voltage": "40V"
+   }
+  },
+  {
+   "id": "643a7f72-a99c-f8e7-8fa6-9499b00e5641",
+   "truth": "uln2003a",
+   "title": "ULN2003A, Darlington Transistor Array, DIP-16",
+   "mpn": "ULN2003A",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments Inc.",
+   "gtin": null,
+   "package": "DIP-16",
+   "specs": {
+    "Channels": "7",
+    "Output Current": "500mA"
+   }
+  },
+  {
+   "id": "8b76679b-4f78-d39a-ed57-b33af94fc864",
+   "truth": "atmega328-pu",
+   "title": "ATMEGA328-PU, 8-bit AVR MCU (non-picoPower), DIP-28",
+   "mpn": "ATMEGA328-PU",
+   "mpn_trusted": true,
+   "manufacturer": "Microchip",
+   "gtin": null,
+   "package": "DIP-28",
+   "specs": {
+    "Flash": "32KB",
+    "Clock Speed": "20MHz",
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "1c18865f-7ff7-46fc-56c0-a4b4cb43da1e",
+   "truth": "1n4007",
+   "title": "1N4007 Rectifier Diode 1A 1000V",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Voltage": "1000V",
+    "Current": "1A"
+   }
+  },
+  {
+   "id": "3c034603-6125-1765-466a-796d6a910c76",
+   "truth": "l298n",
+   "title": "l298n dual full-bridge motor driver",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "a7ff5111-38b3-2e38-4c13-8e614e2ee493",
+   "truth": "irf540n",
+   "title": "Infineon IRF540N N-Channel MOSFET 100V 33A",
+   "mpn": "IRF540N",
+   "mpn_trusted": true,
+   "manufacturer": "Infineon Technologies",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Current": "33A",
+    "Voltage": "100V",
+    "Gate Threshold Voltage": "2V-4V"
+   }
+  },
+  {
+   "id": "a4597a9e-f024-cd21-7131-4b5e958149c1",
+   "truth": "atmega328-pu",
+   "title": "ATMEGA328 PU 8-bit AVR MCU (non-picoPower)",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "7757f45c-9e73-5fd9-033c-be9da4242616",
+   "truth": "ne555dr",
+   "title": "NE555DR, Timer IC SMD, SOIC-8",
+   "mpn": "NE555DR",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments",
+   "gtin": null,
+   "package": "SOIC-8",
+   "specs": {
+    "Supply Voltage": "4.5V ~ 16V",
+    "Frequency": "100kHz"
+   }
+  },
+  {
+   "id": "8a9f465c-03f5-77eb-83a8-7d2ec03584a9",
+   "truth": "esp8266-esp-12f",
+   "title": "ESP 12F ESP8266 WiFi Module",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "SMD-22",
+   "specs": {
+    "Flash": "4MB"
+   }
+  },
+  {
+   "id": "44fb30fa-1641-4ca0-b2cf-f63808f9faad",
+   "truth": "ne555p",
+   "title": "NE555P Precision Timer IC",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "cfc6d20a-ab98-7aa1-f22f-b1c449c2cf59",
+   "truth": "uln2003a",
+   "title": "ULN2003A Darlington Transistor Array (Best Quality)",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "DIP-16",
+   "specs": {
+    "Channels": "7",
+    "Output Current": "500mA"
+   }
+  },
+  {
+   "id": "e230d03e-c06c-4ba0-5937-6f9c90f0223c",
+   "truth": "lm358dr",
+   "title": "LM358DR Dual Operational Amplifier SMD",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Supply Voltage": "3V ~ 32V",
+    "Channels": "2"
+   }
+  },
+  {
+   "id": "3581aeaf-130a-826c-7a56-ea2458e97308",
+   "truth": "esp32-wroom-32e",
+   "title": "Espressif ESP32-WROOM-32E WiFi BT BLE Module ECO V3",
+   "mpn": "ESP32-WROOM-32E",
+   "mpn_trusted": true,
+   "manufacturer": "ESPRESSIF",
+   "gtin": null,
+   "package": "SMD-38",
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "8MB",
+    "CPU Frequency": "240MHz"
+   }
+  },
+  {
+   "id": "c5a34188-7bcf-4e94-da5a-efb85455b756",
+   "truth": "atmega328p-pu",
+   "title": "ATMEGA328P-PU DIP-28 8-bit AVR Microcontroller",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "DIP-28",
+   "specs": {
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "bdc038e2-61e0-cb98-cc41-f6a31c057d0c",
+   "truth": "ch340c",
+   "title": "CH340C, USB to UART IC (built-in clock), SOP-16",
+   "mpn": "CH340C",
+   "mpn_trusted": true,
+   "manufacturer": "WCH",
+   "gtin": null,
+   "package": "SOP-16",
+   "specs": {
+    "Supply Voltage": "3.3V ~ 5V",
+    "Interface": "USB"
+   }
+  },
+  {
+   "id": "4f5135e2-bad0-1aae-fa8c-f92107ada85e",
+   "truth": "ams1117-3.3",
+   "title": "Original AMS1117-3.3 LDO Voltage Regulator 1A",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Output Current": "1A",
+    "Input Voltage": "4.5V-15V",
+    "Output Voltage": "3.3V"
+   }
+  },
+  {
+   "id": "ae78cd5a-ffb0-130c-a2c6-b02f0775cd3e",
+   "truth": "lm358n",
+   "title": "Texas Instruments LM358N Dual Op-Amp",
+   "mpn": "LM358N",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instrument",
+   "gtin": null,
+   "package": "DIP-8",
+   "specs": {
+    "Channels": "2",
+    "Supply Voltage": "3V ~ 32V"
+   }
+  },
+  {
+   "id": "99b2464f-9f2c-2ef9-17c9-e0362bafa997",
+   "truth": "atmega328p-pu",
+   "title": "ATMEGA328P-PU, 8-bit AVR Microcontroller, DIP-28",
+   "mpn": "ATMEGA328P-PU",
+   "mpn_trusted": true,
+   "manufacturer": "Microchip Technology Inc",
+   "gtin": null,
+   "package": "DIP-28",
+   "specs": {
+    "Flash": "32KB",
+    "Clock Speed": "20MHz",
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "299e9e04-b02a-bcb7-1b84-34d0824dd1b1",
+   "truth": "esp32-wroom-32d",
+   "title": "Espressif ESP32-WROOM-32D WiFi BT Module (D revision)",
+   "mpn": "ESP32-WROOM-32D",
+   "mpn_trusted": true,
+   "manufacturer": "Espressif Systems",
+   "gtin": null,
+   "package": "SMD-38",
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "4MB",
+    "CPU Frequency": "240MHz"
+   }
+  },
+  {
+   "id": "3b0bd547-14eb-d3fc-1fba-9a2c3faee794",
+   "truth": "tp4056",
+   "title": "Nanjing Top Power TP4056 1A Li-ion Battery Charger IC",
+   "mpn": "TP4056",
+   "mpn_trusted": true,
+   "manufacturer": "Nanjing Top Power",
+   "gtin": null,
+   "package": "SOP-8",
+   "specs": {
+    "Input Voltage": "4V-8V",
+    "Output Current": "1A"
+   }
+  },
+  {
+   "id": "40225163-0b1a-d566-a461-969d6d3d9cd8",
+   "truth": "hc-sr04",
+   "title": "HC-SR04 - Ultrasonic Distance Sensor",
+   "mpn": "HC-SR04",
+   "mpn_trusted": true,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "5V",
+    "Range": "2cm-400cm"
+   }
+  },
+  {
+   "id": "fba58867-ced2-32ac-5bea-92b981bf2756",
+   "truth": "esp8266-esp-12f",
+   "title": "ESP 12F ESP8266 WiFi Module",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "4MB"
+   }
+  },
+  {
+   "id": "e9a58de9-14e1-02ab-cfb9-948f06eec388",
+   "truth": "mq-2",
+   "title": "Hanwei MQ-2 Smoke Gas Sensor",
+   "mpn": "MQ-2",
+   "mpn_trusted": true,
+   "manufacturer": "Hanwei",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "5V"
+   }
+  },
+  {
+   "id": "f4238041-44e2-97f4-2c90-74d5d3b6a790",
+   "truth": "atmega328p-pu",
+   "title": "ATMEGA328P-PU - 8-bit AVR Microcontroller",
+   "mpn": "ATMEGA328P-PU",
+   "mpn_trusted": true,
+   "manufacturer": "Microchip",
+   "gtin": "0611247012345",
+   "package": "DIP-28",
+   "specs": {
+    "Flash": "32KB",
+    "Clock Speed": "20MHz",
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "2120f40f-bebc-b87f-9236-953f919bbc43",
+   "truth": "rp2040",
+   "title": "RP2040 - Dual-core ARM Cortex-M0+ MCU",
+   "mpn": "RP2040",
+   "mpn_trusted": true,
+   "manufacturer": "Raspberry Pi",
+   "gtin": null,
+   "package": "QFN-56",
+   "specs": {
+    "Clock Speed": "133MHz",
+    "RAM": "264KB"
+   }
+  },
+  {
+   "id": "9c2f2dab-729a-3b2a-7a1c-2b261d9bf2ba",
+   "truth": "bmp280",
+   "title": "Bosch Sensortec BMP280 Barometric Pressure Sensor",
+   "mpn": "BMP280",
+   "mpn_trusted": true,
+   "manufacturer": "Bosch",
+   "gtin": null,
+   "package": "LGA-8",
+   "specs": {
+    "Supply Voltage": "1.71V ~ 3.6V",
+    "Interface": "I2C/SPI"
+   }
+  },
+  {
+   "id": "ebf9082f-dee1-64b9-c7ba-6f1abf14f81d",
+   "truth": "rp2040",
+   "title": "RP2040, Dual-core ARM Cortex-M0+ MCU, QFN-56",
+   "mpn": "RP2040-CT",
+   "mpn_trusted": true,
+   "manufacturer": "Raspberry Pi",
+   "gtin": null,
+   "package": "QFN-56",
+   "specs": {
+    "Clock Speed": "133MHz",
+    "RAM": "264KB"
+   }
+  },
+  {
+   "id": "e7b76117-ba30-4724-9759-2ef36b7ec6d8",
+   "truth": "esp32-wroom-32e",
+   "title": "Original ESP32-WROOM-32E WiFi BT BLE Module ECO V3",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "CPU Frequency": "240MHz",
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "8MB"
+   }
+  },
+  {
+   "id": "d5967e88-fb8b-1469-05bb-8048c7568447",
+   "truth": "dht11",
+   "title": "DHT11 Temperature and Humidity Sensor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Generic",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "3.3-5.5V",
+    "Measuring Range": "0 to 50 \u00b0C"
+   }
+  },
+  {
+   "id": "5edf7826-4928-6371-ddc3-8dbdbea9cb16",
+   "truth": "sg90",
+   "title": "SG90 Module 9g Micro Servo Motor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "TowerPro",
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "dd89e68c-b494-d8fb-03bf-9e4ab07e1af4",
+   "truth": "esp32-wroom-32",
+   "title": "ESP32-WROOM-32 - WiFi Bluetooth Module",
+   "mpn": "ESP32-WROOM-32",
+   "mpn_trusted": true,
+   "manufacturer": "Espressif",
+   "gtin": null,
+   "package": "SMD-38",
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "4MB",
+    "CPU Frequency": "240MHz"
+   }
+  },
+  {
+   "id": "6123b985-f2bf-d2dd-4bdd-fb0ce5ab40c2",
+   "truth": "irlz44n",
+   "title": "IRLZ44N Logic Level N-Channel MOSFET",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Gate Threshold Voltage": "1V-2V"
+   }
+  },
+  {
+   "id": "0e0a98d9-4768-2be3-5687-a1ec7ee9b8c9",
+   "truth": "esp32-wroom-32",
+   "title": "ESP32-WROOM-32 - WiFi Bluetooth Module",
+   "mpn": "ESP32-WROOM-32",
+   "mpn_trusted": true,
+   "manufacturer": "Espressif Systems",
+   "gtin": null,
+   "package": "SMD-38",
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "4MB",
+    "CPU Frequency": "240MHz"
+   }
+  },
+  {
+   "id": "f9052de7-7b4d-3178-133c-dd5f8bbb9e8a",
+   "truth": "ams1117-5.0",
+   "title": "ams1117-5.0 ldo voltage regulator 1a",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Input Voltage": "6.5V-15V",
+    "Output Voltage": "5V"
+   }
+  },
+  {
+   "id": "32a5198c-b401-fbff-9b5a-0446849a6ed2",
+   "truth": "lm317t",
+   "title": "STMicroelectronics LM317T Adjustable Voltage Regulator 1.5A",
+   "mpn": "LM317T",
+   "mpn_trusted": true,
+   "manufacturer": "STMicroelectronics",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Output Voltage": "1.25V-37V",
+    "Output Current": "1.5A"
+   }
+  },
+  {
+   "id": "a33eaa43-6608-3342-da42-6c508ced3c93",
+   "truth": "ch340c",
+   "title": "WCH CH340C USB to UART IC (built-in clock)",
+   "mpn": "CH340C/TR",
+   "mpn_trusted": true,
+   "manufacturer": "WCH",
+   "gtin": null,
+   "package": "SOP-16",
+   "specs": {
+    "Supply Voltage": "3.3V ~ 5V",
+    "Interface": "USB"
+   }
+  },
+  {
+   "id": "6f29cdee-0e35-7310-6f06-2622ebce18d5",
+   "truth": "drv8825",
+   "title": "DRV8825 - Stepper Motor Driver 2.5A",
+   "mpn": "DRV8825",
+   "mpn_trusted": true,
+   "manufacturer": "TI",
+   "gtin": null,
+   "package": "HTSSOP-28",
+   "specs": {
+    "Supply Voltage": "8.2V ~ 45V",
+    "Output Current": "2.5A"
+   }
+  },
+  {
+   "id": "b54c8785-f449-bd77-6ed1-dd5236708f03",
+   "truth": "ds18b20",
+   "title": "DS18B20 1-Wire Digital Temperature Sensor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "187eb4b6-e08b-a8e9-25e3-4f2df483edf0",
+   "truth": "dht22",
+   "title": "dht22 digital temperature humidity sensor am2302",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Measuring Range": "-40 to 80 \u00b0C",
+    "Operating Voltage": "3.3-6V"
+   }
+  },
+  {
+   "id": "584acb87-fbfc-61ff-8444-50bb3d55617d",
+   "truth": "2n2222a",
+   "title": "2N2222A - NPN Switching Transistor",
+   "mpn": "2N2222A",
+   "mpn_trusted": true,
+   "manufacturer": "ST",
+   "gtin": null,
+   "package": "TO-92",
+   "specs": {
+    "Current": "600mA",
+    "Voltage": "40V"
+   }
+  },
+  {
+   "id": "7fbce650-561b-487c-31b3-885fbbc48803",
+   "truth": "lm7805ct",
+   "title": "LM7805CT, 5V Positive Voltage Regulator, TO-220",
+   "mpn": "LM7805CT",
+   "mpn_trusted": true,
+   "manufacturer": "ON Semi",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Output Voltage": "5V",
+    "Output Current": "1A"
+   }
+  },
+  {
+   "id": "a3bfa710-7bb4-ef10-5fcd-093e0d527f3b",
+   "truth": "irlz44n",
+   "title": "Infineon IRLZ44N Logic Level N-Channel MOSFET",
+   "mpn": "IRLZ44N",
+   "mpn_trusted": true,
+   "manufacturer": "Infineon",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Current": "47A",
+    "Voltage": "55V",
+    "Gate Threshold Voltage": "1V-2V"
+   }
+  },
+  {
+   "id": "f3c5bbb8-fb01-3a6d-fe3c-323aa629d597",
+   "truth": "irfz44n",
+   "title": "IRFZ44N - N-Channel Power MOSFET 55V 49A",
+   "mpn": "IRFZ44N",
+   "mpn_trusted": true,
+   "manufacturer": "Infineon",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Current": "49A",
+    "Voltage": "55V",
+    "Gate Threshold Voltage": "2V-4V"
+   }
+  },
+  {
+   "id": "5888468b-9004-b031-f8a4-e05dedb78aac",
+   "truth": "1n4007",
+   "title": "Vishay 1N4007 Rectifier Diode 1A 1000V",
+   "mpn": "1N4007",
+   "mpn_trusted": true,
+   "manufacturer": "Vishay",
+   "gtin": null,
+   "package": "DO-41",
+   "specs": {
+    "Current": "1A",
+    "Voltage": "1000V"
+   }
+  },
+  {
+   "id": "8d80fc99-517f-3471-fb99-ebcd63a4294e",
+   "truth": "max7219cng",
+   "title": "MAX7219CNG LED Display Driver",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "125a8bfb-34f1-b774-8913-185966482e6d",
+   "truth": "sn74hc595n",
+   "title": "SN74HC595N, 8-bit Shift Register, DIP-16",
+   "mpn": "SN74HC595N",
+   "mpn_trusted": true,
+   "manufacturer": "TI",
+   "gtin": null,
+   "package": "DIP-16",
+   "specs": {
+    "Supply Voltage": "2V ~ 6V",
+    "Channels": "8"
+   }
+  },
+  {
+   "id": "976bfc3a-3bd6-8c18-ebfc-30b169cf2189",
+   "truth": "mpu-6050",
+   "title": "TDK InvenSense MPU-6050 6-Axis Gyro Accelerometer",
+   "mpn": "MPU-6050/TR",
+   "mpn_trusted": true,
+   "manufacturer": "TDK InvenSense",
+   "gtin": null,
+   "package": "QFN-24",
+   "specs": {
+    "Supply Voltage": "2.375V ~ 3.46V",
+    "Interface": "I2C"
+   }
+  },
+  {
+   "id": "02f408d2-0345-b071-9b7a-3950876f2b49",
+   "truth": "l298n",
+   "title": "STMicroelectronics L298N Dual Full-Bridge Motor Driver",
+   "mpn": "L298N",
+   "mpn_trusted": true,
+   "manufacturer": "STMicroelectronics",
+   "gtin": null,
+   "package": "Multiwatt-15",
+   "specs": {
+    "Supply Voltage": "4.5V ~ 46V",
+    "Output Current": "2A"
+   }
+  },
+  {
+   "id": "1f9bc1bf-8a65-e0bb-6080-76759bbac8da",
+   "truth": "a4988",
+   "title": "A4988 Stepper Motor Driver",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Allegro",
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "da8ce5fa-5cc6-1502-11d0-7b9ac9f60165",
+   "truth": "hc-sr501",
+   "title": "HC-SR501, PIR Motion Sensor, Module",
+   "mpn": "HC-SR501",
+   "mpn_trusted": true,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "4.5V-20V",
+    "Range": "7m"
+   }
+  },
+  {
+   "id": "6a6ca385-4fea-b86e-42ff-941a10320427",
+   "truth": "dht11",
+   "title": "DHT11 Temperature and Humidity Sensor (Best Quality)",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Measuring Range": "0 to 50 \u00b0C",
+    "Operating Voltage": "3.3-5.5V"
+   }
+  },
+  {
+   "id": "8e90cdfa-ceac-1d37-7ccc-3a540e5ce010",
+   "truth": "irfz44n",
+   "title": "IRFZ44N, N-Channel Power MOSFET 55V 49A, TO-220",
+   "mpn": "IRFZ44N",
+   "mpn_trusted": true,
+   "manufacturer": "Infineon Technologies",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Current": "49A",
+    "Voltage": "55V",
+    "Gate Threshold Voltage": "2V-4V"
+   }
+  },
+  {
+   "id": "0bd2d68a-f00c-3517-8380-4ae7c2f60ab0",
+   "truth": "tp4056",
+   "title": "TP4056 1A Li-ion Battery Charger IC",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Generic",
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "9c14993e-256d-c97e-9804-dd7972e54fca",
+   "truth": "ne555dr",
+   "title": "Texas Instruments NE555DR Timer IC SMD",
+   "mpn": "NE555DR",
+   "mpn_trusted": true,
+   "manufacturer": "TI",
+   "gtin": null,
+   "package": "SOIC-8",
+   "specs": {
+    "Supply Voltage": "4.5V ~ 16V",
+    "Frequency": "100kHz"
+   }
+  },
+  {
+   "id": "7382c268-54ac-9bcc-d3ac-8244271b656d",
+   "truth": "esp8266-esp-12f",
+   "title": "ESP-12F ESP8266 WiFi Module",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "128cc2bb-1fe1-0413-bdc1-9e301bd25b55",
+   "truth": "ne555p",
+   "title": "NE555P - Precision Timer IC",
+   "mpn": "NE555P",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instrument",
+   "gtin": "0751492000015",
+   "package": "DIP-8",
+   "specs": {
+    "Supply Voltage": "4.5V ~ 16V",
+    "Frequency": "100kHz"
+   }
+  },
+  {
+   "id": "36b8e427-b6b2-0dda-529f-e85b0cd6aa7b",
+   "truth": "pcf8574",
+   "title": "PCF8574 I2C I/O Expander (Best Quality)",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "NXP",
+   "gtin": null,
+   "package": "DIP-16",
+   "specs": {
+    "Interface": "I2C",
+    "Supply Voltage": "2.5V ~ 6V"
+   }
+  },
+  {
+   "id": "909e6697-daea-af46-1ac8-cb3c99089c86",
+   "truth": "atmega328p-pu",
+   "title": "ATMEGA328P-PU, 8-bit AVR Microcontroller, DIP-28",
+   "mpn": "ATMEGA328P-PU",
+   "mpn_trusted": true,
+   "manufacturer": "Microchip",
+   "gtin": "0611247012345",
+   "package": "DIP-28",
+   "specs": {
+    "Flash": "32KB",
+    "Clock Speed": "20MHz",
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "4896ce37-c313-d9a7-e4aa-826b465ce9d0",
+   "truth": "ne555dr",
+   "title": "NE555DR - Timer IC SMD",
+   "mpn": "NE555DR",
+   "mpn_trusted": true,
+   "manufacturer": "TI",
+   "gtin": null,
+   "package": "SOIC-8",
+   "specs": {
+    "Supply Voltage": "4.5V ~ 16V",
+    "Frequency": "100kHz"
+   }
+  },
+  {
+   "id": "af8359b2-c568-1012-cf64-c6bb5a2b47c8",
+   "truth": "hc-sr501",
+   "title": "HC-SR501 - PIR Motion Sensor",
+   "mpn": "HC-SR501",
+   "mpn_trusted": true,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "4.5V-20V",
+    "Range": "7m"
+   }
+  },
+  {
+   "id": "e7b80e07-bb0b-47db-cf96-d80d4f81024a",
+   "truth": "ams1117-3.3",
+   "title": "AMS1117-3.3, LDO Voltage Regulator 1A, SOT-223",
+   "mpn": "AMS1117-3.3",
+   "mpn_trusted": true,
+   "manufacturer": "Advanced Monolithic Systems",
+   "gtin": null,
+   "package": "SOT-223",
+   "specs": {
+    "Output Voltage": "3.3V",
+    "Output Current": "1A",
+    "Input Voltage": "4.5V-15V"
+   }
+  },
+  {
+   "id": "eb38d162-83f1-f39e-1376-edf4f59da783",
+   "truth": "ch340g",
+   "title": "USB to Serial UART IC CH340G",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "WCH",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Supply Voltage": "3.3V ~ 5V",
+    "Interface": "USB"
+   }
+  },
+  {
+   "id": "6af1749d-e439-2ce0-cff2-93a9966824a9",
+   "truth": "mpu-6500",
+   "title": "TDK InvenSense MPU-6500 6-Axis Motion Tracking Device",
+   "mpn": "MPU-6500/TR",
+   "mpn_trusted": true,
+   "manufacturer": "TDK InvenSense",
+   "gtin": null,
+   "package": "QFN-24",
+   "specs": {
+    "Supply Voltage": "1.71V ~ 3.6V",
+    "Interface": "I2C/SPI"
+   }
+  },
+  {
+   "id": "82e7ce09-9c6c-ae70-f507-672bd4ca72f6",
+   "truth": "uln2003a",
+   "title": "ULN2003A - Darlington Transistor Array",
+   "mpn": "ULN2003A",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments",
+   "gtin": null,
+   "package": "DIP-16",
+   "specs": {
+    "Channels": "7",
+    "Output Current": "500mA"
+   }
+  },
+  {
+   "id": "921ccb66-3277-64cc-624f-6979359e2c93",
+   "truth": "2n2222a",
+   "title": "2N2222A NPN Switching Transistor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "STMicroelectronics",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Current": "600mA",
+    "Voltage": "40V"
+   }
+  },
+  {
+   "id": "fc116a1f-990a-b601-03e0-759305b624a7",
+   "truth": "mq-2",
+   "title": "MQ-2, Smoke Gas Sensor, Module",
+   "mpn": "MQ-2",
+   "mpn_trusted": true,
+   "manufacturer": "Hanwei",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "5V"
+   }
+  },
+  {
+   "id": "9a39068e-5094-47ca-80c6-899644cf47af",
+   "truth": "l298n",
+   "title": "STMicroelectronics L298N Dual Full-Bridge Motor Driver",
+   "mpn": "L298N",
+   "mpn_trusted": true,
+   "manufacturer": "STMicroelectronics",
+   "gtin": null,
+   "package": "Multiwatt-15",
+   "specs": {
+    "Supply Voltage": "4.5V ~ 46V",
+    "Output Current": "2A"
+   }
+  },
+  {
+   "id": "80a01624-4786-88a8-7e03-bd0e897adc0b",
+   "truth": "lm2596s-adj",
+   "title": "Texas Instruments LM2596S-ADJ Step-Down Buck Regulator 3A",
+   "mpn": "LM2596S-ADJ",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments",
+   "gtin": null,
+   "package": "TO-263-5",
+   "specs": {
+    "Input Voltage": "4.5V-40V",
+    "Output Current": "3A",
+    "Switching Frequency": "150kHz"
+   }
+  },
+  {
+   "id": "b9479263-e423-1846-c6c3-d5899309dc72",
+   "truth": "drv8825",
+   "title": "DRV8825 Stepper Motor Driver 2.5A",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Generic",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Output Current": "2.5A",
+    "Supply Voltage": "8.2V ~ 45V"
+   }
+  },
+  {
+   "id": "aa404108-453a-6588-4ad6-50ef8a8c3244",
+   "truth": "rp2040",
+   "title": "RP2040 QFN-56 Dual-core ARM Cortex-M0+ MCU",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Raspberry Pi",
+   "gtin": null,
+   "package": "QFN-56",
+   "specs": {}
+  },
+  {
+   "id": "b540307f-c30b-a319-2086-3ebbd731a7bf",
+   "truth": "lm7805ct",
+   "title": "5V Positive Voltage Regulator LM7805CT",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "ON Semiconductor",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Output Voltage": "5V",
+    "Output Current": "1A"
+   }
+  },
+  {
+   "id": "b148ddb9-a26b-31b1-7244-525954e32dfe",
+   "truth": "atmega328p-au",
+   "title": "Microchip ATMEGA328P-AU 8-bit AVR Microcontroller SMD",
+   "mpn": "ATMEGA328P-AU-CT",
+   "mpn_trusted": true,
+   "manufacturer": "Atmel",
+   "gtin": null,
+   "package": "TQFP-32",
+   "specs": {
+    "Flash": "32KB",
+    "Clock Speed": "20MHz",
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "fee12821-a4b1-d4a8-1b40-cb268ea965d6",
+   "truth": "irf540n",
+   "title": "N-Channel MOSFET 100V 33A IRF540N",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Generic",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Gate Threshold Voltage": "2V-4V"
+   }
+  },
+  {
+   "id": "bbbb8595-c5a9-84b1-59b5-a391b15691e1",
+   "truth": "esp32-wroom-32d",
+   "title": "ESP32-WROOM-32D - WiFi BT Module (D revision)",
+   "mpn": "ESP32-WROOM-32D",
+   "mpn_trusted": true,
+   "manufacturer": "Espressif Systems",
+   "gtin": null,
+   "package": "SMD-38",
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "4MB",
+    "CPU Frequency": "240MHz"
+   }
+  },
+  {
+   "id": "88ba845a-a157-7cf5-f58b-b514ab1c2d29",
+   "truth": "atmega328p-au",
+   "title": "ATMEGA328PAU 8-bit AVR Microcontroller SMD",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Atmel",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Clock Speed": "20MHz",
+    "Flash": "32KB",
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "3a3898c1-cb3d-8efe-0a47-d180d8a63131",
+   "truth": "lm2596s-adj",
+   "title": "LM2596S-ADJ - Step-Down Buck Regulator 3A",
+   "mpn": "LM2596S-ADJ",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments Inc.",
+   "gtin": null,
+   "package": "TO-263-5",
+   "specs": {
+    "Input Voltage": "4.5V-40V",
+    "Output Current": "3A",
+    "Switching Frequency": "150kHz"
+   }
+  },
+  {
+   "id": "7a08b0b0-909b-1c7a-94f0-20dbdc0773e3",
+   "truth": "ams1117-3.3",
+   "title": "AMS1117-3.3 - LDO Voltage Regulator 1A",
+   "mpn": "AMS1117-3.3",
+   "mpn_trusted": true,
+   "manufacturer": "Advanced Monolithic Systems",
+   "gtin": null,
+   "package": "SOT-223",
+   "specs": {
+    "Output Voltage": "3.3V",
+    "Output Current": "1A",
+    "Input Voltage": "4.5V-15V"
+   }
+  },
+  {
+   "id": "ca9822d9-f5da-bb52-6c66-02ddcaf664db",
+   "truth": "hc-sr04",
+   "title": "Generic HC-SR04 Ultrasonic Distance Sensor",
+   "mpn": "HC-SR04",
+   "mpn_trusted": true,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "5V",
+    "Range": "2cm-400cm"
+   }
+  },
+  {
+   "id": "a012f2d0-4f7d-2964-ccee-4b5af2cfb7dc",
+   "truth": "sg90",
+   "title": "SG90 9g Micro Servo Motor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "0ca32c6e-e00a-1fd0-c2e2-8c2acfae9339",
+   "truth": "1n5819",
+   "title": "1N5819 Schottky Diode 1A 40V - DO-41",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Vishay Intertechnology",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Voltage": "40V",
+    "Current": "1A"
+   }
+  },
+  {
+   "id": "71f6d5a9-e86f-07be-1ce0-0401b38ebd35",
+   "truth": "bme280",
+   "title": "BME280, Pressure Humidity Temperature Sensor, LGA-8",
+   "mpn": "BME280",
+   "mpn_trusted": true,
+   "manufacturer": "Bosch",
+   "gtin": null,
+   "package": "LGA-8",
+   "specs": {
+    "Supply Voltage": "1.71V ~ 3.6V",
+    "Interface": "I2C/SPI"
+   }
+  },
+  {
+   "id": "fd532ecc-f5de-3637-5138-d54c8a122c60",
+   "truth": "ds18b20",
+   "title": "DS18B20 - 1-Wire Digital Temperature Sensor",
+   "mpn": "DS18B20",
+   "mpn_trusted": true,
+   "manufacturer": "Analog Devices Inc.",
+   "gtin": null,
+   "package": "TO-92",
+   "specs": {
+    "Supply Voltage": "3V ~ 5.5V",
+    "Measuring Range": "-55 to 125 \u00b0C"
+   }
+  },
+  {
+   "id": "906e61af-d7fb-a820-45b3-e3791e3855d7",
+   "truth": "stm32f103c8t6",
+   "title": "ARM Cortex-M3 MCU 64KB STM32F103C8T6",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "ST Microelectronics",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Clock Speed": "72MHz",
+    "Flash": "64KB"
+   }
+  },
+  {
+   "id": "51a6d33a-6e18-2db0-c76b-316681b26a88",
+   "truth": "l298n",
+   "title": "Dual Full-Bridge Motor Driver L298N",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "Multiwatt-15",
+   "specs": {}
+  },
+  {
+   "id": "8819be19-202f-7dba-8828-5338145d1f82",
+   "truth": "bc547b",
+   "title": "BC547B - NPN Transistor",
+   "mpn": "BC547B",
+   "mpn_trusted": true,
+   "manufacturer": "onsemi",
+   "gtin": null,
+   "package": "TO-92",
+   "specs": {
+    "Current": "100mA",
+    "Voltage": "45V"
+   }
+  },
+  {
+   "id": "463f954a-4127-4ecd-b41d-796c84019ca6",
+   "truth": "sg90",
+   "title": "TowerPro SG90 9g Micro Servo Motor",
+   "mpn": "SG90",
+   "mpn_trusted": true,
+   "manufacturer": "TowerPro",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "4.8V-6V"
+   }
+  },
+  {
+   "id": "d758433b-bb5c-b389-aeb5-76012f8f3b07",
+   "truth": "irf540n",
+   "title": "Infineon IRF540N N-Channel MOSFET 100V 33A",
+   "mpn": "IRF540N",
+   "mpn_trusted": true,
+   "manufacturer": "International Rectifier",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Current": "33A",
+    "Voltage": "100V",
+    "Gate Threshold Voltage": "2V-4V"
+   }
+  },
+  {
+   "id": "6f94ef59-c7c6-603b-04ce-b85d789535a8",
+   "truth": "lm7805ct",
+   "title": "LM7805CT TO-220 5V Positive Voltage Regulator",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "ON Semiconductor",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {}
+  },
+  {
+   "id": "e194bf6c-e578-59cf-a664-dad6b65f02db",
+   "truth": "a4988",
+   "title": "A4988 - Stepper Motor Driver",
+   "mpn": "A4988",
+   "mpn_trusted": true,
+   "manufacturer": "Allegro",
+   "gtin": null,
+   "package": "QFN-28",
+   "specs": {
+    "Supply Voltage": "8V ~ 35V",
+    "Output Current": "2A"
+   }
+  },
+  {
+   "id": "aea06742-1fae-06d6-7751-5ecd4e5857c1",
+   "truth": "tp4056",
+   "title": "1A Li-ion Battery Charger IC TP4056",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Nanjing Top Power",
+   "gtin": null,
+   "package": "SOP-8",
+   "specs": {
+    "Output Current": "1A"
+   }
+  },
+  {
+   "id": "36ed8221-b5f7-ef68-77d0-aa92a67e1bd1",
+   "truth": "atmega328p-au",
+   "title": "ATMEGA328P-AU - 8-bit AVR Microcontroller SMD",
+   "mpn": "ATMEGA328P-AU",
+   "mpn_trusted": true,
+   "manufacturer": "Atmel",
+   "gtin": null,
+   "package": "TQFP-32",
+   "specs": {
+    "Flash": "32KB",
+    "Clock Speed": "20MHz",
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "aa5b895b-7fcf-0de4-4217-1385ec93043d",
+   "truth": "hc-sr501",
+   "title": "HC-SR501 PIR Motion Sensor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "4.5V-20V",
+    "Range": "7m"
+   }
+  },
+  {
+   "id": "e7cf94a6-d918-ee1a-e96f-652934b5f76e",
+   "truth": "ch340c",
+   "title": "CH340C, USB to UART IC (built-in clock), SOP-16",
+   "mpn": "CH340C",
+   "mpn_trusted": true,
+   "manufacturer": "Nanjing Qinheng Microelectronics",
+   "gtin": null,
+   "package": "SOP-16",
+   "specs": {
+    "Supply Voltage": "3.3V ~ 5V",
+    "Interface": "USB"
+   }
+  },
+  {
+   "id": "df6d2df4-14e6-6a2f-2a5d-3fd6154ef1fb",
+   "truth": "1n4007",
+   "title": "1N4007 Rectifier Diode 1A 1000V",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Vishay",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Current": "1A",
+    "Voltage": "1000V"
+   }
+  },
+  {
+   "id": "985c8ed9-963f-970e-af9d-7740d8002112",
+   "truth": "ch340g",
+   "title": "CH340G USB to Serial UART IC",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "WCH",
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "9de5bf24-e961-174e-5695-59b79ddfc989",
+   "truth": "esp8266-esp-12f",
+   "title": "ESP-12F, ESP8266 WiFi Module, SMD-22",
+   "mpn": "ESP-12F",
+   "mpn_trusted": true,
+   "manufacturer": "Ai-Thinker",
+   "gtin": null,
+   "package": "SMD-22",
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "Flash": "4MB"
+   }
+  },
+  {
+   "id": "3b1d5a57-8edd-fafc-8136-07e6daf39853",
+   "truth": "mq-2",
+   "title": "MQ-2 Smoke Gas Sensor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Hanwei",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "5V"
+   }
+  },
+  {
+   "id": "f18860fc-2fbc-90f2-e006-a07d8d1a5073",
+   "truth": "pcf8574",
+   "title": "PCF8574, I2C I/O Expander, DIP-16",
+   "mpn": "PCF8574",
+   "mpn_trusted": true,
+   "manufacturer": "NXP",
+   "gtin": null,
+   "package": "DIP-16",
+   "specs": {
+    "Supply Voltage": "2.5V ~ 6V",
+    "Interface": "I2C"
+   }
+  },
+  {
+   "id": "d696d0f4-b77b-bd98-ffea-a142263b8d36",
+   "truth": "dht22",
+   "title": "DHT22 - Digital Temperature Humidity Sensor AM2302",
+   "mpn": "DHT22",
+   "mpn_trusted": true,
+   "manufacturer": "Aosong",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "3.3-6V",
+    "Measuring Range": "-40 to 80 \u00b0C"
+   }
+  },
+  {
+   "id": "6ba3c4e4-c48b-a34c-e83f-664b49bc6ec8",
+   "truth": "atmega328-pu",
+   "title": "ATMEGA328-PU - 8-bit AVR MCU (non-picoPower)",
+   "mpn": "ATMEGA328-PU",
+   "mpn_trusted": true,
+   "manufacturer": "Atmel",
+   "gtin": null,
+   "package": "DIP-28",
+   "specs": {
+    "Flash": "32KB",
+    "Clock Speed": "20MHz",
+    "Operating Voltage": "1.8V ~ 5.5V"
+   }
+  },
+  {
+   "id": "516dbc94-1a97-977c-cf8e-02ba3626fb94",
+   "truth": "lm317t",
+   "title": "LM317T, Adjustable Voltage Regulator 1.5A, TO-220",
+   "mpn": "LM317T",
+   "mpn_trusted": true,
+   "manufacturer": "ST Microelectronics",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Output Voltage": "1.25V-37V",
+    "Output Current": "1.5A"
+   }
+  },
+  {
+   "id": "561ed36a-5a0b-204f-e2b0-f503e624984c",
+   "truth": "sn74hc595n",
+   "title": "Original SN74HC595N 8-bit Shift Register",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "DIP-16",
+   "specs": {}
+  },
+  {
+   "id": "b8f1749c-cee0-5e53-3898-9390dfe1f886",
+   "truth": "esp32-wroom-32d",
+   "title": "ESP32 WROOM 32D WiFi BT Module (D revision)",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Espressif Systems",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "3.0V ~ 3.6V",
+    "CPU Frequency": "240MHz"
+   }
+  },
+  {
+   "id": "3a0b96e2-d57f-c1da-dc19-b15a41cd6342",
+   "truth": "bmp280",
+   "title": "BMP280 Barometric Pressure Sensor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Interface": "I2C/SPI",
+    "Supply Voltage": "1.71V ~ 3.6V"
+   }
+  },
+  {
+   "id": "d80654bf-6da1-6d25-8073-166dd76422b8",
+   "truth": "bme280",
+   "title": "BME280 - Pressure Humidity Temperature Sensor",
+   "mpn": "BME280",
+   "mpn_trusted": true,
+   "manufacturer": "Bosch Sensortec",
+   "gtin": null,
+   "package": "LGA-8",
+   "specs": {
+    "Supply Voltage": "1.71V ~ 3.6V",
+    "Interface": "I2C/SPI"
+   }
+  },
+  {
+   "id": "c7083972-95f0-3760-d06c-5dbf5567606f",
+   "truth": "l7805cv",
+   "title": "L7805CV, 5V 1.5A Voltage Regulator, TO-220",
+   "mpn": "L7805CV",
+   "mpn_trusted": true,
+   "manufacturer": "ST Microelectronics",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Output Voltage": "5V",
+    "Output Current": "1.5A"
+   }
+  },
+  {
+   "id": "3de44995-52e1-2b87-a95a-1b9a4c1032b5",
+   "truth": "l7805cv",
+   "title": "L7805CV 5V 1.5A Voltage Regulator",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Output Voltage": "5V",
+    "Output Current": "1.5A"
+   }
+  },
+  {
+   "id": "caa0324e-b073-90f6-2314-44f1210ca5b7",
+   "truth": "ssd1306-128x64",
+   "title": "SSD1306, 0.96 inch OLED Display Driver, Module",
+   "mpn": "SSD1306",
+   "mpn_trusted": true,
+   "manufacturer": "Solomon Systech",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Interface": "I2C/SPI",
+    "Resolution": "128x64"
+   }
+  },
+  {
+   "id": "9e5e3b10-6c51-32ce-f36f-40cbc71c1e6c",
+   "truth": "lm2596t-adj",
+   "title": "LM2596T ADJ Buck Regulator 3A THT",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Output Current": "3A",
+    "Switching Frequency": "150kHz"
+   }
+  },
+  {
+   "id": "19ed955f-48f0-327b-6700-8567ac1efce5",
+   "truth": "tp4056",
+   "title": "Nanjing Top Power TP4056 1A Li-ion Battery Charger IC",
+   "mpn": "TP4056",
+   "mpn_trusted": true,
+   "manufacturer": "Nanjing Top Power",
+   "gtin": null,
+   "package": "SOP-8",
+   "specs": {
+    "Input Voltage": "4V-8V",
+    "Output Current": "1A"
+   }
+  },
+  {
+   "id": "f81d4b94-71e6-aa2d-8348-1da5322798bc",
+   "truth": "pcf8574",
+   "title": "PCF8574 I2C I/O Expander",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "fa8b5b87-d7c7-4f05-b012-f372ed80f042",
+   "truth": "irf540n",
+   "title": "IRF540N - N-Channel MOSFET 100V 33A",
+   "mpn": "IRF540N",
+   "mpn_trusted": true,
+   "manufacturer": "Infineon",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Current": "33A",
+    "Voltage": "100V",
+    "Gate Threshold Voltage": "2V-4V"
+   }
+  },
+  {
+   "id": "56d8b15b-293b-fc18-0054-1e96ad69f3f9",
+   "truth": "lm2596t-adj",
+   "title": "Texas Instruments LM2596T-ADJ Buck Regulator 3A THT",
+   "mpn": "LM2596T-ADJ",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instrument",
+   "gtin": null,
+   "package": "TO-220-5",
+   "specs": {
+    "Input Voltage": "4.5V-40V",
+    "Output Current": "3A",
+    "Switching Frequency": "150kHz"
+   }
+  },
+  {
+   "id": "01a2fbae-7123-e91b-33ff-12306e95ec5b",
+   "truth": "uln2003a",
+   "title": "ULN2003A - Darlington Transistor Array",
+   "mpn": "ULN2003A",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments Inc.",
+   "gtin": null,
+   "package": "DIP-16",
+   "specs": {
+    "Channels": "7",
+    "Output Current": "500mA"
+   }
+  },
+  {
+   "id": "ae07ea10-bbb2-216b-c69d-660b65b0b4c8",
+   "truth": "hc-sr501",
+   "title": "HC-SR501 - PIR Motion Sensor",
+   "mpn": "HC-SR501",
+   "mpn_trusted": true,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "4.5V-20V",
+    "Range": "7m"
+   }
+  },
+  {
+   "id": "07b286fe-c809-0bf7-ef94-2e35b1984c7e",
+   "truth": "mq-2",
+   "title": "MQ-2 Module Smoke Gas Sensor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "5V"
+   }
+  },
+  {
+   "id": "306ab5cd-2e0c-6411-8b08-cc022cdf4e6e",
+   "truth": "ch340c",
+   "title": "CH340C USB to UART IC (built-in clock)",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Generic",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Interface": "USB",
+    "Supply Voltage": "3.3V ~ 5V"
+   }
+  },
+  {
+   "id": "9b7311f0-de33-fad5-18b1-43510a08b91a",
+   "truth": "dht22",
+   "title": "DHT22, Digital Temperature Humidity Sensor AM2302, Module",
+   "mpn": "DHT22",
+   "mpn_trusted": true,
+   "manufacturer": "Aosong",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "3.3-6V",
+    "Measuring Range": "-40 to 80 \u00b0C"
+   }
+  },
+  {
+   "id": "fcef2afa-6621-713d-d154-706b23963c3c",
+   "truth": "ne555p",
+   "title": "NE555P - Precision Timer IC",
+   "mpn": "NE555P",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments Inc.",
+   "gtin": null,
+   "package": "DIP-8",
+   "specs": {
+    "Supply Voltage": "4.5V ~ 16V",
+    "Frequency": "100kHz"
+   }
+  },
+  {
+   "id": "1fa17d52-6228-75e5-4ce7-43cf02ba8f4a",
+   "truth": "lm2596t-adj",
+   "title": "LM2596T-ADJ - Buck Regulator 3A THT",
+   "mpn": "LM2596T-ADJ",
+   "mpn_trusted": true,
+   "manufacturer": "Texas Instruments Inc.",
+   "gtin": null,
+   "package": "TO-220-5",
+   "specs": {
+    "Input Voltage": "4.5V-40V",
+    "Output Current": "3A",
+    "Switching Frequency": "150kHz"
+   }
+  },
+  {
+   "id": "607ae08f-0e75-5b3b-b05f-bb000f5709db",
+   "truth": "2n2222a",
+   "title": "2N2222A NPN Switching Transistor",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "STMicro",
+   "gtin": null,
+   "package": "TO-92",
+   "specs": {
+    "Current": "600mA",
+    "Voltage": "40V"
+   }
+  },
+  {
+   "id": "8e6d8c81-708c-aad0-6b80-889cc00d99ff",
+   "truth": "bmp280",
+   "title": "Barometric Pressure Sensor BMP280",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "2d25e0d0-e48e-e40d-7854-382e3fc0f834",
+   "truth": "a4988",
+   "title": "A4988 QFN-28 Stepper Motor Driver",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": "QFN-28",
+   "specs": {
+    "Supply Voltage": "8V ~ 35V",
+    "Output Current": "2A"
+   }
+  },
+  {
+   "id": "4c7ed04a-d354-51e1-4d40-2a3ae433b144",
+   "truth": "stm32f103c8t6",
+   "title": "Original STM32F103C8T6 ARM Cortex-M3 MCU 64KB",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "STMicroelectronics",
+   "gtin": null,
+   "package": "LQFP-48",
+   "specs": {
+    "Clock Speed": "72MHz",
+    "Flash": "64KB"
+   }
+  },
+  {
+   "id": "69ff8741-9a50-af92-478b-c5613f2edc19",
+   "truth": "sg90",
+   "title": "TowerPro SG90 9g Micro Servo Motor",
+   "mpn": "SG90",
+   "mpn_trusted": true,
+   "manufacturer": "TowerPro",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "4.8V-6V"
+   }
+  },
+  {
+   "id": "9be026c6-3aa4-78b6-899e-c4e4ba3231ea",
+   "truth": "irlz44n",
+   "title": "Original IRLZ44N Logic Level N-Channel MOSFET",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "e13b4845-448a-89fa-7a91-b835b96833fe",
+   "truth": "l7805cv",
+   "title": "STMicroelectronics L7805CV 5V 1.5A Voltage Regulator",
+   "mpn": "L7805CV",
+   "mpn_trusted": true,
+   "manufacturer": "ST Microelectronics",
+   "gtin": null,
+   "package": "TO-220",
+   "specs": {
+    "Output Voltage": "5V",
+    "Output Current": "1.5A"
+   }
+  },
+  {
+   "id": "31e970c5-2682-51c9-3df7-de2ffcf9bc1c",
+   "truth": "esp32-wroom-32",
+   "title": "ESP32-WROOM-32 WiFi Bluetooth Module - SMD-38",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Flash": "4MB"
+   }
+  },
+  {
+   "id": "a721e62c-c3c6-07a3-40f5-8c23bcf140ef",
+   "truth": "hc-sr04",
+   "title": "HC-SR04 Ultrasonic Distance Sensor - Module",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Operating Voltage": "5V",
+    "Range": "2cm-400cm"
+   }
+  },
+  {
+   "id": "202e97c5-0d04-9513-5d1e-b0f57de270ab",
+   "truth": "bc547b",
+   "title": "BC547B - NPN Transistor",
+   "mpn": "BC547B",
+   "mpn_trusted": true,
+   "manufacturer": "ON Semi",
+   "gtin": null,
+   "package": "TO-92",
+   "specs": {
+    "Current": "100mA",
+    "Voltage": "45V"
+   }
+  },
+  {
+   "id": "d48f05ba-f060-9afb-d96c-9779ff952177",
+   "truth": "1n4148",
+   "title": "Vishay 1N4148 Small Signal Switching Diode",
+   "mpn": "1N4148",
+   "mpn_trusted": true,
+   "manufacturer": "Vishay Intertechnology",
+   "gtin": null,
+   "package": "DO-35",
+   "specs": {
+    "Current": "300mA",
+    "Voltage": "100V"
+   }
+  },
+  {
+   "id": "67994dd6-85ad-4c36-6731-58d01aaf3e07",
+   "truth": "a4988",
+   "title": "A4988 - Stepper Motor Driver",
+   "mpn": "A4988",
+   "mpn_trusted": true,
+   "manufacturer": "Allegro",
+   "gtin": null,
+   "package": "QFN-28",
+   "specs": {
+    "Supply Voltage": "8V ~ 35V",
+    "Output Current": "2A"
+   }
+  },
+  {
+   "id": "0cbf6ea1-df4f-559c-dfdb-8c9e8ad59b35",
+   "truth": "drv8825",
+   "title": "DRV8825, Stepper Motor Driver 2.5A, HTSSOP-28",
+   "mpn": "DRV8825-CT",
+   "mpn_trusted": true,
+   "manufacturer": "TI",
+   "gtin": null,
+   "package": "HTSSOP-28",
+   "specs": {
+    "Supply Voltage": "8.2V ~ 45V",
+    "Output Current": "2.5A"
+   }
+  },
+  {
+   "id": "beddcac9-a5a1-038a-b57e-8738dec32e36",
+   "truth": "lm2596t-adj",
+   "title": "lm2596t-adj buck regulator 3a tht",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": "Generic",
+   "gtin": null,
+   "package": null,
+   "specs": {}
+  },
+  {
+   "id": "516c45a5-219a-9023-c736-40461456aca4",
+   "truth": "lm358dr",
+   "title": "LM358DR Dual Operational Amplifier SMD",
+   "mpn": null,
+   "mpn_trusted": false,
+   "manufacturer": null,
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Channels": "2",
+    "Supply Voltage": "3V ~ 32V"
+   }
+  },
+  {
+   "id": "8cfc1704-3696-227a-0dfc-2bc1c5d1ad37",
+   "truth": "ssd1306-128x64",
+   "title": "SSD1306, 0.96 inch OLED Display Driver, Module",
+   "mpn": "SSD1306",
+   "mpn_trusted": true,
+   "manufacturer": "Solomon Systech",
+   "gtin": null,
+   "package": null,
+   "specs": {
+    "Interface": "I2C/SPI",
+    "Resolution": "128x64"
+   }
+  },
+  {
+   "id": "f561a7bb-aef7-6760-dec3-d9fdfe0d77d4",
+   "truth": "ds18b20",
+   "title": "DS18B20 - 1-Wire Digital Temperature Sensor",
+   "mpn": "DS18B20",
+   "mpn_trusted": true,
+   "manufacturer": "Analog Devices",
+   "gtin": null,
+   "package": "TO-92",
+   "specs": {
+    "Supply Voltage": "3V ~ 5.5V",
+    "Measuring Range": "-55 to 125 \u00b0C"
+   }
+  },
+  {
+   "id": "52c5337f-64d5-1d21-bf13-c1379f1a1b65",
+   "truth": "stm32f103c8t6",
+   "title": "STM32F103C8T6 - ARM Cortex-M3 MCU 64KB",
+   "mpn": "STM32F103C8T6",
+   "mpn_trusted": true,
+   "manufacturer": "STMicroelectronics",
+   "gtin": null,
+   "package": "LQFP-48",
+   "specs": {
+    "Flash": "64KB",
+    "Clock Speed": "72MHz"
+   }
+  },
+  {
+   "id": "163c0ee4-00b6-4d29-8fa9-85243b2760ba",
+   "truth": "mpu-6500",
+   "title": "MPU-6500 - 6-Axis Motion Tracking Device",
+   "mpn": "MPU-6500",
+   "mpn_trusted": true,
+   "manufacturer": "InvenSense",
+   "gtin": null,
+   "package": "QFN-24",
+   "specs": {
+    "Supply Voltage": "1.71V ~ 3.6V",
+    "Interface": "I2C/SPI"
+   }
+  }
+ ]
+}
