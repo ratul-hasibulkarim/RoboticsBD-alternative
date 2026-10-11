@@ -46,7 +46,7 @@ class Settings(BaseSettings):
     llm_min_confidence: float = 0.85
 
     # FX
-    fx_provider_url: str = "https://api.frankfurter.app/latest?from=USD"
+    fx_provider_url: str = "https://open.er-api.com/v6/latest/USD"
 
     # Distributor/API keys (empty = client refuses to run).
     mouser_api_key: SecretStr = SecretStr("")
@@ -62,6 +62,12 @@ class Settings(BaseSettings):
     # Embeddings
     embedding_backend: str = Field(default="hashing", pattern=r"^(hashing|sentence-transformers)$")
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
+
+    smtp_host: str = "localhost"
+    smtp_port: int = 1025
+    smtp_sender: str = "VoltFind <alerts@voltfind.com>"
+    smtp_username: str = ""
+    smtp_password: SecretStr = SecretStr("")
 
     public_site_url: str = "http://localhost:3000"
     web_revalidate_url: str = "http://localhost:3000/api/revalidate"

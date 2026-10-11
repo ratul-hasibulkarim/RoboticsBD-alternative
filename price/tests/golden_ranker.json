@@ -1,0 +1,841 @@
+[
+ {
+  "scenario": "esp32_qty1",
+  "geo": "dhaka",
+  "best": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "DigiKey"
+  ]
+ },
+ {
+  "scenario": "esp32_qty1",
+  "geo": "chattogram",
+  "best": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "DigiKey"
+  ]
+ },
+ {
+  "scenario": "esp32_qty1",
+  "geo": "sylhet",
+  "best": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "DigiKey"
+  ]
+ },
+ {
+  "scenario": "esp32_qty1",
+  "geo": "delhi",
+  "best": [
+   "LCSC",
+   "DigiKey",
+   "Mouser"
+  ],
+  "cheapest": [
+   "LCSC",
+   "DigiKey",
+   "Mouser"
+  ],
+  "fastest": [
+   "DigiKey",
+   "Mouser",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "esp32_qty1",
+  "geo": "berlin",
+  "best": [
+   "Mouser",
+   "DigiKey",
+   "LCSC"
+  ],
+  "cheapest": [
+   "DigiKey",
+   "Mouser",
+   "LCSC"
+  ],
+  "fastest": [
+   "Mouser",
+   "DigiKey",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "esp32_qty100",
+  "geo": "dhaka",
+  "best": [
+   "TechShop BD",
+   "RoboticsBD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "LCSC",
+   "TechShop BD",
+   "RoboticsBD"
+  ],
+  "fastest": [
+   "TechShop BD",
+   "RoboticsBD",
+   "Mouser"
+  ]
+ },
+ {
+  "scenario": "esp32_qty100",
+  "geo": "chattogram",
+  "best": [
+   "TechShop BD",
+   "LCSC",
+   "RoboticsBD"
+  ],
+  "cheapest": [
+   "LCSC",
+   "TechShop BD",
+   "RoboticsBD"
+  ],
+  "fastest": [
+   "TechShop BD",
+   "RoboticsBD",
+   "Mouser"
+  ]
+ },
+ {
+  "scenario": "esp32_qty100",
+  "geo": "sylhet",
+  "best": [
+   "TechShop BD",
+   "RoboticsBD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "LCSC",
+   "TechShop BD",
+   "RoboticsBD"
+  ],
+  "fastest": [
+   "TechShop BD",
+   "RoboticsBD",
+   "Mouser"
+  ]
+ },
+ {
+  "scenario": "esp32_qty100",
+  "geo": "delhi",
+  "best": [
+   "LCSC",
+   "Mouser"
+  ],
+  "cheapest": [
+   "LCSC",
+   "Mouser"
+  ],
+  "fastest": [
+   "Mouser",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "esp32_qty100",
+  "geo": "berlin",
+  "best": [
+   "LCSC",
+   "Mouser"
+  ],
+  "cheapest": [
+   "LCSC",
+   "Mouser"
+  ],
+  "fastest": [
+   "Mouser",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "resistor_oos",
+  "geo": "dhaka",
+  "best": [
+   "TechShop BD",
+   "RoboticsBD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "TechShop BD",
+   "LCSC",
+   "RoboticsBD"
+  ],
+  "fastest": [
+   "TechShop BD",
+   "LCSC",
+   "RoboticsBD"
+  ]
+ },
+ {
+  "scenario": "resistor_oos",
+  "geo": "chattogram",
+  "best": [
+   "TechShop BD",
+   "RoboticsBD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "TechShop BD",
+   "LCSC",
+   "RoboticsBD"
+  ],
+  "fastest": [
+   "TechShop BD",
+   "LCSC",
+   "RoboticsBD"
+  ]
+ },
+ {
+  "scenario": "resistor_oos",
+  "geo": "sylhet",
+  "best": [
+   "TechShop BD",
+   "RoboticsBD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "TechShop BD",
+   "LCSC",
+   "RoboticsBD"
+  ],
+  "fastest": [
+   "TechShop BD",
+   "LCSC",
+   "RoboticsBD"
+  ]
+ },
+ {
+  "scenario": "resistor_oos",
+  "geo": "delhi",
+  "best": [
+   "LCSC"
+  ],
+  "cheapest": [
+   "LCSC"
+  ],
+  "fastest": [
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "resistor_oos",
+  "geo": "berlin",
+  "best": [
+   "LCSC"
+  ],
+  "cheapest": [
+   "LCSC"
+  ],
+  "fastest": [
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "stale_vs_fresh",
+  "geo": "dhaka",
+  "best": [
+   "TechShop BD",
+   "RoboticsBD",
+   "Ctg Electronics"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "Ctg Electronics",
+   "TechShop BD"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "Ctg Electronics"
+  ]
+ },
+ {
+  "scenario": "stale_vs_fresh",
+  "geo": "chattogram",
+  "best": [
+   "Ctg Electronics",
+   "TechShop BD",
+   "RoboticsBD"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "Ctg Electronics",
+   "TechShop BD"
+  ],
+  "fastest": [
+   "Ctg Electronics",
+   "RoboticsBD",
+   "TechShop BD"
+  ]
+ },
+ {
+  "scenario": "stale_vs_fresh",
+  "geo": "sylhet",
+  "best": [
+   "TechShop BD",
+   "Ctg Electronics",
+   "RoboticsBD"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "Ctg Electronics",
+   "TechShop BD"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "Ctg Electronics",
+   "TechShop BD"
+  ]
+ },
+ {
+  "scenario": "stale_vs_fresh",
+  "geo": "delhi",
+  "best": [],
+  "cheapest": [],
+  "fastest": []
+ },
+ {
+  "scenario": "stale_vs_fresh",
+  "geo": "berlin",
+  "best": [],
+  "cheapest": [],
+  "fastest": []
+ },
+ {
+  "scenario": "proximity_tie",
+  "geo": "dhaka",
+  "best": [
+   "RoboticsBD",
+   "TechShop BD",
+   "Ctg Electronics"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "Ctg Electronics"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "Ctg Electronics"
+  ]
+ },
+ {
+  "scenario": "proximity_tie",
+  "geo": "chattogram",
+  "best": [
+   "Ctg Electronics",
+   "TechShop BD",
+   "RoboticsBD"
+  ],
+  "cheapest": [
+   "Ctg Electronics",
+   "RoboticsBD",
+   "TechShop BD"
+  ],
+  "fastest": [
+   "Ctg Electronics",
+   "RoboticsBD",
+   "TechShop BD"
+  ]
+ },
+ {
+  "scenario": "proximity_tie",
+  "geo": "sylhet",
+  "best": [
+   "RoboticsBD",
+   "TechShop BD",
+   "Ctg Electronics"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "Ctg Electronics",
+   "TechShop BD"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "Ctg Electronics",
+   "TechShop BD"
+  ]
+ },
+ {
+  "scenario": "proximity_tie",
+  "geo": "delhi",
+  "best": [],
+  "cheapest": [],
+  "fastest": []
+ },
+ {
+  "scenario": "proximity_tie",
+  "geo": "berlin",
+  "best": [],
+  "cheapest": [],
+  "fastest": []
+ },
+ {
+  "scenario": "india_shop",
+  "geo": "dhaka",
+  "best": [
+   "RoboticsBD",
+   "Kolkata Parts",
+   "LCSC"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "Kolkata Parts",
+   "LCSC"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "Kolkata Parts",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "india_shop",
+  "geo": "chattogram",
+  "best": [
+   "RoboticsBD",
+   "Kolkata Parts",
+   "LCSC"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "Kolkata Parts",
+   "LCSC"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "Kolkata Parts",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "india_shop",
+  "geo": "sylhet",
+  "best": [
+   "RoboticsBD",
+   "Kolkata Parts",
+   "LCSC"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "Kolkata Parts",
+   "LCSC"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "Kolkata Parts",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "india_shop",
+  "geo": "delhi",
+  "best": [
+   "Kolkata Parts",
+   "LCSC"
+  ],
+  "cheapest": [
+   "Kolkata Parts",
+   "LCSC"
+  ],
+  "fastest": [
+   "Kolkata Parts",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "india_shop",
+  "geo": "berlin",
+  "best": [
+   "LCSC"
+  ],
+  "cheapest": [
+   "LCSC"
+  ],
+  "fastest": [
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "global_only",
+  "geo": "dhaka",
+  "best": [
+   "LCSC",
+   "DigiKey",
+   "Mouser"
+  ],
+  "cheapest": [
+   "LCSC",
+   "Mouser",
+   "DigiKey"
+  ],
+  "fastest": [
+   "DigiKey",
+   "Mouser",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "global_only",
+  "geo": "chattogram",
+  "best": [
+   "LCSC",
+   "DigiKey",
+   "Mouser"
+  ],
+  "cheapest": [
+   "LCSC",
+   "Mouser",
+   "DigiKey"
+  ],
+  "fastest": [
+   "DigiKey",
+   "Mouser",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "global_only",
+  "geo": "sylhet",
+  "best": [
+   "LCSC",
+   "DigiKey",
+   "Mouser"
+  ],
+  "cheapest": [
+   "LCSC",
+   "Mouser",
+   "DigiKey"
+  ],
+  "fastest": [
+   "DigiKey",
+   "Mouser",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "global_only",
+  "geo": "delhi",
+  "best": [
+   "LCSC",
+   "DigiKey",
+   "Mouser"
+  ],
+  "cheapest": [
+   "LCSC",
+   "DigiKey",
+   "Mouser"
+  ],
+  "fastest": [
+   "DigiKey",
+   "Mouser",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "global_only",
+  "geo": "berlin",
+  "best": [
+   "Mouser",
+   "DigiKey",
+   "LCSC"
+  ],
+  "cheapest": [
+   "DigiKey",
+   "Mouser",
+   "LCSC"
+  ],
+  "fastest": [
+   "Mouser",
+   "DigiKey",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "moq_trap",
+  "geo": "dhaka",
+  "best": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "moq_trap",
+  "geo": "chattogram",
+  "best": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "moq_trap",
+  "geo": "sylhet",
+  "best": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "TechShop BD",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "moq_trap",
+  "geo": "delhi",
+  "best": [
+   "LCSC"
+  ],
+  "cheapest": [
+   "LCSC"
+  ],
+  "fastest": [
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "moq_trap",
+  "geo": "berlin",
+  "best": [
+   "LCSC"
+  ],
+  "cheapest": [
+   "LCSC"
+  ],
+  "fastest": [
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "devboard_duty",
+  "geo": "dhaka",
+  "best": [
+   "RoboticsBD",
+   "LCSC",
+   "DigiKey"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "LCSC",
+   "Mouser"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "DigiKey",
+   "Mouser"
+  ]
+ },
+ {
+  "scenario": "devboard_duty",
+  "geo": "chattogram",
+  "best": [
+   "RoboticsBD",
+   "LCSC",
+   "DigiKey"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "LCSC",
+   "Mouser"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "DigiKey",
+   "Mouser"
+  ]
+ },
+ {
+  "scenario": "devboard_duty",
+  "geo": "sylhet",
+  "best": [
+   "RoboticsBD",
+   "LCSC",
+   "DigiKey"
+  ],
+  "cheapest": [
+   "RoboticsBD",
+   "LCSC",
+   "Mouser"
+  ],
+  "fastest": [
+   "RoboticsBD",
+   "DigiKey",
+   "Mouser"
+  ]
+ },
+ {
+  "scenario": "devboard_duty",
+  "geo": "delhi",
+  "best": [
+   "DigiKey",
+   "Mouser",
+   "LCSC"
+  ],
+  "cheapest": [
+   "LCSC",
+   "DigiKey",
+   "Mouser"
+  ],
+  "fastest": [
+   "DigiKey",
+   "Mouser",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "devboard_duty",
+  "geo": "berlin",
+  "best": [
+   "Mouser",
+   "DigiKey",
+   "LCSC"
+  ],
+  "cheapest": [
+   "DigiKey",
+   "Mouser",
+   "LCSC"
+  ],
+  "fastest": [
+   "Mouser",
+   "DigiKey",
+   "LCSC"
+  ]
+ },
+ {
+  "scenario": "unknown_stock",
+  "geo": "dhaka",
+  "best": [
+   "TechShop BD",
+   "RoboticsBD",
+   "Ctg Electronics"
+  ],
+  "cheapest": [
+   "Ctg Electronics",
+   "TechShop BD",
+   "RoboticsBD"
+  ],
+  "fastest": [
+   "TechShop BD",
+   "RoboticsBD",
+   "Ctg Electronics"
+  ]
+ },
+ {
+  "scenario": "unknown_stock",
+  "geo": "chattogram",
+  "best": [
+   "Ctg Electronics",
+   "TechShop BD",
+   "RoboticsBD"
+  ],
+  "cheapest": [
+   "Ctg Electronics",
+   "TechShop BD",
+   "RoboticsBD"
+  ],
+  "fastest": [
+   "Ctg Electronics",
+   "TechShop BD",
+   "RoboticsBD"
+  ]
+ },
+ {
+  "scenario": "unknown_stock",
+  "geo": "sylhet",
+  "best": [
+   "TechShop BD",
+   "RoboticsBD",
+   "Ctg Electronics"
+  ],
+  "cheapest": [
+   "Ctg Electronics",
+   "TechShop BD",
+   "RoboticsBD"
+  ],
+  "fastest": [
+   "Ctg Electronics",
+   "TechShop BD",
+   "RoboticsBD"
+  ]
+ },
+ {
+  "scenario": "unknown_stock",
+  "geo": "delhi",
+  "best": [],
+  "cheapest": [],
+  "fastest": []
+ },
+ {
+  "scenario": "unknown_stock",
+  "geo": "berlin",
+  "best": [],
+  "cheapest": [],
+  "fastest": []
+ }
+]
