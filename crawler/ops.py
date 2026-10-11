@@ -11,6 +11,7 @@ import uuid
 from dataclasses import dataclass
 from datetime import timedelta
 from decimal import Decimal
+from typing import Any
 
 from sqlalchemy import select, update
 from sqlalchemy.dialects.postgresql import insert
@@ -257,3 +258,56 @@ async def purge_expired_raw(s: AsyncSession, raw_delete: object) -> int:
         await raw_delete(ref)  # type: ignore[operator]
         await s.execute(update(CrawlPage).where(CrawlPage.id == pid).values(raw_ref=None))
     return len(rows)
+
+
+async def ingest_api_listings(
+    s: AsyncSession, source_name: str, listings: list[ExtractedListing], fx: FxTable
+) -> list[uuid.UUID]:
+    """Official-API results take the same path as crawled pages: listing upsert + price snapshot."""
+    from crawler.extractors.pii import scrub
+
+    sid = await source_db_id(s, source_name)
+    ids = []
+    for ex in listings:
+        ex = ex.model_copy(update={"snippet": scrub(ex.snippet)})
+        lid = await upsert_listing(s, sid, ex)
+        if ex.price is not None and ex.currency:
+            await record(
+                s,
+                Observation(lid, ex.currency, ex.price, utcnow(), tuple((b.qty, b.price) for b in ex.price_breaks), ex.moq or 1),
+                fx,
+            )
+        ids.append(lid)
+    return ids
+
+
+async def ingest_use_cases(s: AsyncSession, component_id: uuid.UUID, drafts: list[Any]) -> int:
+    """Store use-case drafts (summary + link; code only with a permissive license)."""
+    from common.models import UseCase
+    from resolver.categorize import slugify
+
+    n = 0
+    for d in drafts:
+        values = {
+            "component_id": component_id,
+            "slug": slugify(d.title)[:60] + "-" + url_hash(d.source_url)[:6],
+            "title": d.title,
+            "summary": d.summary or d.title,
+            "difficulty": d.difficulty,
+            "thumbnail_url": d.thumbnail_url,
+            "code_language": d.code_language if d.code_snippet else None,
+            "code_snippet": d.code_snippet if d.code_license else None,
+            "code_license": d.code_license if d.code_snippet else None,
+            "source_type": d.source_type,
+            "source_url": d.source_url,
+            "source_author": d.source_author,
+            "source_license": d.source_license,
+            "upvotes": d.upvotes,
+        }
+        stmt = insert(UseCase).values(**values)
+        await s.execute(stmt.on_conflict_do_update(
+            index_elements=["component_id", "source_url"],
+            set_={k: stmt.excluded[k] for k in ("title", "summary", "thumbnail_url", "upvotes")},
+        ))
+        n += 1
+    return n

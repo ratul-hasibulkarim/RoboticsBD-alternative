@@ -46,6 +46,7 @@ app.conf.update(
         "retention": {"task": "crawler.tasks.retention", "schedule": crontab(minute=29, hour=3)},
         "purge-raw": {"task": "crawler.tasks.purge_raw", "schedule": crontab(minute=41, hour=3)},
         "resolve-deferred": {"task": "crawler.tasks.resolve_deferred", "schedule": 3600.0},
+        "discover-zero-results": {"task": "crawler.tasks.discover", "schedule": 900.0},
     },
 )
 
@@ -294,5 +295,89 @@ def purge_raw() -> int:
             n = await purge_expired_raw(s, rt.raw.delete)
             await s.commit()
             return n
+
+    return run(go())
+
+
+@app.task(name="crawler.tasks.discover")
+def discover(batch: int = 20) -> int:
+    """Zero-result queries → keyword search at approved distributor APIs → ingest + resolve."""
+
+    async def go() -> list[str]:
+        import json
+
+        from crawler.distributors.digikey import DigiKeyClient
+        from crawler.distributors.mouser import MouserClient
+        from crawler.ops import ingest_api_listings
+        from crawler.registry import approved_sources
+        from crawler.runtime import runtime
+        from price.fx import load_table
+
+        listing_ids: list[str] = []
+        approved = {s.name: s for s in approved_sources()}
+        async with runtime() as rt:
+            st = rt.settings
+            clients = []
+            if "mouser" in approved and st.mouser_api_key.get_secret_value():
+                clients.append(("mouser", MouserClient(approved["mouser"], st.mouser_api_key.get_secret_value())))
+            if "digikey" in approved and st.digikey_client_id.get_secret_value():
+                clients.append(("digikey", DigiKeyClient(approved["digikey"], st.digikey_client_id.get_secret_value(),
+                                                         st.digikey_client_secret.get_secret_value())))
+            if not clients:
+                return []
+            for _ in range(batch):
+                raw = await rt.redis.lpop("discovery:queue")
+                if raw is None:
+                    break
+                q = json.loads(raw)["q"]
+                for name, client in clients:
+                    results = await client.by_keyword(q)  # type: ignore[attr-defined]
+                    async with rt.sm() as s:
+                        ids = await ingest_api_listings(s, name, results[:10], await load_table(s))
+                        await s.commit()
+                    listing_ids += [str(i) for i in ids]
+        return listing_ids
+
+    ids = run(go())
+    for lid in ids:
+        resolve.delay(lid, False)
+    return len(ids)
+
+
+@app.task(name="crawler.tasks.collect_use_cases")
+def collect_use_cases(component_id: str) -> int:
+    """YouTube / GitHub / Reddit tutorials for one component (each source only if approved + keyed)."""
+
+    async def go() -> int:
+        from common.models import Component
+        from crawler.api_gate import MissingCredentialsError
+        from crawler.github_client import GitHubClient
+        from crawler.ops import ingest_use_cases
+        from crawler.reddit_client import RedditClient
+        from crawler.registry import NotApprovedError, load_registry
+        from crawler.runtime import runtime
+        from crawler.youtube_client import YouTubeClient
+
+        reg = load_registry()
+        async with runtime() as rt, rt.sm() as s:
+            comp = await s.get(Component, uuid.UUID(component_id))
+            if comp is None:
+                return 0
+            st = rt.settings
+            factories = [
+                lambda: YouTubeClient(reg.get("youtube"), st.youtube_api_key.get_secret_value()).tutorials(comp.mpn),
+                lambda: GitHubClient(reg.get("github"), st.github_token.get_secret_value()).projects(comp.mpn),
+                lambda: RedditClient(reg.get("reddit"), st.reddit_client_id.get_secret_value(),
+                                     st.reddit_client_secret.get_secret_value()).discussions(comp.mpn),
+            ]
+            total = 0
+            for make in factories:
+                try:
+                    drafts = await make()
+                except (NotApprovedError, MissingCredentialsError):
+                    continue  # gate closed: skip silently, by design
+                total += await ingest_use_cases(s, comp.id, drafts)
+            await s.commit()
+            return total
 
     return run(go())
