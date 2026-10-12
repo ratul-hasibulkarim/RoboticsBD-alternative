@@ -42,12 +42,19 @@ class MemoryIndex:
     async def create(self, c: NewComponent) -> uuid.UUID:
         mfr = normalize_manufacturer(c.manufacturer) or None
         for existing in self.components.values():  # unique (mpn_norm, manufacturer_norm)
-            if mpn_key(existing.mpn) == mpn_key(c.mpn) and manufacturer_key(existing.manufacturer) == manufacturer_key(mfr):
+            if mpn_key(existing.mpn) == mpn_key(c.mpn) and manufacturer_key(existing.manufacturer) == manufacturer_key(
+                mfr
+            ):
                 return existing.id
         cid = uuid.uuid4()
         self.components[cid] = Candidate(
-            id=cid, mpn=c.mpn, manufacturer=mfr, gtin=c.gtin, package=c.package,
-            specs_norm=c.specs_norm, embedding=c.embedding,
+            id=cid,
+            mpn=c.mpn,
+            manufacturer=mfr,
+            gtin=c.gtin,
+            package=c.package,
+            specs_norm=c.specs_norm,
+            embedding=c.embedding,
         )
         return cid
 

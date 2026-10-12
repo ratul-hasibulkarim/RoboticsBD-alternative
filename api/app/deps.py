@@ -10,9 +10,9 @@ from fastapi import Depends, Request
 from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from api.app.security import require_admin
 from common.settings import Settings, get_settings
 from price.fx import FxTable, load_table
-from api.app.security import require_admin
 from price.geo import UserGeo, geo_from_headers, resolve_geo
 
 

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import asyncio
+import itertools
+
 from crawler.fetcher.ratelimit import HostRateLimiter, effective_interval_s
 
 
@@ -26,7 +28,7 @@ async def test_never_exceeds_rate_under_concurrent_load(redis) -> None:  # type:
     # 10 concurrent "workers" hammering the same host: 30 grants total.
     await asyncio.gather(*(worker() for _ in range(10)))
     grants.sort()
-    gaps = [b - a for a, b in zip(grants, grants[1:], strict=False)]
+    gaps = [b - a for a, b in itertools.pairwise(grants)]
     assert len(grants) == 30
     # Grant times come from the Redis server clock, so the bound is exact.
     assert min(gaps) >= interval, min(gaps)

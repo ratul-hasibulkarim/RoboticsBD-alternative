@@ -72,9 +72,7 @@ class HostRateLimiter:
         self._penalize = redis.register_script(_PENALIZE_LUA)
 
     async def _try(self, host: str, interval_s: float) -> tuple[float, float]:
-        wait_us, now_us = await self._gcra(
-            keys=[self.prefix + host], args=[int(interval_s * 1_000_000), 1]
-        )
+        wait_us, now_us = await self._gcra(keys=[self.prefix + host], args=[int(interval_s * 1_000_000), 1])
         return int(wait_us) / 1_000_000, int(now_us) / 1_000_000
 
     async def try_acquire(self, host: str, interval_s: float) -> float:

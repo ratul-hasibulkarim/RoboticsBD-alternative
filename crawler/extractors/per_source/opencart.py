@@ -14,7 +14,9 @@ VERSION = "1"
 def _meta_list(tree: HTMLParser) -> dict[str, str]:
     """`<ul class="list-unstyled"><li>Product Code: X</li><li>Availability: In Stock</li>`."""
     out: dict[str, str] = {}
-    for li in tree.css("#product-product ul.list-unstyled li, #content .col-sm-4 ul.list-unstyled li, #content ul.list-unstyled li"):
+    for li in tree.css(
+        "#product-product ul.list-unstyled li, #content .col-sm-4 ul.list-unstyled li, #content ul.list-unstyled li"
+    ):
         t = text_of(li) or ""
         if ":" in t:
             k, _, v = t.partition(":")
@@ -27,10 +29,9 @@ def extract(tree: HTMLParser, url: str, default_currency: str | None) -> Extract
         return None
     meta = _meta_list(tree)
     title = first_text(tree, "#content h1", "h1")
-    price_text = (
-        first_text(tree, "#content .price-new", "#content ul.list-unstyled h2", ".product-price", "#content .price")
-        or meta.get("price")
-    )
+    price_text = first_text(
+        tree, "#content .price-new", "#content ul.list-unstyled h2", ".product-price", "#content .price"
+    ) or meta.get("price")
     price = parse_number(price_text) if price_text else None
     currency = detect_currency(price_text or "", default_currency) if price is not None else None
 

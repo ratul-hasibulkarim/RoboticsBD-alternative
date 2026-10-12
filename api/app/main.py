@@ -72,8 +72,12 @@ def create_app(settings: Settings | None = None, *, typesense: Any = None, redis
                 return JSONResponse(
                     {"detail": "rate limit exceeded"},
                     status_code=429,
-                    headers={"Retry-After": str(rl.reset_s), "X-RateLimit-Limit": str(settings.api_rate_limit_per_minute),
-                             "X-RateLimit-Remaining": "0", "X-Request-ID": request_id},
+                    headers={
+                        "Retry-After": str(rl.reset_s),
+                        "X-RateLimit-Limit": str(settings.api_rate_limit_per_minute),
+                        "X-RateLimit-Remaining": "0",
+                        "X-Request-ID": request_id,
+                    },
                 )
         response = await call_next(request)
         response.headers["X-Request-ID"] = request_id

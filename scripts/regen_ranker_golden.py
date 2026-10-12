@@ -25,9 +25,11 @@ def main() -> None:
                 ranked = rank_offers(offers, RankRequest(geo=geo, quantity=qty, mode=mode), FX, NOW, QUOTES)
                 row[mode.value] = [r.offer.source_name for r in ranked[:3]]
                 if mode is SortMode.BEST:
-                    print(f"{scen:15} {geo_name:11} best={row['best']}  "
-                          f"landed$={[round(r.unit_landed_usd_micros / 1e6, 3) for r in ranked[:3]]} "
-                          f"eta={[r.eta_days for r in ranked[:3]]}")
+                    print(
+                        f"{scen:15} {geo_name:11} best={row['best']}  "
+                        f"landed$={[round(r.unit_landed_usd_micros / 1e6, 3) for r in ranked[:3]]} "
+                        f"eta={[r.eta_days for r in ranked[:3]]}"
+                    )
             cases.append(row)
     OUT.write_text(json.dumps(cases, indent=1) + "\n")
     print(f"{len(cases)} cases → {OUT.relative_to(ROOT)}")

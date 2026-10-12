@@ -1,8 +1,8 @@
 """Pipeline operations (async, testable). crawler/tasks.py wraps each one in a Celery task.
 
-  seed_source      → product URLs (sitemap / category walkers)
-  fetch_and_extract→ Fetcher + extraction pipeline → listing upsert + price snapshot
-  resolve_listing  → Resolver (attach / create / review / defer) + primary image
+seed_source      → product URLs (sitemap / category walkers)
+fetch_and_extract→ Fetcher + extraction pipeline → listing upsert + price snapshot
+resolve_listing  → Resolver (attach / create / review / defer) + primary image
 """
 
 from __future__ import annotations
@@ -87,11 +87,12 @@ async def upsert_listing(s: AsyncSession, source_id: uuid.UUID, ex: ExtractedLis
         "last_attempt": now,
         "active": True,
     }
-    stmt = insert(Listing).values(**values)
-    stmt = stmt.on_conflict_do_update(
-        index_elements=["url_hash"], set_={k: stmt.excluded[k] for k in values if k not in ("url_hash", "source_id")}
+    ins = insert(Listing).values(**values)
+    stmt = ins.on_conflict_do_update(
+        index_elements=["url_hash"], set_={k: ins.excluded[k] for k in values if k not in ("url_hash", "source_id")}
     ).returning(Listing.id)
-    return (await s.execute(stmt)).scalar_one()
+    listing_id: uuid.UUID = (await s.execute(stmt)).scalar_one()
+    return listing_id
 
 
 async def _log_llm(s: AsyncSession, url: str, model: str, res: ExtractionResult) -> None:
@@ -142,7 +143,9 @@ async def fetch_and_extract(
     if res.status in (FetchStatus.NOT_MODIFIED, FetchStatus.UNCHANGED):
         async with sm() as s:
             await s.execute(
-                update(Listing).where(Listing.url_hash == url_hash(url)).values(last_seen=utcnow(), last_attempt=utcnow())
+                update(Listing)
+                .where(Listing.url_hash == url_hash(url))
+                .values(last_seen=utcnow(), last_attempt=utcnow())
             )
             await s.commit()
         return FetchExtractResult(res.status, None, None)
@@ -252,7 +255,9 @@ async def purge_expired_raw(s: AsyncSession, raw_delete: object) -> int:
     """Delete raw HTML older than its TTL (LEGAL rule 7). raw_delete: async callable(ref)."""
     now = utcnow()
     rows = (
-        await s.execute(select(CrawlPage.id, CrawlPage.raw_ref).where(CrawlPage.raw_ref.is_not(None), CrawlPage.expires_at < now))
+        await s.execute(
+            select(CrawlPage.id, CrawlPage.raw_ref).where(CrawlPage.raw_ref.is_not(None), CrawlPage.expires_at < now)
+        )
     ).all()
     for pid, ref in rows:
         await raw_delete(ref)  # type: ignore[operator]
@@ -274,7 +279,9 @@ async def ingest_api_listings(
         if ex.price is not None and ex.currency:
             await record(
                 s,
-                Observation(lid, ex.currency, ex.price, utcnow(), tuple((b.qty, b.price) for b in ex.price_breaks), ex.moq or 1),
+                Observation(
+                    lid, ex.currency, ex.price, utcnow(), tuple((b.qty, b.price) for b in ex.price_breaks), ex.moq or 1
+                ),
                 fx,
             )
         ids.append(lid)
@@ -305,9 +312,11 @@ async def ingest_use_cases(s: AsyncSession, component_id: uuid.UUID, drafts: lis
             "upvotes": d.upvotes,
         }
         stmt = insert(UseCase).values(**values)
-        await s.execute(stmt.on_conflict_do_update(
-            index_elements=["component_id", "source_url"],
-            set_={k: stmt.excluded[k] for k in ("title", "summary", "thumbnail_url", "upvotes")},
-        ))
+        await s.execute(
+            stmt.on_conflict_do_update(
+                index_elements=["component_id", "source_url"],
+                set_={k: stmt.excluded[k] for k in ("title", "summary", "thumbnail_url", "upvotes")},
+            )
+        )
         n += 1
     return n

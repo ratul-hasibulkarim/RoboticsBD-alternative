@@ -70,7 +70,9 @@ async def datasheets_for(s: AsyncSession, cid: uuid.UUID) -> list[Datasheet]:
     return list(
         (
             await s.execute(
-                select(Datasheet).where(Datasheet.component_id == cid).order_by(Datasheet.is_primary.desc(), Datasheet.checked_at.desc())
+                select(Datasheet)
+                .where(Datasheet.component_id == cid)
+                .order_by(Datasheet.is_primary.desc(), Datasheet.checked_at.desc())
             )
         ).scalars()
     )
@@ -166,7 +168,9 @@ async def related(s: AsyncSession, comp: Component, limit: int = 6) -> list[dict
         else Component.category == comp.category,
         Component.manufacturer_norm == comp.manufacturer_norm if comp.manufacturer_norm else Component.id == comp.id,
     )
-    rows = (await s.execute(q.where(*conds, peer).order_by(Component.popularity.desc(), Component.slug).limit(limit))).all()
+    rows = (
+        await s.execute(q.where(*conds, peer).order_by(Component.popularity.desc(), Component.slug).limit(limit))
+    ).all()
     return [card_dict(r) for r in rows]
 
 
@@ -186,7 +190,9 @@ async def history(s: AsyncSession, cid: uuid.UUID, days: int = 90) -> list[tuple
 
 async def listing_with_source(s: AsyncSession, listing_id: uuid.UUID) -> tuple[Listing, Source] | None:
     row = (
-        await s.execute(select(Listing, Source).join(Source, Source.id == Listing.source_id).where(Listing.id == listing_id))
+        await s.execute(
+            select(Listing, Source).join(Source, Source.id == Listing.source_id).where(Listing.id == listing_id)
+        )
     ).first()
     return (row[0], row[1]) if row else None
 
@@ -194,7 +200,11 @@ async def listing_with_source(s: AsyncSession, listing_id: uuid.UUID) -> tuple[L
 async def listing_titles(s: AsyncSession, ids: list[uuid.UUID]) -> dict[uuid.UUID, tuple[str, str, int | None]]:
     if not ids:
         return {}
-    rows = (await s.execute(select(Listing.id, Listing.raw_title, Listing.condition, Listing.stock_qty).where(Listing.id.in_(ids)))).all()
+    rows = (
+        await s.execute(
+            select(Listing.id, Listing.raw_title, Listing.condition, Listing.stock_qty).where(Listing.id.in_(ids))
+        )
+    ).all()
     return {r[0]: (r[1], r[2], r[3]) for r in rows}
 
 
@@ -208,18 +218,33 @@ async def record_view(s: AsyncSession, cid: uuid.UUID) -> None:
     from sqlalchemy.dialects.postgresql import insert
 
     stmt = insert(ComponentViewsDaily).values(day=utcnow().date(), component_id=cid, views=1)
-    await s.execute(stmt.on_conflict_do_update(index_elements=["component_id", "day"], set_={"views": ComponentViewsDaily.views + 1}))
+    await s.execute(
+        stmt.on_conflict_do_update(
+            index_elements=["component_id", "day"], set_={"views": ComponentViewsDaily.views + 1}
+        )
+    )
 
 
 async def record_click(s: AsyncSession, listing_id: uuid.UUID, country: str | None, session_hash: str | None) -> None:
-    s.add(Query(time=utcnow(), query_norm="__click__", clicked_listing=listing_id, user_country=country, session_hash=session_hash))
+    s.add(
+        Query(
+            time=utcnow(),
+            query_norm="__click__",
+            clicked_listing=listing_id,
+            user_country=country,
+            session_hash=session_hash,
+        )
+    )
     await s.flush()
 
 
 async def categories(s: AsyncSession) -> list[tuple[str, int]]:
     rows = (
         await s.execute(
-            select(Component.category, func.count()).where(Component.status == "active").group_by(Component.category).order_by(func.count().desc())
+            select(Component.category, func.count())
+            .where(Component.status == "active")
+            .group_by(Component.category)
+            .order_by(func.count().desc())
         )
     ).all()
     return [(c, int(n)) for c, n in rows]
@@ -235,7 +260,7 @@ async def manufacturers(s: AsyncSession, limit: int = 500) -> list[tuple[str, in
             .limit(limit)
         )
     ).all()
-    return [(m, int(n)) for m, n in rows]
+    return [(str(m), int(n)) for m, n in rows if m is not None]
 
 
 async def manufacturer_by_slug(s: AsyncSession, slug: str) -> str | None:
@@ -246,7 +271,12 @@ async def manufacturer_by_slug(s: AsyncSession, slug: str) -> str | None:
 
 
 async def components_page(
-    s: AsyncSession, *, category: str | None = None, manufacturer: str | None = None, page: int = 1, per_page: int = 24,
+    s: AsyncSession,
+    *,
+    category: str | None = None,
+    manufacturer: str | None = None,
+    page: int = 1,
+    per_page: int = 24,
     ships_to_bd: bool = False,
 ) -> tuple[list[dict[str, Any]], int]:
     q, _ = _card_query()
@@ -257,12 +287,16 @@ async def components_page(
     if ships_to_bd:
         bd_ids = (
             select(Listing.component_id)
-            .where(Listing.active.is_(True), or_(Listing.ships_to.any("BD"), Listing.ships_to.any("*")))
+            .where(Listing.active.is_(True), or_(Listing.ships_to.contains(["BD"]), Listing.ships_to.contains(["*"])))
             .scalar_subquery()
         )
         q = q.where(Component.id.in_(bd_ids))
     total = (await s.execute(select(func.count()).select_from(q.subquery()))).scalar_one()
-    rows = (await s.execute(q.order_by(Component.popularity.desc(), Component.slug).limit(per_page).offset((page - 1) * per_page))).all()
+    rows = (
+        await s.execute(
+            q.order_by(Component.popularity.desc(), Component.slug).limit(per_page).offset((page - 1) * per_page)
+        )
+    ).all()
     return [card_dict(r) for r in rows], int(total)
 
 
@@ -300,7 +334,9 @@ async def sitemap_entries(s: AsyncSession, page: int, per_page: int = 45_000) ->
 
 
 async def sitemap_count(s: AsyncSession) -> int:
-    return int((await s.execute(select(func.count()).select_from(Component).where(Component.status == "active"))).scalar_one())
+    return int(
+        (await s.execute(select(func.count()).select_from(Component).where(Component.status == "active"))).scalar_one()
+    )
 
 
 async def top_queries_for(s: AsyncSession, comp: Component, limit: int = 5) -> list[str]:
@@ -309,7 +345,9 @@ async def top_queries_for(s: AsyncSession, comp: Component, limit: int = 5) -> l
     rows = (
         await s.execute(
             select(Query.query_norm, func.count())
-            .where(Query.query_norm.like(f"%{key}%"), Query.query_norm != key, Query.time >= utcnow() - timedelta(days=90))
+            .where(
+                Query.query_norm.like(f"%{key}%"), Query.query_norm != key, Query.time >= utcnow() - timedelta(days=90)
+            )
             .group_by(Query.query_norm)
             .order_by(func.count().desc())
             .limit(limit)
@@ -328,3 +366,7 @@ async def merged_target_slug(s: AsyncSession, comp: Component) -> str | None:
             return None
         cur = nxt
     return cur.slug if cur.status == "active" else None
+
+
+async def retired_slugs(s: AsyncSession) -> list[str]:
+    return list((await s.execute(select(Component.slug).where(Component.status == "retired"))).scalars())

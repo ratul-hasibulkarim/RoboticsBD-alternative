@@ -1,0 +1,12 @@
+[
+ {
+  "manufacturer": "Espressif",
+  "slug": "espressif",
+  "count": 2
+ },
+ {
+  "manufacturer": "Texas Instruments",
+  "slug": "texas-instruments",
+  "count": 1
+ }
+]

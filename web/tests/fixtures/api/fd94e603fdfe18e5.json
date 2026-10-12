@@ -1,0 +1,158 @@
+{
+ "id": "b8737075-4b7b-49f6-91f8-f15b2ef0ba8c",
+ "slug": "esp32-wroom-32d",
+ "mpn": "ESP32-WROOM-32D",
+ "title": "ESP32-WROOM-32D Wi-Fi + Bluetooth module",
+ "manufacturer": "Espressif",
+ "category": "wireless",
+ "subcategory": "wifi-ble",
+ "package": "SMD-38",
+ "lifecycle": "unknown",
+ "short_desc": "ESP32-WROOM-32D Wi-Fi + Bluetooth module",
+ "prose_md": null,
+ "prose_reviewed": false,
+ "specs": {
+  "Flash": "4MB",
+  "CPU Frequency": "240MHz",
+  "Operating Voltage": "3.0V ~ 3.6V"
+ },
+ "images": [],
+ "datasheets": [],
+ "use_cases": [],
+ "alternatives": [
+  {
+   "slug": "esp32-wroom-32",
+   "mpn": "ESP32-WROOM-32",
+   "title": "ESP32-WROOM-32 Wi-Fi + Bluetooth module",
+   "manufacturer": "Espressif",
+   "category": "wireless",
+   "subcategory": "wifi-ble",
+   "package": "SMD-38",
+   "image_url": null,
+   "lowest_price_usd_minor": 426,
+   "offer_count": 3
+  }
+ ],
+ "related": [
+  {
+   "slug": "esp32-wroom-32",
+   "mpn": "ESP32-WROOM-32",
+   "title": "ESP32-WROOM-32 Wi-Fi + Bluetooth module",
+   "manufacturer": "Espressif",
+   "category": "wireless",
+   "subcategory": "wifi-ble",
+   "package": "SMD-38",
+   "image_url": null,
+   "lowest_price_usd_minor": 426,
+   "offer_count": 3
+  }
+ ],
+ "history": [
+  {
+   "day": "2026-10-12",
+   "min_usd_minor": 443
+  }
+ ],
+ "offer_summary": {
+  "component_slug": "esp32-wroom-32d",
+  "mode": "best",
+  "quantity": 1,
+  "currency": "BDT",
+  "country": "BD",
+  "city": "Dhaka",
+  "local_only": false,
+  "offers": [
+   {
+    "listing_id": "0c4a4b7a-a893-4b84-80e5-66b753a3cc52",
+    "source": {
+     "name": "demo-robotics-bd",
+     "display_name": "Demo Robotics BD",
+     "domain": "demo-robotics.test",
+     "trust_score": 0.8
+    },
+    "url": "https://shop.test/esp32-wroom-32d/0c4a4b",
+    "go_url": "/go/0c4a4b7a-a893-4b84-80e5-66b753a3cc52",
+    "sponsored": false,
+    "title": "ESP32-WROOM-32D ESP32-WROOM-32D Wi-Fi + Bluetooth module",
+    "condition": "new",
+    "in_stock": true,
+    "stock_qty": null,
+    "moq": 1,
+    "quantity": 1,
+    "unit_price": {
+     "amount": "540.00",
+     "currency": "BDT",
+     "usd_minor": 443
+    },
+    "landed_total": {
+     "amount": "540.00",
+     "currency": "BDT",
+     "usd_minor": 443
+    },
+    "landed_per_unit": {
+     "amount": "540.00",
+     "currency": "BDT",
+     "usd_minor": 443
+    },
+    "shipping": {
+     "amount": "0.00",
+     "currency": "BDT",
+     "usd_minor": 0
+    },
+    "duty_estimate": {
+     "amount": "0.00",
+     "currency": "BDT",
+     "usd_minor": 0
+    },
+    "eta_days": 1.5,
+    "distance_km": 0.0,
+    "ships_from": "BD",
+    "observed_at": "2026-10-12T01:30:14.706174Z",
+    "freshness": "fresh",
+    "score": 0.979833
+   }
+  ],
+  "total": 1,
+  "fx_day": "2026-10-12"
+ },
+ "low_price": {
+  "amount": "540.00",
+  "currency": "BDT",
+  "usd_minor": 443
+ },
+ "high_price": {
+  "amount": "540.00",
+  "currency": "BDT",
+  "usd_minor": 443
+ },
+ "offer_count": 1,
+ "faq": [
+  {
+   "question": "What is the price of ESP32-WROOM-32D?",
+   "answer": "The lowest landed price we currently see for ESP32-WROOM-32D is BDT 540.00 per unit across 1 offer, including shipping and estimated import duty."
+  },
+  {
+   "question": "What package does ESP32-WROOM-32D come in?",
+   "answer": "ESP32-WROOM-32D is listed in a SMD-38 package."
+  }
+ ],
+ "breadcrumbs": [
+  {
+   "name": "Home",
+   "path": "/"
+  },
+  {
+   "name": "Wireless",
+   "path": "/category/wireless"
+  },
+  {
+   "name": "Espressif",
+   "path": "/manufacturer/espressif"
+  },
+  {
+   "name": "ESP32-WROOM-32D",
+   "path": "/component/esp32-wroom-32d"
+  }
+ ],
+ "updated_at": "2026-10-12T03:30:14.709875Z"
+}

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import time
 from dataclasses import asdict, dataclass, field
 from typing import Any, Protocol
@@ -16,10 +17,11 @@ from typing import Any, Protocol
 from redis.asyncio import Redis
 from sqlalchemy import and_, case, func, literal, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.sql.elements import ColumnElement
 
 from common.models import Component, Image, Listing, PriceCurrent, Query, Source
 from common.timeutil import utcnow
-from crawler.normalizer.mpn import mpn_key
+from crawler.normalizer.mpn import looks_like_mpn, mpn_key
 from resolver.embedder import Embedder
 from search.indexer import COLLECTION
 from search.query_understanding import ParsedQuery, QueryKind, parse_query
@@ -128,9 +130,8 @@ class TypesenseBackend:
         else:
             sort_by = "_text_match:desc,popularity:desc"
 
+        # Category queries ("10k resistor 0805") filter by category AND rank by their words.
         q = pq.mpn_key if pq.kind is QueryKind.MPN and pq.mpn_key else pq.norm
-        if pq.kind is QueryKind.CATEGORY:
-            q = "*"
         req: dict[str, Any] = {
             "collection": COLLECTION,
             "q": q,
@@ -161,10 +162,17 @@ class TypesenseBackend:
             d = h["document"]
             hits.append(
                 SearchHit(
-                    id=d["id"], slug=d["slug"], mpn=d["mpn"], title=d["title"], manufacturer=d.get("manufacturer"),
-                    category=d["category"], package=d.get("package"),
-                    lowest_price_usd_minor=d.get("lowest_price_usd_minor"), offer_count=d.get("offer_count", 0),
-                    in_stock=d.get("in_stock", False), ships_to_bd=d.get("ships_to_bd", False),
+                    id=d["id"],
+                    slug=d["slug"],
+                    mpn=d["mpn"],
+                    title=d["title"],
+                    manufacturer=d.get("manufacturer"),
+                    category=d["category"],
+                    package=d.get("package"),
+                    lowest_price_usd_minor=d.get("lowest_price_usd_minor"),
+                    offer_count=d.get("offer_count", 0),
+                    in_stock=d.get("in_stock", False),
+                    ships_to_bd=d.get("ships_to_bd", False),
                     image_url=d.get("image_url"),
                 )
             )
@@ -172,7 +180,9 @@ class TypesenseBackend:
             fc["field_name"]: [(str(c["value"]), int(c["count"])) for c in fc.get("counts", [])]
             for fc in res.get("facet_counts", [])
         }
-        return SearchResponse(pq.raw, pq.kind.value, hits, int(res.get("found", 0)), p.page, p.per_page, facets, self.name)
+        return SearchResponse(
+            pq.raw, pq.kind.value, hits, int(res.get("found", 0)), p.page, p.per_page, facets, self.name
+        )
 
 
 class PostgresBackend:
@@ -192,8 +202,10 @@ class PostgresBackend:
                 func.coalesce(func.bool_or(Listing.in_stock.is_(True)), False).label("in_stock"),
                 func.coalesce(
                     func.bool_or(
-                        or_(func.array_position(Listing.ships_to, "BD").is_not(None),
-                            func.array_position(Listing.ships_to, "*").is_not(None))
+                        or_(
+                            func.array_position(Listing.ships_to, "BD").is_not(None),
+                            func.array_position(Listing.ships_to, "*").is_not(None),
+                        )
                     ),
                     False,
                 ).label("ships_bd"),
@@ -205,17 +217,29 @@ class PostgresBackend:
             .subquery()
         )
         conds = [Component.status == "active"]
-        rank = literal(0.0)
+        rank: ColumnElement[Any] = literal(0.0)
+        words = [w for w in pq.norm.split() if len(w) >= 2][:6]
         if pq.kind is QueryKind.CATEGORY:
             conds.append(Component.category == pq.category)
         else:
             key = pq.mpn_key or mpn_key(pq.norm)
-            words = [w for w in pq.norm.split() if len(w) >= 2][:6]
-            text_conds = [Component.mpn_norm.like(f"{key}%")] if key else []
-            text_conds += [
-                and_(*[or_(Component.title.ilike(f"%{w}%"), Component.manufacturer.ilike(f"%{w}%"),
-                           Component.mpn.ilike(f"%{w}%")) for w in words])
-            ] if words else []
+            text_conds: list[ColumnElement[bool]] = [Component.mpn_norm.like(f"{key}%")] if key else []
+            text_conds += (
+                [
+                    and_(
+                        *[
+                            or_(
+                                Component.title.ilike(f"%{w}%"),
+                                Component.manufacturer.ilike(f"%{w}%"),
+                                Component.mpn.ilike(f"%{w}%"),
+                            )
+                            for w in words
+                        ]
+                    )
+                ]
+                if words
+                else []
+            )
             if embedding is not None and pq.kind is QueryKind.NATURAL:
                 text_conds.append(Component.embedding.cosine_distance(embedding) < 0.5)
             conds.append(or_(*text_conds) if text_conds else literal(False))
@@ -224,6 +248,24 @@ class PostgresBackend:
                 + case((Component.mpn_norm.like(f"{key}%"), 5.0), else_=0.0)
                 + case((Component.title.ilike(f"%{pq.norm}%"), 1.0), else_=0.0)
             )
+        # Each query word found in title/manufacturer/MPN/category counts (keyword relevance) …
+        for w in words:
+            rank = rank + case(
+                (
+                    or_(
+                        # whole-token match: "10k" must not score on "110K"; "4.7k" matches "4.7kΩ"
+                        Component.title.op("~*")(rf"(^|[^0-9A-Za-z]){re.escape(w)}(?![0-9A-Za-z])"),
+                        Component.manufacturer.op("~*")(rf"(^|[^0-9A-Za-z]){re.escape(w)}(?![0-9A-Za-z])"),
+                        Component.mpn.ilike(f"%{w}%") if looks_like_mpn(w) else literal(False),
+                        Component.subcategory.ilike(f"%{w}%"),
+                    ),
+                    2.0,
+                ),
+                else_=0.0,
+            )
+        # … plus semantic similarity as a tie-breaker (hybrid, like the Typesense path).
+        if embedding is not None and pq.kind is QueryKind.NATURAL:
+            rank = rank + (1.0 - func.coalesce(Component.embedding.cosine_distance(embedding), 1.0))
         if p.category:
             conds.append(Component.category == p.category)
         if p.manufacturer:
@@ -233,7 +275,9 @@ class PostgresBackend:
         if p.in_stock is not None:
             conds.append(func.coalesce(stats.c.in_stock, False) == p.in_stock)
         if p.ships_to_bd is not None or pq.wants_bd:
-            conds.append(func.coalesce(stats.c.ships_bd, False) == (p.ships_to_bd if p.ships_to_bd is not None else True))
+            conds.append(
+                func.coalesce(stats.c.ships_bd, False) == (p.ships_to_bd if p.ships_to_bd is not None else True)
+            )
         if pq.max_price_usd_minor:
             conds.append(stats.c.lowest <= pq.max_price_usd_minor)
 
@@ -244,6 +288,7 @@ class PostgresBackend:
             .where(*conds)
         )
         found = (await self.s.execute(select(func.count()).select_from(base.subquery()))).scalar_one()
+        order: list[Any]
         if p.sort == "price":
             order = [stats.c.lowest.asc().nulls_last(), Component.popularity.desc()]
         elif p.sort == "popularity":
@@ -254,9 +299,18 @@ class PostgresBackend:
         rows = (await self.s.execute(base.order_by(*order).limit(per_page).offset((p.page - 1) * per_page))).all()
         hits = [
             SearchHit(
-                id=str(c.id), slug=c.slug, mpn=c.mpn, title=c.title, manufacturer=c.manufacturer, category=c.category,
-                package=c.package, lowest_price_usd_minor=int(low) if low is not None else None,
-                offer_count=int(offers or 0), in_stock=bool(stock), ships_to_bd=bool(bd), image_url=img,
+                id=str(c.id),
+                slug=c.slug,
+                mpn=c.mpn,
+                title=c.title,
+                manufacturer=c.manufacturer,
+                category=c.category,
+                package=c.package,
+                lowest_price_usd_minor=int(low) if low is not None else None,
+                offer_count=int(offers or 0),
+                in_stock=bool(stock),
+                ships_to_bd=bool(bd),
+                image_url=img,
             )
             for c, low, offers, stock, bd, img in rows
         ]
@@ -266,7 +320,11 @@ class PostgresBackend:
             col = sub.c[fname]
             frows = (
                 await self.s.execute(
-                    select(col, func.count()).where(col.is_not(None)).group_by(col).order_by(func.count().desc()).limit(20)
+                    select(col, func.count())
+                    .where(col.is_not(None))
+                    .group_by(col)
+                    .order_by(func.count().desc())
+                    .limit(20)
                 )
             ).all()
             facets[fname] = [(str(v), int(n)) for v, n in frows]
@@ -323,14 +381,21 @@ class SearchService:
             return False
         added = await self.redis.sadd("discovery:seen", pq.norm.lower())
         if added:
-            await self.redis.rpush("discovery:queue", json.dumps({"q": pq.norm, "mpn": pq.mpn, "at": utcnow().isoformat()}))
+            await self.redis.rpush(
+                "discovery:queue", json.dumps({"q": pq.norm, "mpn": pq.mpn, "at": utcnow().isoformat()})
+            )
         return True
 
     async def _log(self, pq: ParsedQuery, resp: SearchResponse, p: SearchParams, session_hash: str | None) -> None:
         if self.session is None or p.page != 1:
             return
         self.session.add(
-            Query(time=utcnow(), query_norm=pq.norm.lower()[:200], result_count=resp.found,
-                  user_country=p.user_country, session_hash=session_hash)
+            Query(
+                time=utcnow(),
+                query_norm=pq.norm.lower()[:200],
+                result_count=resp.found,
+                user_country=p.user_country,
+                session_hash=session_hash,
+            )
         )
         await self.session.flush()

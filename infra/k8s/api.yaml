@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: voltfind-api, labels: { app: voltfind-api } }
+spec:
+  replicas: 3
+  selector: { matchLabels: { app: voltfind-api } }
+  template:
+    metadata: { labels: { app: voltfind-api } }
+    spec:
+      securityContext: { runAsNonRoot: true, runAsUser: 10001 }
+      containers:
+        - name: api
+          image: ghcr.io/voltfind/api:latest
+          ports: [{ containerPort: 8000 }]
+          envFrom: [{ secretRef: { name: voltfind-secrets } }, { configMapRef: { name: voltfind-config } }]
+          readinessProbe: { httpGet: { path: /healthz, port: 8000 }, periodSeconds: 5 }
+          livenessProbe: { httpGet: { path: /healthz, port: 8000 }, periodSeconds: 15 }
+          resources: { requests: { cpu: 250m, memory: 384Mi }, limits: { cpu: "1", memory: 768Mi } }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: voltfind-api }
+spec: { selector: { app: voltfind-api }, ports: [{ port: 80, targetPort: 8000 }] }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: voltfind-worker }
+spec:
+  replicas: 2
+  selector: { matchLabels: { app: voltfind-worker } }
+  template:
+    metadata: { labels: { app: voltfind-worker } }
+    spec:
+      securityContext: { runAsNonRoot: true, runAsUser: 10001 }
+      containers:
+        - name: worker
+          image: ghcr.io/voltfind/api:latest
+          command: ["celery", "-A", "crawler.tasks", "worker", "-Q", "crawl.seed,crawl.fetch,crawl.resolve,search.index,maintenance", "-c", "8"]
+          envFrom: [{ secretRef: { name: voltfind-secrets } }, { configMapRef: { name: voltfind-config } }]
+          resources: { requests: { cpu: 500m, memory: 512Mi }, limits: { cpu: "2", memory: 1Gi } }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: voltfind-beat }
+spec:
+  replicas: 1   # exactly one scheduler
+  strategy: { type: Recreate }
+  selector: { matchLabels: { app: voltfind-beat } }
+  template:
+    metadata: { labels: { app: voltfind-beat } }
+    spec:
+      containers:
+        - name: beat
+          image: ghcr.io/voltfind/api:latest
+          command: ["celery", "-A", "crawler.tasks", "beat"]
+          envFrom: [{ secretRef: { name: voltfind-secrets } }, { configMapRef: { name: voltfind-config } }]

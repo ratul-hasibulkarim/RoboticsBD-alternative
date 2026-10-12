@@ -23,7 +23,9 @@ def apply_affiliate(template: str | None, url: str) -> str:
 
 
 @router.get("/go/{listing_id}", include_in_schema=False)
-async def go(listing_id: uuid.UUID, request: Request, s: SessionDep, settings: SettingsDep, geo: GeoDep) -> RedirectResponse:
+async def go(
+    listing_id: uuid.UUID, request: Request, s: SessionDep, settings: SettingsDep, geo: GeoDep
+) -> RedirectResponse:
     found = await repo.listing_with_source(s, listing_id)
     if found is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "offer not found")

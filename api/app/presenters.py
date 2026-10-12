@@ -35,8 +35,16 @@ def freshness_label(observed_at: datetime, now: datetime) -> str:
 
 
 async def ranked_offers(
-    s: AsyncSession, comp: Component, geo: UserGeo, fx: FxTable, now: datetime, *,
-    mode: SortMode, quantity: int, local_only: bool, in_stock_only: bool,
+    s: AsyncSession,
+    comp: Component,
+    geo: UserGeo,
+    fx: FxTable,
+    now: datetime,
+    *,
+    mode: SortMode,
+    quantity: int,
+    local_only: bool,
+    in_stock_only: bool,
 ) -> list[RankedOffer]:
     offers = await fetch_active_offers(s, comp.id)
     quotes = await fetch_ship_quotes(s, list({o.source_id for o in offers}), geo.country)
@@ -45,8 +53,18 @@ async def ranked_offers(
 
 
 async def offers_out(
-    s: AsyncSession, comp: Component, ranked: list[RankedOffer], geo: UserGeo, fx: FxTable, now: datetime, *,
-    mode: SortMode, quantity: int, currency: str, local_only: bool, limit: int | None = None,
+    s: AsyncSession,
+    comp: Component,
+    ranked: list[RankedOffer],
+    geo: UserGeo,
+    fx: FxTable,
+    now: datetime,
+    *,
+    mode: SortMode,
+    quantity: int,
+    currency: str,
+    local_only: bool,
+    limit: int | None = None,
 ) -> OffersOut:
     chosen = ranked[:limit] if limit else ranked
     sources = await repo.sources_by_ids(s, list({r.offer.source_id for r in chosen}))
@@ -58,8 +76,9 @@ async def offers_out(
         out.append(
             OfferOut(
                 listing_id=r.offer.listing_id,
-                source=SourceRef(name=src.name, display_name=src.display_name, domain=src.domain,
-                                 trust_score=float(src.trust_score)),
+                source=SourceRef(
+                    name=src.name, display_name=src.display_name, domain=src.domain, trust_score=float(src.trust_score)
+                ),
                 url=r.offer.url,
                 go_url=f"/go/{r.offer.listing_id}",
                 sponsored=bool(src.affiliate_template),
@@ -78,13 +97,21 @@ async def offers_out(
                 distance_km=round(r.distance_km, 1) if r.distance_km is not None else None,
                 ships_from=r.offer.ships_from,
                 observed_at=r.offer.observed_at,
-                freshness=freshness_label(r.offer.observed_at, now),  # type: ignore[arg-type]
+                freshness=freshness_label(r.offer.observed_at, now),
                 score=r.score,
             )
         )
     return OffersOut(
-        component_slug=comp.slug, mode=mode.value, quantity=quantity, currency=currency, country=geo.country,
-        city=geo.city, local_only=local_only, offers=out, total=len(ranked), fx_day=fx.day,
+        component_slug=comp.slug,
+        mode=mode.value,
+        quantity=quantity,
+        currency=currency,
+        country=geo.country,
+        city=geo.city,
+        local_only=local_only,
+        offers=out,
+        total=len(ranked),
+        fx_day=fx.day,
     )
 
 
@@ -99,28 +126,37 @@ def default_currency(geo: UserGeo) -> str:
     return "BDT" if geo.country == "BD" else ("EUR" if geo.country in {"DE", "FR", "NL", "IT", "ES", "IE"} else "USD")
 
 
-def build_faq(comp: Component, low: Money | None, offer_count: int, has_datasheet: bool, queries: list[str]) -> list[tuple[str, str]]:
+def build_faq(
+    comp: Component, low: Money | None, offer_count: int, has_datasheet: bool, queries: list[str]
+) -> list[tuple[str, str]]:
     """FAQ from facts we hold + real queries (§10.4). Answers only state stored facts."""
     faq: list[tuple[str, str]] = []
     if low is not None:
-        faq.append((
-            f"What is the price of {comp.mpn}?",
-            f"The lowest landed price we currently see for {comp.mpn} is {low.currency} {low.amount:,.2f} per unit "
-            f"across {offer_count} offer{'s' if offer_count != 1 else ''}, including shipping and estimated import duty.",
-        ))
+        faq.append(
+            (
+                f"What is the price of {comp.mpn}?",
+                f"The lowest landed price we currently see for {comp.mpn} is {low.currency} {low.amount:,.2f} "
+                f"per unit across {offer_count} offer{'s' if offer_count != 1 else ''}, "
+                "including shipping and estimated import duty.",
+            )
+        )
     if comp.package:
         faq.append((f"What package does {comp.mpn} come in?", f"{comp.mpn} is listed in a {comp.package} package."))
     if has_datasheet:
-        faq.append((
-            f"Where can I find the {comp.mpn} datasheet?",
-            f"The datasheet link on this page points to the original document hosted by its publisher.",
-        ))
+        faq.append(
+            (
+                f"Where can I find the {comp.mpn} datasheet?",
+                "The datasheet link on this page points to the original document hosted by its publisher.",
+            )
+        )
     for q in queries[:2]:
         if "bangladesh" in q or " bd" in f" {q}" or "dhaka" in q:
-            faq.append((
-                f"Can I buy {comp.mpn} in Bangladesh?",
-                "Use the 'Ships to Bangladesh' filter on the price table to see shops that deliver locally.",
-            ))
+            faq.append(
+                (
+                    f"Can I buy {comp.mpn} in Bangladesh?",
+                    "Use the 'Ships to Bangladesh' filter on the price table to see shops that deliver locally.",
+                )
+            )
             break
     return faq
 

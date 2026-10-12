@@ -30,7 +30,9 @@ def _send_login_mail(settings: Settings, email: str, link: str) -> None:
     msg["From"] = settings.smtp_sender
     msg["To"] = email
     msg["Subject"] = "Your VoltFind sign-in link"
-    msg.set_content(f"Sign in to manage your price alerts (valid 30 minutes):\n\n{link}\n\nIf you didn't ask for this, ignore it.")
+    msg.set_content(
+        f"Sign in to manage your price alerts (valid 30 minutes):\n\n{link}\n\nIf you didn't ask for this, ignore it."
+    )
     with smtplib.SMTP(settings.smtp_host, settings.smtp_port, timeout=15) as smtp:
         if settings.smtp_username:
             smtp.starttls()
@@ -40,7 +42,9 @@ def _send_login_mail(settings: Settings, email: str, link: str) -> None:
 
 @router.post("/alerts/request-link", response_model=Accepted, status_code=202)
 async def request_link(body: MagicLinkRequest, settings: SettingsDep) -> Accepted:
-    token = sign_token(settings.secret_key.get_secret_value(), {"purpose": "login", "email": body.email.lower()}, MAGIC_LINK_TTL_S)
+    token = sign_token(
+        settings.secret_key.get_secret_value(), {"purpose": "login", "email": body.email.lower()}, MAGIC_LINK_TTL_S
+    )
     link = f"{settings.public_site_url}/alerts?token={token}"
     try:
         await asyncio.to_thread(_send_login_mail, settings, body.email, link)
@@ -55,10 +59,15 @@ async def create_session(body: SessionRequest, s: SessionDep, settings: Settings
     email = str(claims["email"])
     uid = (
         await s.execute(
-            insert(User).values(email=email).on_conflict_do_update(index_elements=["email"], set_={"email": email}).returning(User.id)
+            insert(User)
+            .values(email=email)
+            .on_conflict_do_update(index_elements=["email"], set_={"email": email})
+            .returning(User.id)
         )
     ).scalar_one()
-    token = sign_token(settings.secret_key.get_secret_value(), {"purpose": "session", "uid": str(uid), "email": email}, SESSION_TTL_S)
+    token = sign_token(
+        settings.secret_key.get_secret_value(), {"purpose": "session", "uid": str(uid), "email": email}, SESSION_TTL_S
+    )
     return SessionOut(session_token=token, email=email)
 
 
@@ -84,31 +93,54 @@ async def list_alerts(s: SessionDep, settings: SettingsDep, authorization: AuthH
         )
     ).all()
     return [
-        AlertOut(id=a.id, component_slug=slug, component_title=title, target=from_minor(a.target_minor, a.currency),
-                 currency=a.currency, quantity=a.quantity, ship_to=a.ship_to, active=a.active, armed=a.armed,
-                 last_fired_at=a.last_fired_at)
+        AlertOut(
+            id=a.id,
+            component_slug=slug,
+            component_title=title,
+            target=from_minor(a.target_minor, a.currency),
+            currency=a.currency,
+            quantity=a.quantity,
+            ship_to=a.ship_to,
+            active=a.active,
+            armed=a.armed,
+            last_fired_at=a.last_fired_at,
+        )
         for a, slug, title in rows
     ]
 
 
 @router.post("/alerts", response_model=Accepted, status_code=201)
-async def create_alert(body: AlertCreate, s: SessionDep, settings: SettingsDep, authorization: AuthHeader = None) -> Accepted:
+async def create_alert(
+    body: AlertCreate, s: SessionDep, settings: SettingsDep, authorization: AuthHeader = None
+) -> Accepted:
     uid = _user_id(settings, authorization)
     comp = await repo.component_by_slug(s, body.component_slug)
     if comp is None or comp.status != "active":
         raise HTTPException(status.HTTP_404_NOT_FOUND, "component not found")
-    count = (await s.execute(select(func.count()).select_from(PriceAlert).where(PriceAlert.user_id == uid, PriceAlert.active))).scalar_one()
+    count = (
+        await s.execute(
+            select(func.count()).select_from(PriceAlert).where(PriceAlert.user_id == uid, PriceAlert.active)
+        )
+    ).scalar_one()
     if count >= MAX_ALERTS_FREE:
         raise HTTPException(status.HTTP_409_CONFLICT, f"limit of {MAX_ALERTS_FREE} active alerts reached")
-    alert = PriceAlert(user_id=uid, component_id=comp.id, target_minor=decimal_target_to_minor(body.target, body.currency),
-                       currency=body.currency, quantity=body.quantity, ship_to=body.ship_to.upper())
+    alert = PriceAlert(
+        user_id=uid,
+        component_id=comp.id,
+        target_minor=decimal_target_to_minor(body.target, body.currency),
+        currency=body.currency,
+        quantity=body.quantity,
+        ship_to=body.ship_to.upper(),
+    )
     s.add(alert)
     await s.flush()
     return Accepted(id=str(alert.id))
 
 
 @router.delete("/alerts/{alert_id}", response_model=Accepted)
-async def delete_alert(alert_id: uuid.UUID, s: SessionDep, settings: SettingsDep, authorization: AuthHeader = None) -> Accepted:
+async def delete_alert(
+    alert_id: uuid.UUID, s: SessionDep, settings: SettingsDep, authorization: AuthHeader = None
+) -> Accepted:
     uid = _user_id(settings, authorization)
     res = await s.execute(delete(PriceAlert).where(PriceAlert.id == alert_id, PriceAlert.user_id == uid))
     if not res.rowcount:  # type: ignore[attr-defined]

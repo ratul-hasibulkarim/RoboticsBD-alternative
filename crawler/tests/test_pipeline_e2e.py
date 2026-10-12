@@ -53,21 +53,38 @@ async def test_full_pipeline(db_sessionmaker: async_sessionmaker[AsyncSession], 
         sid = await source_db_id(s, src.name)
 
     respx.get("https://shop.test/robots.txt").respond(200, text="User-agent: *\nDisallow: /product/secret/\n")
-    respx.get("https://shop.test/sitemap.xml").respond(200, content=SITEMAP_INDEX, headers={"content-type": "application/xml"})
-    respx.get("https://shop.test/product-sitemap.xml").respond(200, content=PRODUCT_SITEMAP, headers={"content-type": "application/xml"})
+    respx.get("https://shop.test/sitemap.xml").respond(
+        200, content=SITEMAP_INDEX, headers={"content-type": "application/xml"}
+    )
+    respx.get("https://shop.test/product-sitemap.xml").respond(
+        200, content=PRODUCT_SITEMAP, headers={"content-type": "application/xml"}
+    )
     respx.get("https://shop.test/product/esp32-wroom-32/").respond(
-        200, content=(FIX / "woocommerce_esp32_wroom_32.html").read_bytes(), headers={"content-type": "text/html", "etag": '"e1"'})
+        200,
+        content=(FIX / "woocommerce_esp32_wroom_32.html").read_bytes(),
+        headers={"content-type": "text/html", "etag": '"e1"'},
+    )
     respx.get("https://shop.test/product/dht22/").respond(
-        200, content=(FIX / "woocommerce_out_of_stock_dht22.html").read_bytes(), headers={"content-type": "text/html"})
+        200, content=(FIX / "woocommerce_out_of_stock_dht22.html").read_bytes(), headers={"content-type": "text/html"}
+    )
     secret = respx.get("https://shop.test/product/secret/").respond(200)
 
     client = build_crawler_client()
     raw = FilesystemRawStore(tmp_path)
-    fetcher = Fetcher(client=client, robots=RobotsCache(redis, client), limiter=HostRateLimiter(redis),
-                      pages=PgPageStore(db_sessionmaker), source_state=PgSourceStateStore(db_sessionmaker, redis), raw=raw)
+    fetcher = Fetcher(
+        client=client,
+        robots=RobotsCache(redis, client),
+        limiter=HostRateLimiter(redis),
+        pages=PgPageStore(db_sessionmaker),
+        source_state=PgSourceStateStore(db_sessionmaker, redis),
+        raw=raw,
+    )
     urls = [u async for u in walk_sitemaps(fetcher, src, sid, ["https://shop.test/sitemap.xml"])]
-    assert urls == ["https://shop.test/product/esp32-wroom-32/", "https://shop.test/product/dht22/",
-                    "https://shop.test/product/secret/"]  # about-us filtered by product pattern
+    assert urls == [
+        "https://shop.test/product/esp32-wroom-32/",
+        "https://shop.test/product/dht22/",
+        "https://shop.test/product/secret/",
+    ]  # about-us filtered by product pattern
 
     results = [await fetch_and_extract(db_sessionmaker, fetcher, src, u, FX) for u in urls]
     assert [r.fetch_status for r in results] == [FetchStatus.OK, FetchStatus.OK, FetchStatus.ROBOTS_DISALLOWED]
@@ -82,7 +99,7 @@ async def test_full_pipeline(db_sessionmaker: async_sessionmaker[AsyncSession], 
             actions.append(action)
         # ESP32 page has a structured MPN ("Model" spec) → creates; DHT22 MPN is a title guess → deferred
         assert actions == [Action.CREATE, Action.DEFER]
-        action, cid = await resolve_listing(s, results[1].listing_id, embedder, allow_untrusted_create=True)  # type: ignore[arg-type]
+        action, _cid = await resolve_listing(s, results[1].listing_id, embedder, allow_untrusted_create=True)  # type: ignore[arg-type]
         assert action is Action.CREATE
         await s.commit()
 
@@ -91,7 +108,11 @@ async def test_full_pipeline(db_sessionmaker: async_sessionmaker[AsyncSession], 
         assert comps["esp32-wroom-32"].manufacturer == "Espressif"
         assert comps["esp32-wroom-32"].primary_image is not None
         assert comps["esp32-wroom-32"].datasheet_host == "www.espressif.com"
-        pc = (await s.execute(select(PriceCurrent).join(Listing).where(Listing.component_id == comps["esp32-wroom-32"].id))).scalar_one()
+        pc = (
+            await s.execute(
+                select(PriceCurrent).join(Listing).where(Listing.component_id == comps["esp32-wroom-32"].id)
+            )
+        ).scalar_one()
         assert pc.currency == "BDT" and pc.price_minor == 52000
         docs = {d["slug"]: d for d in await build_documents(s)}
         assert docs["esp32-wroom-32"]["ships_to_bd"] is True and docs["esp32-wroom-32"]["in_stock"] is True
@@ -112,13 +133,17 @@ async def test_full_pipeline(db_sessionmaker: async_sessionmaker[AsyncSession], 
         n = await purge_expired_raw(s, raw.delete)
         await s.commit()
         assert n == 4  # 2 sitemaps + 2 product pages
-        assert (await s.execute(select(func.count()).select_from(CrawlPage).where(CrawlPage.raw_ref.is_not(None)))).scalar() == 0
-        assert not any(tmp_path.rglob("*.html"))
+        assert (
+            await s.execute(select(func.count()).select_from(CrawlPage).where(CrawlPage.raw_ref.is_not(None)))
+        ).scalar() == 0
+        assert not any(tmp_path.rglob("*.html"))  # noqa: ASYNC240 — test assertion
     await client.aclose()
 
 
 @respx.mock
-async def test_403_flips_source_in_db(db_sessionmaker: async_sessionmaker[AsyncSession], redis: Redis, tmp_path: Path) -> None:
+async def test_403_flips_source_in_db(
+    db_sessionmaker: async_sessionmaker[AsyncSession], redis: Redis, tmp_path: Path
+) -> None:
     src = make_source()
     async with db_sessionmaker() as s:
         await sync_sources_to_db(s, Registry(version=1, sources=[src]))
@@ -126,9 +151,14 @@ async def test_403_flips_source_in_db(db_sessionmaker: async_sessionmaker[AsyncS
     respx.get("https://shop.test/robots.txt").respond(200, text="")
     respx.get("https://shop.test/p/1").respond(403)
     client = build_crawler_client()
-    fetcher = Fetcher(client=client, robots=RobotsCache(redis, client), limiter=HostRateLimiter(redis),
-                      pages=PgPageStore(db_sessionmaker), source_state=PgSourceStateStore(db_sessionmaker, redis),
-                      raw=FilesystemRawStore(tmp_path))
+    fetcher = Fetcher(
+        client=client,
+        robots=RobotsCache(redis, client),
+        limiter=HostRateLimiter(redis),
+        pages=PgPageStore(db_sessionmaker),
+        source_state=PgSourceStateStore(db_sessionmaker, redis),
+        raw=FilesystemRawStore(tmp_path),
+    )
     r = await fetch_and_extract(db_sessionmaker, fetcher, src, "https://shop.test/p/1", FX)
     assert r.fetch_status is FetchStatus.SOURCE_FLAGGED
     async with db_sessionmaker() as s:

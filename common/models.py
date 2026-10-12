@@ -31,7 +31,7 @@ EMBED_DIM = 384
 
 
 class Base(DeclarativeBase):
-    type_annotation_map = {
+    type_annotation_map = {  # noqa: RUF012 — SQLAlchemy reads this class attribute
         dict[str, Any]: JSONB,
         list[Any]: JSONB,
         uuid.UUID: UUID(as_uuid=True),
@@ -261,9 +261,7 @@ class UseCase(Base):
     source_url: Mapped[str] = mapped_column(Text)
     source_author: Mapped[str | None] = mapped_column(Text)
     source_license: Mapped[str | None] = mapped_column(Text)
-    verified_by: Mapped[list[uuid.UUID]] = mapped_column(
-        ARRAY(UUID(as_uuid=True)), server_default="{}"
-    )
+    verified_by: Mapped[list[uuid.UUID]] = mapped_column(ARRAY(UUID(as_uuid=True)), server_default="{}")
     upvotes: Mapped[int] = mapped_column(Integer, server_default="0")
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
 

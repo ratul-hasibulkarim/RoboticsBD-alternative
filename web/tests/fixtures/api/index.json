@@ -1,0 +1,110 @@
+{
+ "/v1/components/esp32-wroom-32?country=BD&city=Dhaka&currency=BDT&track=false": {
+  "file": "496e87dcb0eece66.json",
+  "status": 200
+ },
+ "/v1/components/esp32-wroom-32d?country=BD&city=Dhaka&currency=BDT&track=false": {
+  "file": "fd94e603fdfe18e5.json",
+  "status": 200
+ },
+ "/v1/components/ne555p?country=BD&city=Dhaka&currency=BDT&track=false": {
+  "file": "fec3cb15a2b4c665.json",
+  "status": 200
+ },
+ "/v1/components/esp32-wroom-32/offers?country=BD&city=Dhaka&currency=BDT": {
+  "file": "5c9b960ebeeedad4.json",
+  "status": 200
+ },
+ "/v1/components/esp32-wroom-32d/offers?country=BD&city=Dhaka&currency=BDT": {
+  "file": "0f3db198c3339459.json",
+  "status": 200
+ },
+ "/v1/components/ne555p/offers?country=BD&city=Dhaka&currency=BDT": {
+  "file": "f99733b1234a05fc.json",
+  "status": 200
+ },
+ "/v1/components/esp32-wroom-32/use-cases": {
+  "file": "a3608920efca5410.json",
+  "status": 200
+ },
+ "/v1/components/esp32-wroom-32d/use-cases": {
+  "file": "c91f13d1bd645e80.json",
+  "status": 200
+ },
+ "/v1/components/ne555p/use-cases": {
+  "file": "da52ac05acc37652.json",
+  "status": 200
+ },
+ "/v1/components/esp32-wroom-32/alternatives?limit=16": {
+  "file": "1d94f105ea058c58.json",
+  "status": 200
+ },
+ "/v1/components/esp32-wroom-32d/alternatives?limit=16": {
+  "file": "f3061262e46af46f.json",
+  "status": 200
+ },
+ "/v1/components/ne555p/alternatives?limit=16": {
+  "file": "16591bc4b1e9a0db.json",
+  "status": 200
+ },
+ "/v1/categories": {
+  "file": "b10e21f442e12ba5.json",
+  "status": 200
+ },
+ "/v1/categories/wireless?page=1&per_page=24": {
+  "file": "09417f9a07d1294b.json",
+  "status": 200
+ },
+ "/v1/categories/ic-analog?page=1&per_page=24": {
+  "file": "04e02de55a895640.json",
+  "status": 200
+ },
+ "/v1/categories/wireless?page=1&per_page=24&ships_to_bd=true": {
+  "file": "15d4d2f395c0f9e4.json",
+  "status": 200
+ },
+ "/v1/categories/ic-analog?page=1&per_page=24&ships_to_bd=true": {
+  "file": "b74f237295441281.json",
+  "status": 200
+ },
+ "/v1/manufacturers": {
+  "file": "85c708d2df9376c3.json",
+  "status": 200
+ },
+ "/v1/manufacturers/espressif?page=1&per_page=24": {
+  "file": "ed3b5523b09cfb1f.json",
+  "status": 200
+ },
+ "/v1/manufacturers/texas-instruments?page=1&per_page=24": {
+  "file": "ad68d18e5addffd3.json",
+  "status": 200
+ },
+ "/v1/trending?limit=12": {
+  "file": "6abea3dd65eecbf7.json",
+  "status": 200
+ },
+ "/v1/sitemap/components?page=1": {
+  "file": "71bc0798277b8b3c.json",
+  "status": 200
+ },
+ "/v1/sitemap/count": {
+  "file": "de5ab708eb80ea3b.json",
+  "status": 200
+ },
+ "/v1/sitemap/retired": {
+  "file": "094197034b5ddd01.json",
+  "status": 200
+ },
+ "/v1/search?q=esp32&country=BD&city=Dhaka": {
+  "file": "1934f3b524a16b43.json",
+  "status": 200
+ },
+ "/v1/search?q=STM32H743ZIT6&country=BD&city=Dhaka": {
+  "file": "90c5ef337aa40758.json",
+  "status": 200
+ },
+ "/v1/compare?parts=esp32-wroom-32,esp32-wroom-32d": {
+  "file": "11ae72f05658532c.json",
+  "status": 200
+ }
+}

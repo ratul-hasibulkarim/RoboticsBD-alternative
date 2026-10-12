@@ -106,7 +106,9 @@ MANUFACTURER_ALIASES: dict[str, str] = {
     "china": "",
 }
 
-_CORP_SUFFIX = re.compile(r"[,.]?\s*\b(inc|incorporated|corp|corporation|co|ltd|limited|llc|gmbh|ag|sa|bv|plc)\b\.?$", re.I)
+_CORP_SUFFIX = re.compile(
+    r"[,.]?\s*\b(inc|incorporated|corp|corporation|co|ltd|limited|llc|gmbh|ag|sa|bv|plc)\b\.?$", re.I
+)
 
 
 def normalize_mpn(raw: str) -> str:

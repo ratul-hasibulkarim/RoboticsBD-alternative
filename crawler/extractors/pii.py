@@ -26,9 +26,10 @@ def is_personal_page(tree: HTMLParser, url: str) -> bool:
     types = jsonld.page_types(tree)
     if types & _PERSON_TYPES and "product" not in types:
         return True
-    return tree.css_first('[itemtype*="schema.org/Person"]') is not None and tree.css_first(
-        '[itemtype*="schema.org/Product"]'
-    ) is None
+    return (
+        tree.css_first('[itemtype*="schema.org/Person"]') is not None
+        and tree.css_first('[itemtype*="schema.org/Product"]') is None
+    )
 
 
 def scrub(text: str | None) -> str | None:

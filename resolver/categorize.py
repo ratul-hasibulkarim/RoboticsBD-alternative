@@ -16,7 +16,12 @@ _RULES: list[tuple[str, str | None, str]] = [
     ("mcu", "arm", r"\bstm32|\bsamd\d|\brp2040\b|\bnrf5\d|\bcortex"),
     ("mcu", "pic", r"\bpic\d{2}"),
     ("mcu", None, r"\bmicrocontroller\b|\bmcu\b"),
-    ("sensor", "environment", r"\bdht\d\d|\bam2302|\bbme\d{3}|\bbmp\d{3}|\bds18b20|\bsht\d\d|\baht\d\d|humidity|temperature sensor|pressure sensor"),
+    (
+        "sensor",
+        "environment",
+        r"\bdht\d\d|\bam2302|\bbme\d{3}|\bbmp\d{3}|\bds18b20|\bsht\d\d|\baht\d\d"
+        r"|humidity|temperature sensor|pressure sensor",
+    ),
     ("sensor", "distance", r"\bhc-?sr04|\bultrasonic|\bvl53l|\btof\b|\blidar"),
     ("sensor", "motion", r"\bmpu-?\d{4}|\bgy-?\d+|\baccelerometer|\bgyro|\bpir\b|\bhc-?sr501|\bimu\b"),
     ("sensor", "gas", r"\bmq-?\d+\b|\bgas sensor"),
@@ -32,7 +37,11 @@ _RULES: list[tuple[str, str | None, str]] = [
     ("ic-interface", "usb-uart", r"\bch340|\bcp210\d|\bft232|\bpl2303|\busb to (ttl|serial|uart)"),
     ("motor-driver", None, r"\bl298|\bl293|\bdrv88\d\d|\ba4988|\btb6612|\bmotor driver"),
     ("motor", None, r"\bservo\b|\bsg90\b|\bmg996|\bstepper\b|\bnema\s?17|\bdc motor|\bgear motor"),
-    ("display", None, r"\blcd\b|\boled\b|\btft\b|\bssd1306|\b1602\b|\b2004\b|\bst7735|\bili9341|\bseven segment|\b7-segment"),
+    (
+        "display",
+        None,
+        r"\blcd\b|\boled\b|\btft\b|\bssd1306|\b1602\b|\b2004\b|\bst7735|\bili9341|\bseven segment|\b7-segment",
+    ),
     ("passive", "resistor", r"\bresistor|\bohm\b|\bpotentiometer|\btrimmer"),
     ("passive", "capacitor", r"\bcapacitor|\b\d+(\.\d+)?\s?(uf|µf|nf|pf)\b"),
     ("passive", "inductor", r"\binductor|\b\d+\s?(uh|µh|mh)\b"),

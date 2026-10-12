@@ -69,17 +69,13 @@ async def merge_components(
     if not ok:
         confidence, method = 1.0, "manual"
 
-    listing_ids = list(
-        (await s.execute(select(Listing.id).where(Listing.component_id == drop_id))).scalars()
-    )
+    listing_ids = list((await s.execute(select(Listing.id).where(Listing.component_id == drop_id))).scalars())
     await s.execute(
         update(Listing)
         .where(Listing.component_id == drop_id)
         .values(component_id=keep_id, match_method="manual" if force else method)
     )
-    await s.execute(
-        update(Component).where(Component.id == drop_id).values(status="merged", merged_into=keep_id)
-    )
+    await s.execute(update(Component).where(Component.id == drop_id).values(status="merged", merged_into=keep_id))
     await write_audit(
         s,
         "merge",
@@ -121,9 +117,7 @@ async def split_component(
         raise MergeRefusedError("component not found")
     owned = set(
         (
-            await s.execute(
-                select(Listing.id).where(Listing.component_id == component_id, Listing.id.in_(listing_ids))
-            )
+            await s.execute(select(Listing.id).where(Listing.component_id == component_id, Listing.id.in_(listing_ids)))
         ).scalars()
     )
     missing = set(listing_ids) - owned
@@ -182,9 +176,7 @@ async def split_component(
     return new.id
 
 
-async def resolve_review_item(
-    s: AsyncSession, review_id: int, *, component_id: uuid.UUID | None, actor: str
-) -> None:
+async def resolve_review_item(s: AsyncSession, review_id: int, *, component_id: uuid.UUID | None, actor: str) -> None:
     """Admin decision on a 'match' review item: attach to component_id, or reject (None)."""
     item = await s.get(ReviewItem, review_id)
     if item is None or item.kind != "match" or item.status != "open":

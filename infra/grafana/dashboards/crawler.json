@@ -1,0 +1,16 @@
+{
+  "title": "VoltFind — crawler & prices",
+  "schemaVersion": 39,
+  "panels": [
+    { "type": "stat", "title": "Sources needing review", "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 },
+      "targets": [{ "datasource": "postgres", "rawSql": "SELECT count(*) FROM sources WHERE crawl_status <> 'ok' AND active" }] },
+    { "type": "stat", "title": "Open review items", "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 },
+      "targets": [{ "datasource": "postgres", "rawSql": "SELECT count(*) FROM review_queue WHERE status = 'open'" }] },
+    { "type": "timeseries", "title": "Pages fetched per hour by status", "gridPos": { "x": 0, "y": 4, "w": 12, "h": 8 },
+      "targets": [{ "datasource": "postgres", "rawSql": "SELECT date_trunc('hour', fetched_at) AS time, http_status::text AS metric, count(*) FROM crawl_pages WHERE fetched_at > now() - interval '2 days' GROUP BY 1, 2 ORDER BY 1" }] },
+    { "type": "timeseries", "title": "LLM spend (USD/day)", "gridPos": { "x": 12, "y": 4, "w": 12, "h": 8 },
+      "targets": [{ "datasource": "postgres", "rawSql": "SELECT date_trunc('day', created_at) AS time, sum(cost_usd_micros) / 1e6 AS usd FROM llm_extraction_log GROUP BY 1 ORDER BY 1" }] },
+    { "type": "table", "title": "Stale prices by source (> cache TTL)", "gridPos": { "x": 0, "y": 12, "w": 24, "h": 8 },
+      "targets": [{ "datasource": "postgres", "rawSql": "SELECT s.name, count(*) FROM price_current pc JOIN listings l ON l.id = pc.listing_id JOIN sources s ON s.id = l.source_id WHERE pc.observed_at < now() - make_interval(hours => s.cache_ttl_hours) GROUP BY 1 ORDER BY 2 DESC" }] }
+  ]
+}

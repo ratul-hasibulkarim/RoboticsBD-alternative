@@ -88,7 +88,9 @@ async def test_no_cookies_are_replayed(rig: Rig) -> None:
     respx.get("https://shop.test/p/1").respond(
         200, content=PRODUCT_HTML, headers={"content-type": "text/html", "set-cookie": "sid=abc; Path=/"}
     )
-    route2 = respx.get("https://shop.test/p/2").respond(200, content=PRODUCT_HTML + b" ", headers={"content-type": "text/html"})
+    route2 = respx.get("https://shop.test/p/2").respond(
+        200, content=PRODUCT_HTML + b" ", headers={"content-type": "text/html"}
+    )
     await rig.fetcher.fetch("https://shop.test/p/1", make_source(), rig.source_id)
     await rig.fetcher.fetch("https://shop.test/p/2", make_source(), rig.source_id)
     assert "cookie" not in route2.calls.last.request.headers
@@ -146,8 +148,11 @@ async def test_conditional_get_second_fetch_is_304(rig: Rig) -> None:
     _robots()
     route = respx.get("https://shop.test/p/1")
     route.side_effect = [
-        httpx.Response(200, content=PRODUCT_HTML, headers={"content-type": "text/html", "etag": '"abc"',
-                                                           "last-modified": "Wed, 01 Oct 2026 10:00:00 GMT"}),
+        httpx.Response(
+            200,
+            content=PRODUCT_HTML,
+            headers={"content-type": "text/html", "etag": '"abc"', "last-modified": "Wed, 01 Oct 2026 10:00:00 GMT"},
+        ),
         httpx.Response(304),
     ]
     first = await rig.fetcher.fetch("https://shop.test/p/1", make_source(), rig.source_id)
@@ -222,7 +227,9 @@ async def test_skips_pdf(rig: Rig) -> None:
 @respx.mock
 async def test_skips_binary_content_type(rig: Rig) -> None:
     _robots()
-    respx.get("https://shop.test/download").respond(200, content=b"%PDF-1.7", headers={"content-type": "application/pdf"})
+    respx.get("https://shop.test/download").respond(
+        200, content=b"%PDF-1.7", headers={"content-type": "application/pdf"}
+    )
     res = await rig.fetcher.fetch("https://shop.test/download", make_source(), rig.source_id)
     assert res.status is FetchStatus.SKIPPED_TYPE
     assert rig.raw.objects == {}

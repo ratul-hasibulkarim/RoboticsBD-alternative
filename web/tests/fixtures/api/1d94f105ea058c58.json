@@ -1,0 +1,14 @@
+[
+ {
+  "slug": "esp32-wroom-32d",
+  "mpn": "ESP32-WROOM-32D",
+  "title": "ESP32-WROOM-32D Wi-Fi + Bluetooth module",
+  "manufacturer": "Espressif",
+  "category": "wireless",
+  "subcategory": "wifi-ble",
+  "package": "SMD-38",
+  "image_url": null,
+  "lowest_price_usd_minor": 443,
+  "offer_count": 1
+ }
+]

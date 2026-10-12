@@ -34,8 +34,11 @@ def _noindex(response: Response) -> None:
 
 @router.get("/review", response_model=list[ReviewItemOut])
 async def review_queue(
-    s: SessionDep, actor: AdminDep, response: Response,
-    kind: str | None = None, status_: Annotated[str, Query(alias="status")] = "open",
+    s: SessionDep,
+    actor: AdminDep,
+    response: Response,
+    kind: str | None = None,
+    status_: Annotated[str, Query(alias="status")] = "open",
     limit: Annotated[int, Query(ge=1, le=500)] = 100,
 ) -> list[ReviewItemOut]:
     _noindex(response)
@@ -76,8 +79,9 @@ async def merge(body: MergeRequest, s: SessionDep, actor: AdminDep) -> Accepted:
 @router.post("/components/{component_id}/split", response_model=Accepted)
 async def split(component_id: uuid.UUID, body: SplitRequest, s: SessionDep, actor: AdminDep) -> Accepted:
     try:
-        new_id = await split_component(s, component_id, body.listing_ids, new_mpn=body.new_mpn,
-                                       new_manufacturer=body.new_manufacturer, actor=actor)
+        new_id = await split_component(
+            s, component_id, body.listing_ids, new_mpn=body.new_mpn, new_manufacturer=body.new_manufacturer, actor=actor
+        )
     except MergeRefusedError as exc:
         raise HTTPException(status.HTTP_409_CONFLICT, str(exc)) from exc
     from crawler.tasks import index_component
@@ -106,7 +110,9 @@ async def sources(s: SessionDep, actor: AdminDep) -> list[SourceOut]:
 
 
 @router.post("/sources/{name}/crawl-status", response_model=Accepted)
-async def set_crawl_status(name: str, body: CrawlStatusUpdate, s: SessionDep, redis: RedisDep, actor: AdminDep) -> Accepted:
+async def set_crawl_status(
+    name: str, body: CrawlStatusUpdate, s: SessionDep, redis: RedisDep, actor: AdminDep
+) -> Accepted:
     src = (await s.execute(select(Source).where(Source.name == name))).scalar_one_or_none()
     if src is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "source not found")

@@ -81,19 +81,28 @@ async def test_component_detail_bd_user(client: httpx.AsyncClient) -> None:
 
 
 async def test_offers_modes_and_currency(client: httpx.AsyncClient) -> None:
-    r = await client.get("/v1/components/esp32-wroom-32/offers", params={"mode": "fastest", "currency": "USD", "country": "BD", "city": "Dhaka"})
+    r = await client.get(
+        "/v1/components/esp32-wroom-32/offers",
+        params={"mode": "fastest", "currency": "USD", "country": "BD", "city": "Dhaka"},
+    )
     assert r.status_code == 200
     d = r.json()
     assert d["currency"] == "USD" and d["mode"] == "fastest"
     assert {o["source"]["name"] for o in d["offers"]} >= {"demo-robotics-bd", "demo-global-dist"}
-    local = (await client.get("/v1/components/esp32-wroom-32/offers", params={"local_only": True, "country": "BD"})).json()
+    local = (
+        await client.get("/v1/components/esp32-wroom-32/offers", params={"local_only": True, "country": "BD"})
+    ).json()
     assert all(o["ships_from"] == "BD" for o in local["offers"])
-    berlin = (await client.get("/v1/components/esp32-wroom-32/offers", params={"country": "DE", "city": "Berlin"})).json()
+    berlin = (
+        await client.get("/v1/components/esp32-wroom-32/offers", params={"country": "DE", "city": "Berlin"})
+    ).json()
     assert [o["source"]["name"] for o in berlin["offers"]] == ["demo-global-dist"]
     assert berlin["offers"][0]["sponsored"] is True
 
 
-async def test_404_merged_retired(client: httpx.AsyncClient, db_sessionmaker: async_sessionmaker[AsyncSession], seeded: dict[str, object]) -> None:
+async def test_404_merged_retired(
+    client: httpx.AsyncClient, db_sessionmaker: async_sessionmaker[AsyncSession], seeded: dict[str, object]
+) -> None:
     assert (await client.get("/v1/components/nope-123")).status_code == 404
     async with db_sessionmaker() as s:
         d = await s.get(Component, seeded["esp_d"].id)  # type: ignore[attr-defined]
@@ -129,8 +138,13 @@ async def test_a2_zero_result_fallback(client: httpx.AsyncClient, redis: Redis) 
 
 async def test_a3_rate_limit(seeded: dict[str, object], redis: Redis) -> None:
     app = create_app(_settings(api_rate_limit_per_minute=5), redis=redis)
-    async with app.router.lifespan_context(app), httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://api") as c:
-        codes = [(await c.get("/v1/categories", headers={"CF-Connecting-IP": "203.0.113.9"})).status_code for _ in range(7)]
+    async with (
+        app.router.lifespan_context(app),
+        httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://api") as c,
+    ):
+        codes = [
+            (await c.get("/v1/categories", headers={"CF-Connecting-IP": "203.0.113.9"})).status_code for _ in range(7)
+        ]
         other = await c.get("/v1/categories", headers={"CF-Connecting-IP": "203.0.113.10"})
     assert codes[:5] == [200] * 5 and codes[5:] == [429, 429]
     assert other.status_code == 200
@@ -149,7 +163,9 @@ async def test_alert_flow_and_account_deletion(client: httpx.AsyncClient) -> Non
     login = sign_token(secret, {"purpose": "login", "email": "maker@example.com"}, 600)
     sess = (await client.post("/v1/alerts/session", json={"token": login})).json()["session_token"]
     h = {"Authorization": f"Bearer {sess}"}
-    r = await client.post("/v1/alerts", json={"component_slug": "esp32-wroom-32", "target": "500", "currency": "BDT"}, headers=h)
+    r = await client.post(
+        "/v1/alerts", json={"component_slug": "esp32-wroom-32", "target": "500", "currency": "BDT"}, headers=h
+    )
     assert r.status_code == 201, r.text
     alerts = (await client.get("/v1/alerts", headers=h)).json()
     assert alerts[0]["target"] == "500.00" and alerts[0]["armed"] is True
@@ -160,10 +176,14 @@ async def test_alert_flow_and_account_deletion(client: httpx.AsyncClient) -> Non
 
 
 async def test_opt_out_and_report(client: httpx.AsyncClient) -> None:
-    r = await client.post("/v1/legal/opt-out", json={"domain": "demo-techshop.test", "contact_email": "owner@example.com",
-                                                       "reason": "Please stop listing us"})
+    r = await client.post(
+        "/v1/legal/opt-out",
+        json={"domain": "demo-techshop.test", "contact_email": "owner@example.com", "reason": "Please stop listing us"},
+    )
     assert r.status_code == 202
-    r2 = await client.post("/v1/reports", json={"component_slug": "esp32-wroom-32", "field": "price", "message": "Price is outdated"})
+    r2 = await client.post(
+        "/v1/reports", json={"component_slug": "esp32-wroom-32", "field": "price", "message": "Price is outdated"}
+    )
     assert r2.status_code == 202
 
 
@@ -171,8 +191,12 @@ async def test_admin_requires_token_and_takedown(client: httpx.AsyncClient) -> N
     assert (await client.get("/v1/admin/review")).status_code == 401
     assert (await client.get("/v1/admin/review", headers={"Authorization": "Bearer wrong"})).status_code == 403
     h = {"Authorization": f"Bearer {ADMIN_TOKEN}"}
-    req = (await client.post("/v1/legal/opt-out", json={"domain": "demo-techshop.test", "contact_email": "o@example.com",
-                                                          "reason": "remove us"})).json()["id"]
+    req = (
+        await client.post(
+            "/v1/legal/opt-out",
+            json={"domain": "demo-techshop.test", "contact_email": "o@example.com", "reason": "remove us"},
+        )
+    ).json()["id"]
     resp = await client.get("/v1/admin/review", params={"kind": "takedown"}, headers=h)
     items = resp.json()
     assert resp.status_code == 200, resp.text

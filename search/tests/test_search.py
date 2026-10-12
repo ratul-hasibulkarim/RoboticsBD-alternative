@@ -40,12 +40,32 @@ def test_typesense_request_has_geo_boost_and_hybrid() -> None:
 
 @respx.mock
 async def test_typesense_backend_parses_hits_and_facets() -> None:
-    respx.post("http://ts:8108/multi_search").respond(200, json={"results": [{
-        "found": 1,
-        "hits": [{"document": {"id": "1", "slug": "esp32-wroom-32", "mpn": "ESP32-WROOM-32", "title": "ESP32", "category": "wireless",
-                               "offer_count": 3, "in_stock": True, "ships_to_bd": True, "lowest_price_usd_minor": 426}}],
-        "facet_counts": [{"field_name": "manufacturer", "counts": [{"value": "Espressif", "count": 1}]}],
-    }]})
+    respx.post("http://ts:8108/multi_search").respond(
+        200,
+        json={
+            "results": [
+                {
+                    "found": 1,
+                    "hits": [
+                        {
+                            "document": {
+                                "id": "1",
+                                "slug": "esp32-wroom-32",
+                                "mpn": "ESP32-WROOM-32",
+                                "title": "ESP32",
+                                "category": "wireless",
+                                "offer_count": 3,
+                                "in_stock": True,
+                                "ships_to_bd": True,
+                                "lowest_price_usd_minor": 426,
+                            }
+                        }
+                    ],
+                    "facet_counts": [{"field_name": "manufacturer", "counts": [{"value": "Espressif", "count": 1}]}],
+                }
+            ]
+        },
+    )
     svc = SearchService(TypesenseBackend(TypesenseClient("http://ts:8108", "k")), None, None, None)
     resp = await svc.search(SearchParams(q="esp32-wroom-32"))
     assert resp.found == 1 and resp.hits[0].lowest_price_usd_minor == 426

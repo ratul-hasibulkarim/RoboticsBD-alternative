@@ -34,8 +34,20 @@ OUTPUT_SCHEMA: dict[str, Any] = {
     "type": "object",
     "additionalProperties": False,
     "required": [
-        "title", "mpn", "manufacturer", "price", "currency", "moq", "in_stock", "stock_qty",
-        "ships_from", "ships_to", "specs", "price_breaks", "use_case_snippets", "confidence",
+        "title",
+        "mpn",
+        "manufacturer",
+        "price",
+        "currency",
+        "moq",
+        "in_stock",
+        "stock_qty",
+        "ships_from",
+        "ships_to",
+        "specs",
+        "price_breaks",
+        "use_case_snippets",
+        "confidence",
     ],
     "properties": {
         "title": {"type": ["string", "null"]},
@@ -133,7 +145,9 @@ def _to_listing(url: str, d: dict[str, Any]) -> ExtractedListing:
         ships_from=d.get("ships_from"),
         ships_to=list(d.get("ships_to") or []),
         specs={str(k): str(v) for k, v in (d.get("specs") or {}).items()},
-        price_breaks=[PriceBreak(qty=int(b["qty"]), price=Decimal(str(b["price"]))) for b in d.get("price_breaks") or []],
+        price_breaks=[
+            PriceBreak(qty=int(b["qty"]), price=Decimal(str(b["price"]))) for b in d.get("price_breaks") or []
+        ],
         methods=["llm"],
         confidence=float(d.get("confidence") or 0.0),
     )

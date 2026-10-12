@@ -54,9 +54,7 @@ class PgComponentIndex:
         if conds:
             rows = (
                 await self.s.execute(
-                    select(Component)
-                    .where(Component.status == "active", or_(*conds))
-                    .limit(MAX_CANDIDATES)
+                    select(Component).where(Component.status == "active", or_(*conds)).limit(MAX_CANDIDATES)
                 )
             ).scalars()
             for c in rows:
@@ -140,9 +138,7 @@ class PgComponentIndex:
             )
         return new_id
 
-    async def attach(
-        self, listing_id: uuid.UUID, component_id: uuid.UUID, confidence: float, method: str
-    ) -> None:
+    async def attach(self, listing_id: uuid.UUID, component_id: uuid.UUID, confidence: float, method: str) -> None:
         await self.s.execute(
             update(Listing)
             .where(Listing.id == listing_id)

@@ -16,7 +16,9 @@ def test_profile_urls_and_person_pages_are_personal() -> None:
     empty = parse("<html><body></body></html>")
     assert is_personal_page(empty, "https://shop.test/members/rahim/")
     assert is_personal_page(empty, "https://shop.test/my-account/orders/")
-    person = parse('<script type="application/ld+json">{"@type":"ProfilePage","mainEntity":{"@type":"Person"}}</script>')
+    person = parse(
+        '<script type="application/ld+json">{"@type":"ProfilePage","mainEntity":{"@type":"Person"}}</script>'
+    )
     assert is_personal_page(person, "https://shop.test/x")
 
 

@@ -27,11 +27,7 @@ def _own_props(scope: Node, name: str) -> list[Node]:
     out = []
     for n in scope.css(f'[itemprop~="{name}"]'):
         parent = n.parent
-        while (
-            parent is not None
-            and parent.mem_id != scope.mem_id
-            and "itemscope" not in parent.attributes
-        ):
+        while parent is not None and parent.mem_id != scope.mem_id and "itemscope" not in parent.attributes:
             parent = parent.parent
         if parent is not None and parent.mem_id == scope.mem_id:
             out.append(n)
@@ -94,7 +90,7 @@ def extract(tree: HTMLParser, url: str) -> ExtractedListing | None:
         price=price,
         currency=currency,
         in_stock=in_stock,
-        condition=condition,  # type: ignore[arg-type]
+        condition=condition,
         image_urls=images,
         snippet=_first(scope, "description", url),
         category_hint=_first(scope, "category", url),

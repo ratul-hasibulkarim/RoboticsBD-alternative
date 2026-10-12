@@ -36,15 +36,40 @@ class Outbox:
 
 
 async def _setup(db: AsyncSession) -> tuple[uuid.UUID, uuid.UUID]:
-    src = Source(name="rbd", display_name="RoboticsBD", domain="r.test", type="crawl", base_url="https://r.test",
-                 legal_review_status="approved", country="BD", warehouse_country="BD", ships_to=["BD"],
-                 warehouse_lat=23.81, warehouse_lon=90.41, trust_score=0.8, cache_ttl_hours=48)
-    comp = Component(slug="esp32-wroom-32", mpn="ESP32-WROOM-32", mpn_norm="esp32wroom32", category="wireless",
-                     title="ESP32-WROOM-32")
+    src = Source(
+        name="rbd",
+        display_name="RoboticsBD",
+        domain="r.test",
+        type="crawl",
+        base_url="https://r.test",
+        legal_review_status="approved",
+        country="BD",
+        warehouse_country="BD",
+        ships_to=["BD"],
+        warehouse_lat=23.81,
+        warehouse_lon=90.41,
+        trust_score=0.8,
+        cache_ttl_hours=48,
+    )
+    comp = Component(
+        slug="esp32-wroom-32",
+        mpn="ESP32-WROOM-32",
+        mpn_norm="esp32wroom32",
+        category="wireless",
+        title="ESP32-WROOM-32",
+    )
     db.add_all([src, comp])
     await db.flush()
-    listing = Listing(source_id=src.id, url="https://r.test/esp32", url_hash="h1", raw_title="ESP32",
-                      component_id=comp.id, in_stock=True, ships_from="BD", ships_to=["BD"])
+    listing = Listing(
+        source_id=src.id,
+        url="https://r.test/esp32",
+        url_hash="h1",
+        raw_title="ESP32",
+        component_id=comp.id,
+        in_stock=True,
+        ships_from="BD",
+        ships_to=["BD"],
+    )
     user = User(email="maker@example.com")
     db.add_all([listing, user])
     await db.flush()

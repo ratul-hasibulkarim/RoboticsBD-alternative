@@ -198,9 +198,7 @@ def _product_from_node(node: dict[str, Any], url: str) -> ExtractedListing:
         spec = off.get("priceSpecification")
         if p is None and isinstance(spec, dict):
             p = _decimal(spec.get("price"))
-        cur = _str(off.get("priceCurrency")) or (
-            _str(spec.get("priceCurrency")) if isinstance(spec, dict) else None
-        )
+        cur = _str(off.get("priceCurrency")) or (_str(spec.get("priceCurrency")) if isinstance(spec, dict) else None)
         if p is not None and (price is None or p < price):
             price, currency = p, cur or currency
         in_stock = in_stock if in_stock is not None else _availability(off.get("availability"))
@@ -244,7 +242,7 @@ def _product_from_node(node: dict[str, Any], url: str) -> ExtractedListing:
         moq=moq,
         in_stock=in_stock,
         stock_qty=stock_qty,
-        condition=condition,  # type: ignore[arg-type]
+        condition=condition,
         image_urls=_images(node.get("image"), url) if node.get("image") else [],
         specs=_additional_properties(node),
         category_hint=_str(node.get("category")),

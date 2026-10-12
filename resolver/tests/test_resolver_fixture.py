@@ -82,8 +82,10 @@ async def test_r1_precision_recall() -> None:
         for cid, ids in predicted.items()
         if len({r["truth"] for r in rows if r["id"] in ids}) > 1
     }
-    print(f"pairs true={len(true_pairs)} predicted={len(pred_pairs)} tp={tp} "
-          f"precision={precision:.4f} recall={recall:.4f} reviewed={len(index.reviews)} mixed={mixed}")
+    print(
+        f"pairs true={len(true_pairs)} predicted={len(pred_pairs)} tp={tp} "
+        f"precision={precision:.4f} recall={recall:.4f} reviewed={len(index.reviews)} mixed={mixed}"
+    )
     assert precision >= 0.98, mixed
     assert recall >= 0.95
 
@@ -98,41 +100,55 @@ async def test_r2_never_merge_across_packages_without_exact_mpn() -> None:
     for cid, packages in by_component.items():
         if len(packages) > 1:
             # allowed only if every listing on the component has the same exact MPN key
-            keys = {
-                r["truth"] for r in rows if index.assignments.get(uuid.UUID(r["id"])) == cid
-            }
+            keys = {r["truth"] for r in rows if index.assignments.get(uuid.UUID(r["id"])) == cid}
             assert len(keys) == 1, (cid, packages, keys)
 
 
 def test_r2_rule_directly() -> None:
     emb = HashingEmbedder().embed(["Infineon IRFZ44N MOSFET"])[0]
-    base = dict(manufacturer="Infineon", gtin=None, specs_norm={}, embedding=emb)
-    cand = Candidate(id=uuid.uuid4(), mpn="IRFZ44N", package="TO-220", **base)  # type: ignore[arg-type]
+    base: dict[str, Any] = dict(manufacturer="Infineon", gtin=None, specs_norm={}, embedding=emb)
+    cand = Candidate(id=uuid.uuid4(), mpn="IRFZ44N", package="TO-220", **base)
     # Fuzzy MPN (1 edit) on a different package → never attached
-    lf = ListingFeatures(mpn="IRFZ44NS", mpn_trusted=True, package="D2PAK", title="IRFZ44NS", **base)  # type: ignore[arg-type]
+    lf = ListingFeatures(mpn="IRFZ44NS", mpn_trusted=True, package="D2PAK", title="IRFZ44NS", **base)
     d = match(lf, [cand])
     assert d.component_id != cand.id or d.action is not Action.ATTACH
     # Embedding-only path on a different package → never suggested
-    lf2 = ListingFeatures(mpn=None, mpn_trusted=False, package="D2PAK", title="Infineon IRFZ44N MOSFET", **base)  # type: ignore[arg-type]
+    lf2 = ListingFeatures(mpn=None, mpn_trusted=False, package="D2PAK", title="Infineon IRFZ44N MOSFET", **base)
     assert match(lf2, [cand]).component_id is None
     # Exact MPN across packages is allowed (distributor package naming differs)
-    lf3 = ListingFeatures(mpn="IRFZ44N", mpn_trusted=True, package="TO-220AB", title="IRFZ44N", **base)  # type: ignore[arg-type]
+    lf3 = ListingFeatures(mpn="IRFZ44N", mpn_trusted=True, package="TO-220AB", title="IRFZ44N", **base)
     assert match(lf3, [cand]).action is Action.ATTACH
 
 
 def test_never_merge_across_manufacturers_without_gtin() -> None:
     a = Candidate(id=uuid.uuid4(), mpn="LM7805CT", manufacturer="onsemi")
-    lf = ListingFeatures(mpn="LM7805CT", mpn_trusted=True, manufacturer="STMicroelectronics", gtin=None,
-                         package=None, title="LM7805CT", specs_norm={}, embedding=None)
+    lf = ListingFeatures(
+        mpn="LM7805CT",
+        mpn_trusted=True,
+        manufacturer="STMicroelectronics",
+        gtin=None,
+        package=None,
+        title="LM7805CT",
+        specs_norm={},
+        embedding=None,
+    )
     assert match(lf, [a]).component_id != a.id
     b = Candidate(id=uuid.uuid4(), mpn="X", manufacturer="onsemi", gtin="00012345678905")
-    lf_gtin = ListingFeatures(mpn=None, mpn_trusted=False, manufacturer="Other", gtin="00012345678905",
-                              package=None, title="x", specs_norm={}, embedding=None)
+    lf_gtin = ListingFeatures(
+        mpn=None,
+        mpn_trusted=False,
+        manufacturer="Other",
+        gtin="00012345678905",
+        package=None,
+        title="x",
+        specs_norm={},
+        embedding=None,
+    )
     assert match(lf_gtin, [b]).component_id == b.id
 
 
 async def test_r3_every_attach_has_audit_row() -> None:
-    rows, index = await _run()
+    _rows, index = await _run()
     attached = set(index.assignments)
     audited = {r["listing_id"] for r in index.audit_rows if r["action"] == "attach"}
     assert attached <= audited
@@ -140,9 +156,17 @@ async def test_r3_every_attach_has_audit_row() -> None:
     assert created == set(index.components)
 
 
-@pytest.mark.parametrize("trap", [("esp32-wroom-32", "esp32-wroom-32d"), ("ams1117-3.3", "ams1117-5.0"),
-                                  ("irfz44n", "irlz44n"), ("atmega328p-pu", "atmega328-pu"),
-                                  ("lm7805ct", "l7805cv"), ("dht11", "dht22")])
+@pytest.mark.parametrize(
+    "trap",
+    [
+        ("esp32-wroom-32", "esp32-wroom-32d"),
+        ("ams1117-3.3", "ams1117-5.0"),
+        ("irfz44n", "irlz44n"),
+        ("atmega328p-pu", "atmega328-pu"),
+        ("lm7805ct", "l7805cv"),
+        ("dht11", "dht22"),
+    ],
+)
 async def test_lookalikes_stay_apart(trap: tuple[str, str]) -> None:
     rows, index = await _run()
     comps = {t: {index.assignments.get(uuid.UUID(r["id"])) for r in rows if r["truth"] == t} - {None} for t in trap}

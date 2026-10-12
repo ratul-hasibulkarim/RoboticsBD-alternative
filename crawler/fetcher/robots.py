@@ -132,7 +132,7 @@ class RobotsCache:
         if not force_refresh:
             cached = await self.redis.get(key)
             if cached is not None:
-                return RobotsRules.from_json(cached)
+                return RobotsRules.from_json(cached if isinstance(cached, bytes) else str(cached).encode())
         rules = await fetch_robots(self.client, origin)
         ttl = UNREACHABLE_TTL_S if rules.state == "unreachable" else ROBOTS_TTL_S
         await self.redis.set(key, rules.to_json(), ex=ttl)

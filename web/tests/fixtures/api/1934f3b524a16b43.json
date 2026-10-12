@@ -1,0 +1,61 @@
+{
+ "query": "esp32",
+ "kind": "mpn",
+ "hits": [
+  {
+   "id": "5689996a-b72d-4682-a9c3-f23f2306dd48",
+   "slug": "esp32-wroom-32",
+   "mpn": "ESP32-WROOM-32",
+   "title": "ESP32-WROOM-32 Wi-Fi + Bluetooth module",
+   "manufacturer": "Espressif",
+   "category": "wireless",
+   "package": "SMD-38",
+   "lowest_price_usd_minor": 426,
+   "offer_count": 3,
+   "in_stock": true,
+   "ships_to_bd": true,
+   "image_url": null
+  },
+  {
+   "id": "b8737075-4b7b-49f6-91f8-f15b2ef0ba8c",
+   "slug": "esp32-wroom-32d",
+   "mpn": "ESP32-WROOM-32D",
+   "title": "ESP32-WROOM-32D Wi-Fi + Bluetooth module",
+   "manufacturer": "Espressif",
+   "category": "wireless",
+   "package": "SMD-38",
+   "lowest_price_usd_minor": 443,
+   "offer_count": 1,
+   "in_stock": true,
+   "ships_to_bd": true,
+   "image_url": null
+  }
+ ],
+ "found": 2,
+ "page": 1,
+ "per_page": 24,
+ "facets": {
+  "manufacturer": [
+   [
+    "Espressif",
+    2
+   ]
+  ],
+  "category": [
+   [
+    "wireless",
+    2
+   ]
+  ],
+  "package": [
+   [
+    "SMD-38",
+    2
+   ]
+  ]
+ },
+ "backend": "postgres",
+ "took_ms": 38.62,
+ "message": null,
+ "discovery_queued": false
+}

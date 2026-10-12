@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import uuid
+from typing import Any
 
 import pytest
 from sqlalchemy import func, select
@@ -32,10 +33,18 @@ async def _listing(db: AsyncSession, source_id: uuid.UUID, title: str, **kw: obj
     return lid
 
 
-def _item(lid: uuid.UUID, title: str, mpn: str | None, mfr: str | None, **kw: object) -> ResolvableListing:
-    return ResolvableListing(id=lid, title=title, mpn=mpn, mpn_trusted=mpn is not None, manufacturer=mfr,
-                             gtin=kw.get("gtin"), package=kw.get("package"), specs=kw.get("specs", {}),  # type: ignore[arg-type]
-                             datasheet_url=kw.get("datasheet_url"))  # type: ignore[arg-type]
+def _item(lid: uuid.UUID, title: str, mpn: str | None, mfr: str | None, **kw: Any) -> ResolvableListing:
+    return ResolvableListing(
+        id=lid,
+        title=title,
+        mpn=mpn,
+        mpn_trusted=mpn is not None,
+        manufacturer=mfr,
+        gtin=kw.get("gtin"),
+        package=kw.get("package"),
+        specs=kw.get("specs", {}),
+        datasheet_url=kw.get("datasheet_url"),
+    )
 
 
 async def test_create_then_attach_with_audit(db: AsyncSession) -> None:
@@ -43,8 +52,15 @@ async def test_create_then_attach_with_audit(db: AsyncSession) -> None:
     r = Resolver(PgComponentIndex(db), HashingEmbedder())
     l1 = await _listing(db, sid, "ESP32-WROOM-32 module")
     l2 = await _listing(db, sid, "ESP32 WROOM 32 WiFi module")
-    d1 = await r.resolve(_item(l1, "Espressif ESP32-WROOM-32 module", "ESP32-WROOM-32", "Espressif Systems",
-                               datasheet_url="https://www.espressif.com/ds.pdf"))
+    d1 = await r.resolve(
+        _item(
+            l1,
+            "Espressif ESP32-WROOM-32 module",
+            "ESP32-WROOM-32",
+            "Espressif Systems",
+            datasheet_url="https://www.espressif.com/ds.pdf",
+        )
+    )
     d2 = await r.resolve(_item(l2, "ESP32 WROOM 32 WiFi module", None, None))
     await db.commit()
     assert d1.action is Action.CREATE and d2.action is Action.ATTACH
@@ -74,17 +90,42 @@ async def test_review_and_resolve(db: AsyncSession) -> None:
     await resolve_review_item(db, item.id, component_id=target, actor="admin:test")
     await db.commit()
     assert (await db.get(Listing, l3)).component_id == target  # type: ignore[union-attr]
-    assert (await db.execute(select(func.count()).select_from(MergeAudit).where(MergeAudit.listing_id == l3))).scalar() == 1
+    assert (
+        await db.execute(select(func.count()).select_from(MergeAudit).where(MergeAudit.listing_id == l3))
+    ).scalar() == 1
 
 
 async def test_merge_requires_threshold_and_audits(db: AsyncSession) -> None:
     sid = await _source(db)
-    a = Component(slug="a", mpn="NE555P", mpn_norm="ne555p", manufacturer="Texas Instruments",
-                  manufacturer_norm="texasinstruments", category="ic-analog", title="a", gtin="00751492000015")
-    b = Component(slug="b", mpn="NE555P-X", mpn_norm="ne555px", manufacturer=None, manufacturer_norm="",
-                  category="ic-analog", title="b", gtin="00751492000015")
-    c = Component(slug="c", mpn="LM358N", mpn_norm="lm358n", manufacturer="Texas Instruments",
-                  manufacturer_norm="texasinstruments", category="ic-analog", title="c")
+    a = Component(
+        slug="a",
+        mpn="NE555P",
+        mpn_norm="ne555p",
+        manufacturer="Texas Instruments",
+        manufacturer_norm="texasinstruments",
+        category="ic-analog",
+        title="a",
+        gtin="00751492000015",
+    )
+    b = Component(
+        slug="b",
+        mpn="NE555P-X",
+        mpn_norm="ne555px",
+        manufacturer=None,
+        manufacturer_norm="",
+        category="ic-analog",
+        title="b",
+        gtin="00751492000015",
+    )
+    c = Component(
+        slug="c",
+        mpn="LM358N",
+        mpn_norm="lm358n",
+        manufacturer="Texas Instruments",
+        manufacturer_norm="texasinstruments",
+        category="ic-analog",
+        title="c",
+    )
     db.add_all([a, b, c])
     await db.flush()
     lb = await _listing(db, sid, "b", component_id=b.id)
@@ -100,14 +141,22 @@ async def test_merge_requires_threshold_and_audits(db: AsyncSession) -> None:
 
 async def test_split_moves_listings_with_audit(db: AsyncSession) -> None:
     sid = await _source(db)
-    comp = Component(slug="esp32-wroom-32", mpn="ESP32-WROOM-32", mpn_norm="esp32wroom32", manufacturer="Espressif",
-                     manufacturer_norm="espressif", category="wireless", title="x")
+    comp = Component(
+        slug="esp32-wroom-32",
+        mpn="ESP32-WROOM-32",
+        mpn_norm="esp32wroom32",
+        manufacturer="Espressif",
+        manufacturer_norm="espressif",
+        category="wireless",
+        title="x",
+    )
     db.add(comp)
     await db.flush()
     keep = await _listing(db, sid, "32", component_id=comp.id)
     wrong = await _listing(db, sid, "32D", component_id=comp.id)
-    new_id = await split_component(db, comp.id, [wrong], new_mpn="ESP32-WROOM-32D",
-                                   new_manufacturer="Espressif", actor="admin:test")
+    new_id = await split_component(
+        db, comp.id, [wrong], new_mpn="ESP32-WROOM-32D", new_manufacturer="Espressif", actor="admin:test"
+    )
     await db.commit()
     assert (await db.get(Listing, wrong)).component_id == new_id  # type: ignore[union-attr]
     assert (await db.get(Listing, keep)).component_id == comp.id  # type: ignore[union-attr]

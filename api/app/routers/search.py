@@ -35,12 +35,26 @@ async def search(
     primary = TypesenseBackend(ts) if ts is not None else PostgresBackend(s)
     fallback = PostgresBackend(s) if ts is not None else None
     service = SearchService(
-        primary, fallback, redis, request.app.state.embedder,
-        cache_ttl_s=settings.search_cache_ttl_s, session=s,
+        primary,
+        fallback,
+        redis,
+        request.app.state.embedder,
+        cache_ttl_s=settings.search_cache_ttl_s,
+        session=s,
     )
     params = SearchParams(
-        q=q, page=page, per_page=per_page, category=category, manufacturer=manufacturer, package=package,
-        in_stock=in_stock, ships_to_bd=ships_to_bd, sort=sort, user_country=geo.country,
+        q=q,
+        page=page,
+        per_page=per_page,
+        category=category,
+        manufacturer=manufacturer,
+        package=package,
+        in_stock=in_stock,
+        ships_to_bd=ships_to_bd,
+        sort=sort,
+        user_country=geo.country,
     )
-    resp: SearchResponse = await service.search(params, session_hash=session_hash(settings.secret_key.get_secret_value(), request))
+    resp: SearchResponse = await service.search(
+        params, session_hash=session_hash(settings.secret_key.get_secret_value(), request)
+    )
     return dataclasses.asdict(resp)

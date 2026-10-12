@@ -138,9 +138,10 @@ async def extract(
     if rules is not None and rules.is_offer:
         return ExtractionResult(Outcome.OK, finalize(rules, source))
 
-    looks_like_product = rules is not None or tree.css_first(
-        'meta[property="og:type"][content="product"], [itemtype*="schema.org/Product"]'
-    ) is not None
+    looks_like_product = (
+        rules is not None
+        or tree.css_first('meta[property="og:type"][content="product"], [itemtype*="schema.org/Product"]') is not None
+    )
     if not looks_like_product:
         return ExtractionResult(Outcome.NO_PRODUCT, None)
 

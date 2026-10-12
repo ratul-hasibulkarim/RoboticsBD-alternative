@@ -88,9 +88,7 @@ async def store_rates(s: AsyncSession, day: date, rates: dict[str, Decimal], sou
     for cur, per_usd in rates.items():
         stmt = insert(FxRate).values(day=day, currency=cur, per_usd=per_usd, source=source)
         await s.execute(
-            stmt.on_conflict_do_update(
-                index_elements=["day", "currency"], set_={"per_usd": per_usd, "source": source}
-            )
+            stmt.on_conflict_do_update(index_elements=["day", "currency"], set_={"per_usd": per_usd, "source": source})
         )
     return len(rates)
 

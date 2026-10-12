@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 import uuid
 from collections.abc import AsyncIterator
-from xml.etree import ElementTree as ET  # noqa: S405 — parsing only; no entity expansion in stdlib ET
+from xml.etree import ElementTree as ET
 
 from crawler.extractors.html import absolutize, attr, parse
 from crawler.fetcher.worker import Fetcher, FetchStatus

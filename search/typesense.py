@@ -54,10 +54,10 @@ class TypesenseClient:
         if resp.status_code not in (200, 404):
             resp.raise_for_status()
 
-    async def multi_search(self, searches: list[dict[str, Any]], common: dict[str, Any] | None = None) -> dict[str, Any]:
-        resp = await self.api.request(
-            "POST", "/multi_search", params=common or {}, json={"searches": searches}
-        )
+    async def multi_search(
+        self, searches: list[dict[str, Any]], common: dict[str, Any] | None = None
+    ) -> dict[str, Any]:
+        resp = await self.api.request("POST", "/multi_search", params=common or {}, json={"searches": searches})
         resp.raise_for_status()
         data: dict[str, Any] = resp.json()
         return data

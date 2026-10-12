@@ -39,19 +39,29 @@ async def build_documents(s: AsyncSession, component_ids: list[uuid.UUID] | None
             func.count(PriceCurrent.listing_id).label("offers"),
             func.bool_or(Listing.in_stock.is_(True)).label("in_stock"),
             func.bool_or(
-                func.coalesce(func.array_position(Listing.ships_to, "BD"), func.array_position(Listing.ships_to, "*"))
-                .is_not(None)
+                func.coalesce(
+                    func.array_position(Listing.ships_to, "BD"), func.array_position(Listing.ships_to, "*")
+                ).is_not(None)
             ).label("ships_bd"),
         )
         .join(PriceCurrent, PriceCurrent.listing_id == Listing.id)
-        .join(Source, and_(Source.id == Listing.source_id, Source.active.is_(True), Source.legal_review_status != "blocked"))
+        .join(
+            Source,
+            and_(Source.id == Listing.source_id, Source.active.is_(True), Source.legal_review_status != "blocked"),
+        )
         .where(Listing.active.is_(True), Listing.component_id.is_not(None))
         .group_by(Listing.component_id)
         .subquery()
     )
     q = (
-        select(Component, offer_stats.c.lowest, offer_stats.c.offers, offer_stats.c.in_stock, offer_stats.c.ships_bd,
-               Image.source_url)
+        select(
+            Component,
+            offer_stats.c.lowest,
+            offer_stats.c.offers,
+            offer_stats.c.in_stock,
+            offer_stats.c.ships_bd,
+            Image.source_url,
+        )
         .outerjoin(offer_stats, offer_stats.c.cid == Component.id)
         .outerjoin(Image, Image.id == Component.primary_image)
         .where(Component.status == "active")
@@ -73,8 +83,12 @@ async def build_documents(s: AsyncSession, component_ids: list[uuid.UUID] | None
             "popularity": float(comp.popularity),
             "specs_text": specs_text(comp.specs or {}),
         }
-        for key, val in (("manufacturer", comp.manufacturer), ("subcategory", comp.subcategory),
-                         ("package", comp.package), ("image_url", image_url)):
+        for key, val in (
+            ("manufacturer", comp.manufacturer),
+            ("subcategory", comp.subcategory),
+            ("package", comp.package),
+            ("image_url", image_url),
+        ):
             if val:
                 doc[key] = val
         if lowest is not None:

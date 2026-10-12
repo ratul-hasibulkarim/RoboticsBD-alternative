@@ -130,9 +130,7 @@ class PgSourceStateStore:
         if cached is not None:
             return cached.decode() if isinstance(cached, bytes) else str(cached)
         async with self.sm() as s:
-            status = (
-                await s.execute(select(Source.crawl_status).where(Source.id == source_id))
-            ).scalar_one_or_none()
+            status = (await s.execute(select(Source.crawl_status).where(Source.id == source_id))).scalar_one_or_none()
         status = status or "disabled"
         await self.redis.set(self._key(source_id), status, ex=60)
         return status
@@ -188,9 +186,7 @@ class S3RawStore:
         )
 
     async def put(self, key: str, body: bytes, content_type: str) -> str:
-        await asyncio.to_thread(
-            self._s3.put_object, Bucket=self.bucket, Key=key, Body=body, ContentType=content_type
-        )
+        await asyncio.to_thread(self._s3.put_object, Bucket=self.bucket, Key=key, Body=body, ContentType=content_type)
         return key
 
     async def get(self, ref: str) -> bytes:

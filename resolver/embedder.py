@@ -86,9 +86,7 @@ def get_embedder() -> Embedder:
     return HashingEmbedder()
 
 
-def embedding_text(
-    manufacturer: str | None, mpn: str | None, title: str | None, specs: dict[str, str] | None
-) -> str:
+def embedding_text(manufacturer: str | None, mpn: str | None, title: str | None, specs: dict[str, str] | None) -> str:
     """§6.2: manufacturer + mpn + title + top-5 specs."""
     top_specs = list((specs or {}).items())[:5]
     parts = [manufacturer or "", mpn or "", title or ""] + [f"{k} {v}" for k, v in top_specs]

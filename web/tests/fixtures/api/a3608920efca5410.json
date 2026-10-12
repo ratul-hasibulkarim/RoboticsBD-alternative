@@ -1,0 +1,22 @@
+[
+ {
+  "id": "ea8fedc4-415d-474b-99d0-3e398a021437",
+  "slug": "blink-led-arduino",
+  "title": "Blink an LED with ESP32 (Arduino core)",
+  "difficulty": "beginner",
+  "summary": "Install the ESP32 Arduino core and toggle GPIO2.",
+  "steps": [
+   "Install the core",
+   "Upload sketch"
+  ],
+  "thumbnail_url": null,
+  "code_language": "arduino",
+  "code_snippet": "void setup(){pinMode(2,OUTPUT);}\nvoid loop(){digitalWrite(2,!digitalRead(2));delay(500);}",
+  "code_license": "CC0-1.0",
+  "source_type": "editorial",
+  "source_url": "https://voltfind.com/guides/esp32-blink",
+  "source_author": "VoltFind",
+  "source_license": null,
+  "upvotes": 0
+ }
+]

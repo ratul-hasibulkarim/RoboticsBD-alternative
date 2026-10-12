@@ -15,7 +15,9 @@ SUBREDDITS = ("AskElectronics", "PrintedCircuitBoard", "electronics", "embedded"
 
 
 class RedditClient:
-    def __init__(self, source: SourceConfig, client_id: str, client_secret: str, client: ApiClient | None = None) -> None:
+    def __init__(
+        self, source: SourceConfig, client_id: str, client_secret: str, client: ApiClient | None = None
+    ) -> None:
         require_api_access(source, client_id, client_secret)
         self.client_id, self.client_secret = client_id, client_secret
         self.client = client or ApiClient("https://oauth.reddit.com")
@@ -26,8 +28,10 @@ class RedditClient:
         if self._token and time.time() < self._exp - 60:
             return self._token
         resp = await self.client.request(
-            "POST", "https://www.reddit.com/api/v1/access_token",
-            data={"grant_type": "client_credentials"}, auth=httpx.BasicAuth(self.client_id, self.client_secret),
+            "POST",
+            "https://www.reddit.com/api/v1/access_token",
+            data={"grant_type": "client_credentials"},
+            auth=httpx.BasicAuth(self.client_id, self.client_secret),
         )
         resp.raise_for_status()
         data = resp.json()
@@ -47,10 +51,15 @@ class RedditClient:
                 d = child.get("data") or {}
                 if d.get("over_18") or int(d.get("score") or 0) < min_score:
                     continue
-                out.append(UseCaseDraft(
-                    title=clip(d.get("title"), 200), summary=clip(d.get("selftext") or d.get("title"), 600),
-                    source_type="reddit", source_url=f"https://www.reddit.com{d.get('permalink', '')}",
-                    source_author=f"u/{d['author']}" if d.get("author") else None,
-                    source_license="Reddit User Agreement (linked, not copied)", upvotes=int(d.get("score") or 0),
-                ))
+                out.append(
+                    UseCaseDraft(
+                        title=clip(d.get("title"), 200),
+                        summary=clip(d.get("selftext") or d.get("title"), 600),
+                        source_type="reddit",
+                        source_url=f"https://www.reddit.com{d.get('permalink', '')}",
+                        source_author=f"u/{d['author']}" if d.get("author") else None,
+                        source_license="Reddit User Agreement (linked, not copied)",
+                        upvotes=int(d.get("score") or 0),
+                    )
+                )
         return out

@@ -138,9 +138,7 @@ def refine_untrusted_mpn(listing: ListingFeatures, candidates: list[Candidate]) 
     return listing
 
 
-def match(
-    listing: ListingFeatures, candidates: list[Candidate], *, allow_untrusted_create: bool = True
-) -> Decision:
+def match(listing: ListingFeatures, candidates: list[Candidate], *, allow_untrusted_create: bool = True) -> Decision:
     listing = refine_untrusted_mpn(listing, candidates)
     lk, lm = listing.mpn_key, listing.mfr_key
 
@@ -172,9 +170,7 @@ def match(
                     Action.ATTACH, exact[0].id, 0.90, "mpn_exact", "MPN exact; listing manufacturer unknown"
                 )
             if len(exact) > 1:
-                return Decision(
-                    Action.REVIEW, None, 0.0, "mpn_exact", f"MPN matches {len(exact)} manufacturers"
-                )
+                return Decision(Action.REVIEW, None, 0.0, "mpn_exact", f"MPN matches {len(exact)} manufacturers")
         # 3. MPN exact + manufacturer fuzzy
         if lm:
             for c in exact:
@@ -224,9 +220,7 @@ def match(
                 if best is None or sim > best[0]:
                     best = (sim, c)
         if best is not None:
-            return Decision(
-                Action.REVIEW, best[1].id, REVIEW_FLOOR, "embedding", f"embedding cosine {best[0]:.3f}"
-            )
+            return Decision(Action.REVIEW, best[1].id, REVIEW_FLOOR, "embedding", f"embedding cosine {best[0]:.3f}")
 
     # 6. New component or manual review
     if lk and listing.mpn_trusted:

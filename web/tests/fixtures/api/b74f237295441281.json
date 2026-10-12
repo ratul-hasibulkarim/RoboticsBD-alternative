@@ -1,0 +1,19 @@
+{
+ "items": [
+  {
+   "slug": "ne555p",
+   "mpn": "NE555P",
+   "title": "NE555P precision timer IC",
+   "manufacturer": "Texas Instruments",
+   "category": "ic-analog",
+   "subcategory": "timer",
+   "package": "DIP-8",
+   "image_url": null,
+   "lowest_price_usd_minor": 12,
+   "offer_count": 1
+  }
+ ],
+ "total": 1,
+ "page": 1,
+ "per_page": 24
+}

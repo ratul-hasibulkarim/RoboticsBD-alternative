@@ -1,0 +1,38 @@
+[
+ {
+  "slug": "esp32-wroom-32",
+  "mpn": "ESP32-WROOM-32",
+  "title": "ESP32-WROOM-32 Wi-Fi + Bluetooth module",
+  "manufacturer": "Espressif",
+  "category": "wireless",
+  "subcategory": "wifi-ble",
+  "package": "SMD-38",
+  "image_url": null,
+  "lowest_price_usd_minor": 426,
+  "offer_count": 3
+ },
+ {
+  "slug": "ne555p",
+  "mpn": "NE555P",
+  "title": "NE555P precision timer IC",
+  "manufacturer": "Texas Instruments",
+  "category": "ic-analog",
+  "subcategory": "timer",
+  "package": "DIP-8",
+  "image_url": null,
+  "lowest_price_usd_minor": 12,
+  "offer_count": 1
+ },
+ {
+  "slug": "esp32-wroom-32d",
+  "mpn": "ESP32-WROOM-32D",
+  "title": "ESP32-WROOM-32D Wi-Fi + Bluetooth module",
+  "manufacturer": "Espressif",
+  "category": "wireless",
+  "subcategory": "wifi-ble",
+  "package": "SMD-38",
+  "image_url": null,
+  "lowest_price_usd_minor": 443,
+  "offer_count": 1
+ }
+]

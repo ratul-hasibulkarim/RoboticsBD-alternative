@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import hashlib
-from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 # Query params that never change page content; stripped before hashing.
 _TRACKING_PARAMS = frozenset(

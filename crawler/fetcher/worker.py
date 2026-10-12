@@ -38,13 +38,45 @@ MAX_REDIRECTS = 5
 
 SKIP_EXTENSIONS = frozenset(
     {
-        ".pdf", ".zip", ".rar", ".7z", ".gz", ".tar", ".exe", ".dmg", ".iso",
-        ".mp4", ".mov", ".avi", ".mkv", ".webm", ".mp3", ".wav",
-        ".jpg", ".jpeg", ".png", ".gif", ".webp", ".avif", ".svg",
-        ".step", ".stp", ".stl", ".brd", ".sch", ".gbr",
+        ".pdf",
+        ".zip",
+        ".rar",
+        ".7z",
+        ".gz",
+        ".tar",
+        ".exe",
+        ".dmg",
+        ".iso",
+        ".mp4",
+        ".mov",
+        ".avi",
+        ".mkv",
+        ".webm",
+        ".mp3",
+        ".wav",
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif",
+        ".webp",
+        ".avif",
+        ".svg",
+        ".step",
+        ".stp",
+        ".stl",
+        ".brd",
+        ".sch",
+        ".gbr",
     }
 )
-ALLOWED_CONTENT_TYPES = ("text/html", "application/xhtml+xml", "application/xml", "text/xml", "application/json", "application/ld+json")
+ALLOWED_CONTENT_TYPES = (
+    "text/html",
+    "application/xhtml+xml",
+    "application/xml",
+    "text/xml",
+    "application/json",
+    "application/ld+json",
+)
 
 
 class FetchStatus(enum.StrEnum):
@@ -137,9 +169,7 @@ class Fetcher:
                 return FetchResult(FetchStatus.ROBOTS_DISALLOWED, url, current, reason=rules.state)
 
             host = _host(current)
-            interval = effective_interval_s(
-                source.rate_limit_rps, rules.crawl_delay(), rules.request_rate_rps()
-            )
+            interval = effective_interval_s(source.rate_limit_rps, rules.crawl_delay(), rules.request_rate_rps())
             try:
                 await self.limiter.acquire(host, interval)  # 5.
             except TimeoutError:
@@ -254,9 +284,7 @@ class Fetcher:
         prev_hash = getattr(previous, "content_hash", None)
         if prev_hash == chash:
             await self._record_meta(url, uhash, current, source_id, status)
-            return FetchResult(
-                FetchStatus.UNCHANGED, url, current, http_status=status, content_hash=chash
-            )
+            return FetchResult(FetchStatus.UNCHANGED, url, current, http_status=status, content_hash=chash)
 
         ref = await self.raw.put(raw_key(source.name, uhash, now), body, ctype or "text/html")
         await self.pages.record(
@@ -286,9 +314,7 @@ class Fetcher:
             raw_ref=ref,
         )
 
-    async def _record_meta(
-        self, url: str, uhash: str, current: str, source_id: uuid.UUID, status: int
-    ) -> None:
+    async def _record_meta(self, url: str, uhash: str, current: str, source_id: uuid.UUID, status: int) -> None:
         await self.pages.record(
             PageRecord(url, uhash, current, source_id, utcnow(), status, None, None, None, None, None, None)
         )

@@ -1,0 +1,17 @@
+{
+ "query": "STM32H743ZIT6",
+ "kind": "mpn",
+ "hits": [],
+ "found": 0,
+ "page": 1,
+ "per_page": 24,
+ "facets": {
+  "manufacturer": [],
+  "category": [],
+  "package": []
+ },
+ "backend": "postgres",
+ "took_ms": 16.19,
+ "message": "We don't have this part yet. We've queued it for lookup at our approved distributor sources — check back in about an hour, or leave your e-mail to be told when it's in.",
+ "discovery_queued": true
+}

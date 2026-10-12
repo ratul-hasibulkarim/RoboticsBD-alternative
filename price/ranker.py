@@ -123,7 +123,12 @@ def unit_price_minor(offer: Offer, quantity: int) -> tuple[int, int]:
 
 def default_eta(offer: Offer, geo: UserGeo) -> tuple[int, int]:
     if offer.ships_from and offer.ships_from == geo.country:
-        if offer.warehouse_lat is not None and geo.lat is not None and offer.warehouse_lon is not None and geo.lon is not None:
+        if (
+            offer.warehouse_lat is not None
+            and geo.lat is not None
+            and offer.warehouse_lon is not None
+            and geo.lon is not None
+        ):
             if haversine_km(offer.warehouse_lat, offer.warehouse_lon, geo.lat, geo.lon) < 30:
                 return 1, 2  # same city
         return 2, 4
@@ -209,9 +214,7 @@ def rank_offers(
         if r.offer.in_stock is False:
             score *= OUT_OF_STOCK_FACTOR
         parts = {"cost": cost_s, "speed": speed_s, "proximity": prox_s, "trust": trust, "freshness": r.freshness}
-        scored.append(
-            RankedOffer(**{**r.__dict__, "score": round(score, 6), "score_parts": parts})
-        )
+        scored.append(RankedOffer(**{**r.__dict__, "score": round(score, 6), "score_parts": parts}))
 
     def stock_key(r: RankedOffer) -> int:
         return 1 if r.offer.in_stock is False else 0

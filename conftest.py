@@ -33,11 +33,17 @@ def migrated_db() -> Iterator[str]:
     env = {**os.environ, "DATABASE_URL": TEST_DATABASE_URL}
     subprocess.run(
         [sys.executable, "-m", "alembic", "-c", str(ROOT / "api" / "alembic.ini"), "downgrade", "base"],
-        check=True, env=env, cwd=ROOT, capture_output=True,
+        check=True,
+        env=env,
+        cwd=ROOT,
+        capture_output=True,
     )
     subprocess.run(
         [sys.executable, "-m", "alembic", "-c", str(ROOT / "api" / "alembic.ini"), "upgrade", "head"],
-        check=True, env=env, cwd=ROOT, capture_output=True,
+        check=True,
+        env=env,
+        cwd=ROOT,
+        capture_output=True,
     )
     yield TEST_DATABASE_URL
 

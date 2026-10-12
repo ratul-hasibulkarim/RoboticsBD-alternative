@@ -1,0 +1,21 @@
+# Ad placement policy (§11.1, AdSense — spec v1.1 row 2). Enforced by:
+#   ads/adapter.tsx              — the ONLY component allowed to render an ad
+#   scripts/check_ads_policy.py  — CI gate W7 (fails on any violation)
+max_slots_per_page: 3
+auto_ads: false
+allowed:
+  in_feed_native:  { templates: [search, category, manufacturer], position: after_item_8, frequency: 1_per_page, min_height_px: 120 }
+  sidebar_sticky:  { templates: [component, search, category], min_viewport_px: 1280, min_height_px: 600 }
+  below_offers:    { templates: [component, prices], position: after_full_price_table, min_height_px: 250 }
+  article_footer:  { templates: [use_case, guide], min_height_px: 250 }
+forbidden:
+  - interstitial_on_navigation
+  - popup_on_load
+  - sticky_bottom_on_mobile
+  - anchor_ads
+  - above_the_fold_on_component_page
+  - video_ads_on_price_pages
+# Templates that may never carry ads.
+no_ads_templates: [home, alerts, admin, legal, opt_out, bot, compare_empty, not_found]
+# Pages with auto-generated text carry ads only after human review (§11.2).
+require_reviewed_content: [component, guide]

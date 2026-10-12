@@ -12,8 +12,17 @@ import unicodedata
 from typing import Any
 
 _SI_PREFIX = {
-    "p": 1e-12, "n": 1e-9, "u": 1e-6, "µ": 1e-6, "μ": 1e-6, "m": 1e-3,
-    "": 1.0, "k": 1e3, "K": 1e3, "M": 1e6, "G": 1e9,
+    "p": 1e-12,
+    "n": 1e-9,
+    "u": 1e-6,
+    "µ": 1e-6,
+    "μ": 1e-6,
+    "m": 1e-3,
+    "": 1.0,
+    "k": 1e3,
+    "K": 1e3,
+    "M": 1e6,
+    "G": 1e9,
 }
 
 # canonical unit → accepted spellings (case-sensitive where SI prefixes collide)
@@ -46,6 +55,7 @@ def _is_quantity_text(text: str) -> bool:
     """True when the text is only numbers, units and range filler (so 'SOT-23' is NOT a quantity)."""
     rest = _VALUE.sub("", text)
     return _FILLER.sub("", rest) == ""
+
 
 # raw spec label (lower-cased, punctuation stripped) → canonical key
 KEY_ALIASES: dict[str, str] = {

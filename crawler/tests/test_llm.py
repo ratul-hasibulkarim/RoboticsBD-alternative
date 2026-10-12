@@ -19,10 +19,20 @@ UNSTRUCTURED = b"""<html><head><title>BMP280 sensor</title><meta property="og:ty
 
 def _completion(confidence: float, tokens: int = 2000) -> dict[str, object]:
     content = {
-        "title": "BMP280 Barometric Pressure Sensor Module", "mpn": "BMP280", "manufacturer": "Bosch",
-        "price": 220, "currency": "BDT", "moq": None, "in_stock": None, "stock_qty": None,
-        "ships_from": None, "ships_to": [], "specs": {"Interface": "I2C/SPI", "Supply voltage": "1.8-3.6V"},
-        "price_breaks": [], "use_case_snippets": ["Weather stations and altimeters."], "confidence": confidence,
+        "title": "BMP280 Barometric Pressure Sensor Module",
+        "mpn": "BMP280",
+        "manufacturer": "Bosch",
+        "price": 220,
+        "currency": "BDT",
+        "moq": None,
+        "in_stock": None,
+        "stock_qty": None,
+        "ships_from": None,
+        "ships_to": [],
+        "specs": {"Interface": "I2C/SPI", "Supply voltage": "1.8-3.6V"},
+        "price_breaks": [],
+        "use_case_snippets": ["Weather stations and altimeters."],
+        "confidence": confidence,
     }
     return {"choices": [{"message": {"content": json.dumps(content)}}], "usage": {"total_tokens": tokens}}
 
@@ -79,7 +89,10 @@ async def test_budget_pauses_then_resumes_next_day(redis) -> None:  # type: igno
 async def test_rules_continue_when_llm_paused(redis) -> None:  # type: ignore[no-untyped-def]
     clock = Clock()
     llm = _llm(redis, clock, budget_usd=0.0)
-    page = b"""<script type="application/ld+json">{"@type":"Product","name":"NE555P","offers":{"price":"10","priceCurrency":"BDT"}}</script>"""
+    page = (
+        b'<script type="application/ld+json">'
+        b'{"@type":"Product","name":"NE555P","offers":{"price":"10","priceCurrency":"BDT"}}</script>'
+    )
     res = await extract(page, "https://shop.test/ne555", make_source(), llm=llm)
     assert res.outcome is Outcome.OK
 

@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import asyncio
 import uuid
-from collections.abc import Coroutine
+from collections.abc import Awaitable, Callable, Coroutine
 from typing import Any, TypeVar
 
 from celery import Celery
@@ -51,7 +51,7 @@ app.conf.update(
 )
 
 
-def run(coro: Coroutine[Any, Any, T]) -> T:
+def run[T](coro: Coroutine[Any, Any, T]) -> T:
     return asyncio.run(coro)
 
 
@@ -165,7 +165,7 @@ def resolve_deferred() -> int:
             due = await rt.redis.zrangebyscore("resolver:deferred", 0, now, start=0, num=1000)
             if due:
                 await rt.redis.zrem("resolver:deferred", *due)
-            return [d.decode() for d in due]
+            return [d.decode() if isinstance(d, bytes) else str(d) for d in due]
 
     ids = run(go())
     for lid in ids:
@@ -261,8 +261,12 @@ def run_alerts() -> dict[str, int]:
         async with runtime() as rt, rt.sm() as s:
             st = rt.settings
             notifier = SmtpNotifier(
-                st.smtp_host, st.smtp_port, st.smtp_sender, st.smtp_username,
-                st.smtp_password.get_secret_value(), st.public_site_url,
+                st.smtp_host,
+                st.smtp_port,
+                st.smtp_sender,
+                st.smtp_username,
+                st.smtp_password.get_secret_value(),
+                st.public_site_url,
             )
             counts = await evaluate_alerts(s, await load_table(s), utcnow(), notifier)
             await s.commit()
@@ -317,21 +321,29 @@ def discover(batch: int = 20) -> int:
         approved = {s.name: s for s in approved_sources()}
         async with runtime() as rt:
             st = rt.settings
-            clients = []
+            clients: list[tuple[str, MouserClient | DigiKeyClient]] = []
             if "mouser" in approved and st.mouser_api_key.get_secret_value():
                 clients.append(("mouser", MouserClient(approved["mouser"], st.mouser_api_key.get_secret_value())))
             if "digikey" in approved and st.digikey_client_id.get_secret_value():
-                clients.append(("digikey", DigiKeyClient(approved["digikey"], st.digikey_client_id.get_secret_value(),
-                                                         st.digikey_client_secret.get_secret_value())))
+                clients.append(
+                    (
+                        "digikey",
+                        DigiKeyClient(
+                            approved["digikey"],
+                            st.digikey_client_id.get_secret_value(),
+                            st.digikey_client_secret.get_secret_value(),
+                        ),
+                    )
+                )
             if not clients:
                 return []
             for _ in range(batch):
                 raw = await rt.redis.lpop("discovery:queue")
                 if raw is None:
                     break
-                q = json.loads(raw)["q"]
+                q = json.loads(raw if isinstance(raw, (bytes, str)) else raw[0])["q"]
                 for name, client in clients:
-                    results = await client.by_keyword(q)  # type: ignore[attr-defined]
+                    results = await client.by_keyword(q)
                     async with rt.sm() as s:
                         ids = await ingest_api_listings(s, name, results[:10], await load_table(s))
                         await s.commit()
@@ -351,6 +363,7 @@ def collect_use_cases(component_id: str) -> int:
     async def go() -> int:
         from common.models import Component
         from crawler.api_gate import MissingCredentialsError
+        from crawler.content_types import UseCaseDraft
         from crawler.github_client import GitHubClient
         from crawler.ops import ingest_use_cases
         from crawler.reddit_client import RedditClient
@@ -364,11 +377,14 @@ def collect_use_cases(component_id: str) -> int:
             if comp is None:
                 return 0
             st = rt.settings
-            factories = [
+            factories: list[Callable[[], Awaitable[list[UseCaseDraft]]]] = [
                 lambda: YouTubeClient(reg.get("youtube"), st.youtube_api_key.get_secret_value()).tutorials(comp.mpn),
                 lambda: GitHubClient(reg.get("github"), st.github_token.get_secret_value()).projects(comp.mpn),
-                lambda: RedditClient(reg.get("reddit"), st.reddit_client_id.get_secret_value(),
-                                     st.reddit_client_secret.get_secret_value()).discussions(comp.mpn),
+                lambda: RedditClient(
+                    reg.get("reddit"),
+                    st.reddit_client_id.get_secret_value(),
+                    st.reddit_client_secret.get_secret_value(),
+                ).discussions(comp.mpn),
             ]
             total = 0
             for make in factories:

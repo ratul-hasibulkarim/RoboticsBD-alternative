@@ -101,8 +101,7 @@ class SourceConfig(BaseModel):
     def require_approved(self) -> None:
         if not self.is_approved:
             raise NotApprovedError(
-                f"source {self.name!r} is not approved "
-                f"(status={self.legal_review.status}, active={self.active})"
+                f"source {self.name!r} is not approved (status={self.legal_review.status}, active={self.active})"
             )
 
 

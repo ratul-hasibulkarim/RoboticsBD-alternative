@@ -1,0 +1,130 @@
+{
+ "id": "48f92d9f-f05b-4999-92d3-bd02fb5b2c19",
+ "slug": "ne555p",
+ "mpn": "NE555P",
+ "title": "NE555P precision timer IC",
+ "manufacturer": "Texas Instruments",
+ "category": "ic-analog",
+ "subcategory": "timer",
+ "package": "DIP-8",
+ "lifecycle": "unknown",
+ "short_desc": "NE555P precision timer IC",
+ "prose_md": null,
+ "prose_reviewed": false,
+ "specs": {
+  "Supply Voltage": "4.5V ~ 16V"
+ },
+ "images": [],
+ "datasheets": [],
+ "use_cases": [],
+ "alternatives": [],
+ "related": [],
+ "history": [
+  {
+   "day": "2026-10-11",
+   "min_usd_minor": 12
+  }
+ ],
+ "offer_summary": {
+  "component_slug": "ne555p",
+  "mode": "best",
+  "quantity": 1,
+  "currency": "BDT",
+  "country": "BD",
+  "city": "Dhaka",
+  "local_only": false,
+  "offers": [
+   {
+    "listing_id": "80af9425-c240-4696-850c-6195297350f0",
+    "source": {
+     "name": "demo-ctg-parts",
+     "display_name": "Demo Ctg Parts",
+     "domain": "demo-ctg.test",
+     "trust_score": 0.7
+    },
+    "url": "https://shop.test/ne555p/80af94",
+    "go_url": "/go/80af9425-c240-4696-850c-6195297350f0",
+    "sponsored": false,
+    "title": "NE555P NE555P precision timer IC",
+    "condition": "new",
+    "in_stock": true,
+    "stock_qty": null,
+    "moq": 1,
+    "quantity": 1,
+    "unit_price": {
+     "amount": "15.00",
+     "currency": "BDT",
+     "usd_minor": 12
+    },
+    "landed_total": {
+     "amount": "15.00",
+     "currency": "BDT",
+     "usd_minor": 12
+    },
+    "landed_per_unit": {
+     "amount": "15.00",
+     "currency": "BDT",
+     "usd_minor": 12
+    },
+    "shipping": {
+     "amount": "0.00",
+     "currency": "BDT",
+     "usd_minor": 0
+    },
+    "duty_estimate": {
+     "amount": "0.00",
+     "currency": "BDT",
+     "usd_minor": 0
+    },
+    "eta_days": 3.0,
+    "distance_km": 214.0,
+    "ships_from": "BD",
+    "observed_at": "2026-10-11T03:30:14.706174Z",
+    "freshness": "recent",
+    "score": 0.923082
+   }
+  ],
+  "total": 1,
+  "fx_day": "2026-10-12"
+ },
+ "low_price": {
+  "amount": "15.00",
+  "currency": "BDT",
+  "usd_minor": 12
+ },
+ "high_price": {
+  "amount": "15.00",
+  "currency": "BDT",
+  "usd_minor": 12
+ },
+ "offer_count": 1,
+ "faq": [
+  {
+   "question": "What is the price of NE555P?",
+   "answer": "The lowest landed price we currently see for NE555P is BDT 15.00 per unit across 1 offer, including shipping and estimated import duty."
+  },
+  {
+   "question": "What package does NE555P come in?",
+   "answer": "NE555P is listed in a DIP-8 package."
+  }
+ ],
+ "breadcrumbs": [
+  {
+   "name": "Home",
+   "path": "/"
+  },
+  {
+   "name": "Ic Analog",
+   "path": "/category/ic-analog"
+  },
+  {
+   "name": "Texas Instruments",
+   "path": "/manufacturer/texas-instruments"
+  },
+  {
+   "name": "NE555P",
+   "path": "/component/ne555p"
+  }
+ ],
+ "updated_at": "2026-10-12T03:30:14.709875Z"
+}

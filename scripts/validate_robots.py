@@ -18,13 +18,12 @@ import asyncio
 import sys
 from pathlib import Path
 
-
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from common.settings import get_settings  # noqa: E402
-from crawler.fetcher.client import build_crawler_client  # noqa: E402
-from crawler.fetcher.robots import fetch_robots, origin_of  # noqa: E402
-from crawler.registry import SourceConfig, load_registry  # noqa: E402
+from common.settings import get_settings
+from crawler.fetcher.client import build_crawler_client
+from crawler.fetcher.robots import fetch_robots, origin_of
+from crawler.registry import SourceConfig, load_registry
 
 
 async def check_source(src: SourceConfig) -> list[str]:
@@ -59,9 +58,7 @@ async def write_db(results: dict[str, str]) -> None:
     async with session_scope() as s:
         for name, digest in results.items():
             await s.execute(
-                update(Source)
-                .where(Source.name == name)
-                .values(robots_checked_at=utcnow(), robots_hash=digest)
+                update(Source).where(Source.name == name).values(robots_checked_at=utcnow(), robots_hash=digest)
             )
 
 

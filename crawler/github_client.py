@@ -12,8 +12,17 @@ from crawler.registry import SourceConfig
 
 BASE = "https://api.github.com"
 _FENCE = re.compile(r"```(\w+)?\n(.*?)```", re.S)
-_LANG = {"cpp": "arduino", "c++": "arduino", "ino": "arduino", "arduino": "arduino", "c": "c", "python": "micropython",
-         "py": "micropython", "rust": "rust", "rs": "rust"}
+_LANG = {
+    "cpp": "arduino",
+    "c++": "arduino",
+    "ino": "arduino",
+    "arduino": "arduino",
+    "c": "c",
+    "python": "micropython",
+    "py": "micropython",
+    "rust": "rust",
+    "rs": "rust",
+}
 
 
 def strip_markdown(md: str) -> str:
@@ -36,9 +45,14 @@ def first_code_block(md: str) -> tuple[str | None, str | None]:
 class GitHubClient:
     def __init__(self, source: SourceConfig, token: str, client: ApiClient | None = None) -> None:
         require_api_access(source, token)
-        self.client = client or ApiClient(BASE, headers={"Authorization": f"Bearer {token}",
-                                                         "Accept": "application/vnd.github+json",
-                                                         "X-GitHub-Api-Version": "2022-11-28"})
+        self.client = client or ApiClient(
+            BASE,
+            headers={
+                "Authorization": f"Bearer {token}",
+                "Accept": "application/vnd.github+json",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+        )
 
     async def projects(self, mpn: str, limit: int = 5) -> list[UseCaseDraft]:
         data = await self.client.get_json(
@@ -55,12 +69,18 @@ class GitHubClient:
             md = base64.b64decode(readme.get("content", "")).decode("utf-8", errors="replace")
             lang, code = first_code_block(md)
             permissive = spdx in PERMISSIVE_LICENSES
-            out.append(UseCaseDraft(
-                title=clip(f"{repo.get('name')}: {repo.get('description') or ''}", 200),
-                summary=clip(strip_markdown(md) or repo.get("description"), 600),
-                source_type="github", source_url=repo["html_url"], source_author=(repo.get("owner") or {}).get("login"),
-                source_license=spdx, code_language=lang if permissive else None,
-                code_snippet=code if permissive else None, code_license=spdx if permissive and code else None,
-                upvotes=int(repo.get("stargazers_count") or 0),
-            ))
+            out.append(
+                UseCaseDraft(
+                    title=clip(f"{repo.get('name')}: {repo.get('description') or ''}", 200),
+                    summary=clip(strip_markdown(md) or repo.get("description"), 600),
+                    source_type="github",
+                    source_url=repo["html_url"],
+                    source_author=(repo.get("owner") or {}).get("login"),
+                    source_license=spdx,
+                    code_language=lang if permissive else None,
+                    code_snippet=code if permissive else None,
+                    code_license=spdx if permissive and code else None,
+                    upvotes=int(repo.get("stargazers_count") or 0),
+                )
+            )
         return out

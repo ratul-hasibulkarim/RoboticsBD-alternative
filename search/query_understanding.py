@@ -52,13 +52,28 @@ def parse_query(q: str, *, bdt_per_usd: float = 122.0) -> ParsedQuery:
     cleaned = _BD_WORDS.sub(" ", _UNDER.sub(" ", norm)).strip()
     tokens = cleaned.split()
     if len(tokens) == 1 and looks_like_mpn(tokens[0]):
-        return ParsedQuery(q, norm, QueryKind.MPN, normalize_mpn(tokens[0]), mpn_key(tokens[0]),
-                           wants_bd=wants_bd, max_price_usd_minor=max_price)
+        return ParsedQuery(
+            q,
+            norm,
+            QueryKind.MPN,
+            normalize_mpn(tokens[0]),
+            mpn_key(tokens[0]),
+            wants_bd=wants_bd,
+            max_price_usd_minor=max_price,
+        )
     if len(tokens) <= 4:
         cat, _ = categorize(cleaned)
         if cat != "other" and not any(looks_like_mpn(t) for t in tokens):
-            return ParsedQuery(q, norm, QueryKind.CATEGORY, category=cat, wants_bd=wants_bd,
-                               max_price_usd_minor=max_price)
+            return ParsedQuery(
+                q, norm, QueryKind.CATEGORY, category=cat, wants_bd=wants_bd, max_price_usd_minor=max_price
+            )
     mpn_tok = next((t for t in tokens if looks_like_mpn(t)), None)
-    return ParsedQuery(q, norm, QueryKind.NATURAL, normalize_mpn(mpn_tok) if mpn_tok else None,
-                       mpn_key(mpn_tok) if mpn_tok else None, wants_bd=wants_bd, max_price_usd_minor=max_price)
+    return ParsedQuery(
+        q,
+        norm,
+        QueryKind.NATURAL,
+        normalize_mpn(mpn_tok) if mpn_tok else None,
+        mpn_key(mpn_tok) if mpn_tok else None,
+        wants_bd=wants_bd,
+        max_price_usd_minor=max_price,
+    )

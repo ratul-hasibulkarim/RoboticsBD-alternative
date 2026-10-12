@@ -17,7 +17,14 @@ async def opt_out(body: OptOutCreate, s: SessionDep) -> Accepted:
     req = TakedownRequest(domain=body.domain.lower(), contact_email=body.contact_email, reason=body.reason)
     s.add(req)
     await s.flush()
-    s.add(ReviewItem(kind="takedown", ref_id=str(req.id), reason=f"opt-out request for {req.domain}", payload={"domain": req.domain}))
+    s.add(
+        ReviewItem(
+            kind="takedown",
+            ref_id=str(req.id),
+            reason=f"opt-out request for {req.domain}",
+            payload={"domain": req.domain},
+        )
+    )
     return Accepted(id=str(req.id))
 
 
@@ -39,9 +46,14 @@ async def report(body: ReportCreate, s: SessionDep) -> Accepted:
 
 @router.post("/notify-when-indexed", response_model=Accepted, status_code=202)
 async def notify_when_indexed(body: NotifyCreate, s: SessionDep) -> Accepted:
-    s.add(ReviewItem(kind="submission", ref_id=f"notify:{body.q.lower()}:{body.email.lower()}",
-                     reason="user wants to be notified when this part is indexed",
-                     payload={"q": body.q, "email": body.email}))
+    s.add(
+        ReviewItem(
+            kind="submission",
+            ref_id=f"notify:{body.q.lower()}:{body.email.lower()}",
+            reason="user wants to be notified when this part is indexed",
+            payload={"q": body.q, "email": body.email},
+        )
+    )
     try:
         await s.flush()
     except Exception:  # duplicate open request → idempotent

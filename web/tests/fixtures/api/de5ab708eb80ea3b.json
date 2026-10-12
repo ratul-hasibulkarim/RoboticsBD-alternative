@@ -1,0 +1,9 @@
+{
+ "components": 3,
+ "per_file": 45000,
+ "currencies": [
+  "BDT",
+  "USD",
+  "EUR"
+ ]
+}

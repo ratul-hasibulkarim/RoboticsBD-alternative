@@ -60,7 +60,9 @@ class Notifier(Protocol):
 
 
 class SmtpNotifier:
-    def __init__(self, host: str, port: int, sender: str, username: str = "", password: str = "", site_url: str = "") -> None:
+    def __init__(
+        self, host: str, port: int, sender: str, username: str = "", password: str = "", site_url: str = ""
+    ) -> None:
         self.host, self.port, self.sender = host, port, sender
         self.username, self.password, self.site_url = username, password, site_url
 
@@ -101,7 +103,11 @@ async def evaluate_alerts(s: AsyncSession, fx: FxTable, now: datetime, notifier:
         offers = await fetch_active_offers(s, alert.component_id)
         quotes = await fetch_ship_quotes(s, list({o.source_id for o in offers}), geo.country)
         ranked = rank_offers(
-            offers, RankRequest(geo=geo, quantity=alert.quantity, mode=SortMode.CHEAPEST, in_stock_only=True), fx, now, quotes
+            offers,
+            RankRequest(geo=geo, quantity=alert.quantity, mode=SortMode.CHEAPEST, in_stock_only=True),
+            fx,
+            now,
+            quotes,
         )
         if not ranked:
             continue
